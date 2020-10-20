@@ -7,14 +7,14 @@
 
 ## SECTION A
 
-|                     |                   |
-|---------------------|-------------------|
-|Project Title:       | xxxxxx            |
-|Student 1 Name:      | xxxxxx            |
-|Student 1 ID:        | xxxxxx            |
-|Student 2 Name:      | xxxxxx            |
-|Student 2 ID:        | xxxxxx            |
-|Project Supervisor:  | xxxxxx            |
+|                     |                |
+| ------------------- | -------------- |
+| Project Title:      | xxxxxx         |
+| Student 1 Name:     | Alan Devine    |
+| Student 1 ID:       | 17412402       |
+| Student 2 Name:     | Sean Moloney   |
+| Student 2 ID:       | xxxxxx         |
+| Project Supervisor: | David Sinclair |
 
 > Ensure that the Supervisor formally agrees to supervise your project; this is only recognised once the
 > Supervisor assigns herself/himself via the project Dashboard.
@@ -43,6 +43,10 @@
 
 > Where did the ideas come from?
 
+The idea for Glovsey came from a game called Heavy Rain. In this game there is an FBI agent called Norman Jayden who has this device called ARI. ARI is a AR headset and glove used for collecting evidence in the field. There is one particular scene where Norman is waiting for a meeting. He puts on the ARI and we see a wall materialise in front of him and he is cupping a ball. He then proceeds to kill time by throwing this virtual ball against the wall to kill time before the meeting. 
+
+We thought this part of the game was incredibly gimmicky however it got us thinking. To effectively place ourselves in these virtual environments through use of AR or VR, we need an interface to control these environments that is already know to use for the effect to take hold, i.e. our hands.
+
 ### Achievements
 
 > What functions will the project provide? Who will the users be?
@@ -50,6 +54,12 @@
 ### Justification
 
 > Why/when/where/how will it be useful?
+
+With the advancement in AR and VR products, an alternative input device is needed. With regards to VR, most VR headsets include some form of controller, typically consisting of two handheld devices with buttons positioned around the device in areas that the user is most likely to rest their fingers. This is effective, but leaves much to be desired. In the case that your avatar was to be holding an object, like a sword, this would be second nature, however once the avatar's hands are free then there is a clearer disconnect between reality and virtual reality.
+
+Similarity there is a issue with AR devices. Although the AR market is less mature than the VR market, we can look on past implementations. Many AR devices rely on speech recognition in order to interact with the device. While this approach works, this is not the most accessible approach, users that suffer from speech impediments and mute users would have no way of interacting with an AR Headset.
+
+We believe that products that are built upon the premise of an extension of reality should have controls to reflect that.
 
 ### Programming language(s)
 
@@ -79,7 +89,7 @@
 
 > *Student 1 should complete this section.*
 
-#### Student 2
+#### Alan Devine
 
 > *Student 2 should complete this section.*
 
