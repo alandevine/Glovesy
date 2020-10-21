@@ -65,13 +65,27 @@ We believe that products that are built upon the premise of an extension of real
 
 > List the proposed language(s) to be used.
 
+- C++
+- Java
+
 ### Programming tools / Tech stack
 
 > Describe the compiler, database, web server, etc., and any other software tools you plan to use.
 
+- Arduino Studio
+- Intellij
+- JSON
+
 ### Hardware
 
 > Describe any non-standard hardware components which will be required.
+
+| Name                             | Description                           |
+| -------------------------------- | ------------------------------------- |
+| Adafruit Feather M0 Bluefruit LE | Arduino board with built in Bluetooth |
+| Adafruit LSM6DS33 + LIS3MDL      | 9-DoF IMU                             |
+
+
 
 ### Learning Challenges
 
