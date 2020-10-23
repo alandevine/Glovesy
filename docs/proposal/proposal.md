@@ -9,7 +9,7 @@
 
 |                     |                |
 | ------------------- | -------------- |
-| Project Title:      | xxxxxx         |
+| Project Title:      | Glovesy        |
 | Student 1 Name:     | Alan Devine    |
 | Student 1 ID:       | 17412402       |
 | Student 2 Name:     | Sean Moloney   |
@@ -33,11 +33,11 @@
 
 ### Introduction
 
-> Describe the general area covered by the project.
+Glovesy is a wearable hand tracking device which will allow the user to interface with their pc, using user-defined marcos, accurate and immersive hand tracking and grip control in virtual reality and augmented reality, as well general desktop use and improved workflow.
 
 ### Outline
 
-> Outline the proposed project.
+In this project we will be creating a wearable device, in the form of a glove, which will track the user's hand and finger movement in order to allow them to interface with their pc, using either gesture controls which are mapped to custom macros, or by allowing the user to have significantly higher hand control in VR or AR games. On top of this, we will be creating a number of demos in order to demonstrate the capabilities and usability of the glove.
 
 ### Background
 
@@ -107,6 +107,7 @@ This project will provide a number of learning challenges and opportunities. We 
 > for the project.
 
 #### Alan Devine
+
 I will be creating a system for recognising hand movements and translating these into actions/ macros that will take place on the connected device. In addition to this, I will also create a companion application that will allow the user to record actions and define function for said actions to trigger.
 
 Time permitting, I will also create interactive demos for use in the project expo in the case that campus reopens.
@@ -114,5 +115,4 @@ Time permitting, I will also create interactive demos for use in the project exp
 #### Sean Moloney
 
 I will initally be creating a driver in order to interpret the output from the glove in order for Alan's configuration software to be able to take that output and map it to certain user defined macros.
-
 Once both the configuration software and driver are complete I will be working on a number of demonstrations to show off the capabilities of the glove alongside Alan's own demos.
