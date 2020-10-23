@@ -2,9 +2,8 @@
 
 ## SECTION A
 
-|                     |                |
-| ------------------- | -------------- |
 | Project Title:      | Glovesy        |
+| ------------------- | -------------- |
 | Student 1 Name:     | Alan Devine    |
 | Student 1 ID:       | 17412402       |
 | Student 2 Name:     | Sean Moloney   |
@@ -15,7 +14,7 @@
 
 ### Introduction
 
-Glovesy is a wearable hand tracking device which will allow the user to interface with their pc, using user-defined marcos, accurate and immersive hand tracking and grip control in virtual reality and augmented reality, as well general desktop use and improved workflow.
+Glovesy is a wearable hand tracking device which will allow the user to interface with their PC, using user-defined macros, accurate and immersive hand tracking and grip control in virtual reality and augmented reality, as well general desktop use and improved workflow.
 
 ### Outline
 
@@ -43,23 +42,33 @@ We believe that products that are built upon the premise of an extension of real
 
 ### Programming language(s)
 
-- C++
-- Java
+#### C++
+
+C++ will be used to write the "Sketches" for the Arduino and the drivers on both Windows and *nix devices. 
+
+#### Java
+
+Java will be used for creating the desktop application and daemon for matching gestures to macros.
 
 ### Programming tools / Tech stack
 
 - Arduino Studio
+  - For creating Arduino "Sketches".
 - Intellij
+  - For all Java development.
 - JSON
+  - For storing user macros and configuration.
+- Bluetooth Low Energy
+  - The means in which data will be transferred from the glove to a host machine.
 
 ### Hardware
+
+Below are the main hardware components. We have left out some of the other components as they can be interchanged with similar products without a change to the system.
 
 | Name                             | Description                           |
 | -------------------------------- | ------------------------------------- |
 | Adafruit Feather M0 Bluefruit LE | Arduino board with built in Bluetooth |
 | Adafruit LSM6DS33 + LIS3MDL      | 9-DoF IMU                             |
-
-
 
 ### Learning Challenges
 
