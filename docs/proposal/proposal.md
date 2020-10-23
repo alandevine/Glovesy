@@ -51,6 +51,10 @@ We thought this part of the game was incredibly gimmicky however it got us think
 
 > What functions will the project provide? Who will the users be?
 
+As stated above, the function of the glove would be to capture data related to the state of both fingers and the overall hand, where the finger data will mainly consist of how bent the finger is. The hand data relates to the position of the hand in a 3D space, i.e. orientation of the palm and acceleration in various directions. This data would then be matched to user defined macros that would achieve a variety of functions on a connected device.
+
+We envision our users as being owners of VR/AR devices, or people who cannot use a standard keyboard and mouse by virtue of their job. An example of this would be presenter who moves around a stage.
+
 ### Justification
 
 > Why/when/where/how will it be useful?
@@ -89,9 +93,10 @@ We believe that products that are built upon the premise of an extension of real
 
 ### Learning Challenges
 
-> List the main new things (technologies, languages, tools, etc) that you will have to learn.
+> List the main new things (technologies, languages, tools, etc) that you will have to learn. 
 > 
-> We will both have to learn about using adruino in order to both construct the gloves, we will also have to learn about writing drivers to be able to 
+
+This project will provide a number of learning challenges and opportunities. We will be exposed to many new technologies such as Arduino and transferring data over Bluetooth Low Energy. At a lower level we will have to learn about writing drivers to be able to read the data captured through the glove.
 
 ### Breakdown of work
 
@@ -103,6 +108,8 @@ We believe that products that are built upon the premise of an extension of real
 
 #### Alan Devine
 I will be creating a system for recognising hand movements and translating these into actions/ macros that will take place on the connected device. In addition to this, I will also create a companion application that will allow the user to record actions and define function for said actions to trigger.
+
+Time permitting, I will also create interactive demos for use in the project expo in the case that campus reopens.
 
 #### Sean Moloney
 
