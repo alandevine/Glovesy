@@ -102,10 +102,10 @@ We believe that products that are built upon the premise of an extension of real
 > for the project.
 
 #### Alan Devine
-
-> *Student 2 should complete this section.*
+I will be creating a system for recognising hand movements and translating these into actions/ macros that will take place on the connected device. In addition to this, I will also create a companion application that will allow the user to record actions and define function for said actions to trigger.
 
 #### Sean Moloney
 
-> I will initally be creating a driver in order to interpret the output from the glove in order for Alan's configuration software to be able to take that output and map it to certain user defined macros.
-> Once both the configuration software and driver are complete I will be working on a number of demonstrations to show off the capabilities of the glove alongside Alan's own demos.
+I will initally be creating a driver in order to interpret the output from the glove in order for Alan's configuration software to be able to take that output and map it to certain user defined macros.
+
+Once both the configuration software and driver are complete I will be working on a number of demonstrations to show off the capabilities of the glove alongside Alan's own demos.
