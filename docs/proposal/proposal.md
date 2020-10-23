@@ -13,7 +13,7 @@
 | Student 1 Name:     | Alan Devine    |
 | Student 1 ID:       | 17412402       |
 | Student 2 Name:     | Sean Moloney   |
-| Student 2 ID:       | xxxxxx         |
+| Student 2 ID:       | 17477122       |
 | Project Supervisor: | David Sinclair |
 
 > Ensure that the Supervisor formally agrees to supervise your project; this is only recognised once the
@@ -90,6 +90,8 @@ We believe that products that are built upon the premise of an extension of real
 ### Learning Challenges
 
 > List the main new things (technologies, languages, tools, etc) that you will have to learn.
+> 
+> We will both have to learn about using adruino in order to both construct the gloves, we will also have to learn about writing drivers to be able to 
 
 ### Breakdown of work
 
@@ -99,10 +101,11 @@ We believe that products that are built upon the premise of an extension of real
 > separate, clearly-defined tasks, and that those responsibilities substantially cover all of the work required
 > for the project.
 
-#### Student 1
-
-> *Student 1 should complete this section.*
-
 #### Alan Devine
 
 > *Student 2 should complete this section.*
+
+#### Sean Moloney
+
+> I will initally be creating a driver in order to interpret the output from the glove in order for Alan's configuration software to be able to take that output and map it to certain user defined macros.
+> Once both the configuration software and driver are complete I will be working on a number of demonstrations to show off the capabilities of the glove alongside Alan's own demos.
