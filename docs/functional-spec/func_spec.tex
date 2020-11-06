@@ -1,0 +1,296 @@
+% LaTeX Template taken from https://www.overleaf.com/latex/templates/kvis-project-template/tjtgbdhgzzyw
+
+\documentclass[12pt,a4paper,oneside]{book}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{latexsym}
+%\usepackage{pslatex}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{cite}
+\usepackage{indentfirst}
+\usepackage{tocloft}
+\usepackage{multirow}
+\usepackage{fontspec}
+\usepackage{hyperref}
+% Times New Roman
+%\setromanfont[
+%BoldFont=Times New Roman Bold.ttf,
+%ItalicFont=Times New Roman Italic.ttf,
+%BoldItalicFont=Times New Roman Bold Italic.ttf,
+%]{Times New Roman.ttf}
+\setmainfont{Times New Roman}
+
+% Centering Chapter
+\usepackage{sectsty}   
+\chapterfont{\centering}
+
+\pagestyle{myheadings}
+\setlength{\parindent}{0.8in}
+
+\usepackage[top=1.5in,bottom=1in,left=1.5in,right=1in]{geometry}
+
+
+
+% Theorem style-------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{de}[thm]{Definition}
+\renewcommand{\proof}{\textbf{Proof.}}
+
+\numberwithin{equation}{chapter} \DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ima}{Im}
+
+\usepackage{float}
+%\usepackage[skip=2pt,font=footnotesize]{caption}
+
+% Graph-------------------------------------------------------------------
+\usepackage{graphics,graphicx}
+\usepackage{calc}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings}
+\tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
+\newcommand{\vertex}{\node[vertex]}
+\newcounter{Angle}
+
+% Line space-------------------------------------------------------------------
+\renewcommand{\baselinestretch}{1.5}
+
+\newcommand*{\QEDA}{\hfill\ensuremath{\large{\lozenge}}}
+\newcommand*{\QEDAa}{\hfill\ensuremath{\square}}
+
+\renewcommand{\bibname}{\centerline{\Large REFERENCES}}
+
+%Centering table of contents and list of table
+\usepackage{tocloft}
+\renewcommand{\contentsname}{\hfill\bfseries\Large TABLE OF CONTENTS \hfill}   
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+\renewcommand{\listtablename}{\hfill\bfseries\Large LIST OF TABLES} 
+\renewcommand{\cftafterlottitle}{\hfill}
+
+\renewcommand{\listfigurename}{\hfill\bfseries\Large LIST OF FIGURES} 
+\renewcommand{\cftafterloftitle}{\hfill}
+
+
+
+
+
+
+
+\begin{document}
+\thispagestyle{empty}
+
+\begin{figure}[h!]
+\vskip1in
+\begin{center}
+\includegraphics[width = 3.5 cm]{DCU_logo_square.png}
+\end{center}
+\end{figure}
+
+\begin{center}
+\large{\textbf{Glovesy}}
+\end{center}
+
+\vskip2.5cm
+
+\begin{center}
+\textbf{BY}
+\end{center}
+
+\vskip0.6cm
+
+\begin{center}
+\textbf{Alan Devine}\\
+\textbf{Sean Moloney}
+\end{center}
+
+\vskip3.5cm
+ 
+\begin{center}
+\textbf{A functional specification document}
+\end{center}
+
+\begin{center}
+\textbf{As a requirement for CA400}
+\end{center}
+\vskip2cm
+\begin{center}
+\textbf{Dublin City University (DCU)}
+\end{center}
+
+\newpage
+\pagenumbering{roman}
+\noindent I/We declare that this material, which I/We now submit for assessment, is entirely my/our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of my/our work. I/We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should I/We engage in plagiarism, collusion, or copying. I/We have read and understood the Assignment Regulations. I/We have identified and included the source of all facts, ideas, opinions, and viewpoints of others in the assignment references. Direct quotations from books, journal articles, internet sources, module text, or any other source whatsoever are acknowledged and the source cited are identified in the assignment refernces. This assignment, or any part of it, has not been previously submitted by me/us or any other person for assessment on this or any other course of study. \\
+\\
+I/We have read and understood the referencing guidelines found at \\ 
+\url{https://www.dcu.ie/info/regulations/plagiarism.shtml}, \\
+\url{https://www4.dcu.ie/students/az/plagiarism}, \\
+and/or recommended in the assignment guidelines.
+
+\newpage
+\pagenumbering{roman}
+\begin{table}[h]
+	\begin{tabular}{ll}
+		Project Title								   & Glovesy  \\
+		By							   					  & Alan Devine \\
+															& Sean Moloney \\
+		Field of Study			  					 & Computer science \\
+		Project Advisor								& David Sinclair \\
+		Academic Years							  & 2020/2021 \\
+	\end{tabular}
+\end{table}
+\begin{center}
+  \large{\textbf{ABSTRACT}}\\
+\end{center}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+Glovesy is a wearable computer interfacing device in the form of glove which will allow the user to interface with their computer by using custom macros, or use the device for hand-tracking in VR or AR applications. \\
+\noindent {\textbf{Keywords:}} : Wearables, human-computer interfacing, VR, AR, Arduino
+
+\newpage
+\begin{center}
+	\large{\textbf{ACKNOWLEDGEMENTS}} \\
+\end{center}
+\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
+
+[Insert text here]
+
+[Insert text here]
+
+[Insert text here]\\\\
+
+%\vspace{0.4cm}
+\begin{flushright}
+    Title Firstname Surname\\
+    Title Firstname Surname\\
+    Title Firstname Surname\\
+\end{flushright}
+
+%\renewcommand{\contentsname}{TABLE OF CONTENTS}
+
+\newpage
+
+%\pagenumbering{roman}
+%\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\tableofcontents
+%
+
+
+\newpage
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\listoffigures
+
+\newpage
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\listoftables
+
+
+\newpage
+\pagenumbering{arabic}
+\chapter*{Introduction}
+
+\noindent Table's number and caption will be shown in ``LIST OF TABLE" automatically
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{ |c|c|c|c|}
+			\hline
+			K & V & I & S\\
+			\hline
+				& 	& 	& \\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Insert Caption for the table}\label{table1}
+\end{table}
+
+\vspace{2cm}
+
+\noindent Figure's number and caption will be shown in ``LIST OF FIGURES" automatically
+\begin{figure}[H]
+	\includegraphics[width = 3.5 cm]{KVIS_Logo.png}
+	\centering
+	\caption{Insert Caption for the figure}\label{fig1}
+\end{figure}
+
+\chapter{PRELIMINARIES}
+
+\section{Insert Section Title}\label{Sec2.1}
+
+\begin{de}\label{def1}
+	Insert Definition
+\end{de}
+
+\vspace{1cm}
+
+\begin{lem}\label{lem1}
+	Insert Lemma
+\end{lem}
+
+\vspace{1cm}
+
+\begin{thm}\label{thm1}
+	Insert Theorem
+\end{thm}
+
+\noindent\begin{proof}
+	Insert Statement of Proof
+	\QEDAa
+\end{proof}
+
+\vspace{1cm}
+
+\begin{ex}\label{ex1}
+	Insert Example.
+\end{ex}
+\noindent\textbf{Solution.}\\
+Solution for the Example \QEDA
+
+\vspace{1cm}
+
+\begin{cor}
+	Insert Corollary
+\end{cor}
+
+
+\chapter{REVIEW OF LITERATURE}
+\section{Insert Section Title}\label{Sec3.1}
+\subsection{Insert Subsection Title}\label{sub3.1.1}
+\subsection{Insert Subsection Title}\label{sub3.1.2}
+
+\section{Insert Section Title}\label{Sec3.2}
+\subsection{Insert Subsection Title}\label{sub3.2.1}
+\subsection{Insert Subsection Title}\label{sub3.2.2}
+
+\chapter{MAIN RESULT}
+
+Insert Text
+ 
+ \begin{thm}\label{thmx}
+ 	Insert Theorem
+ \end{thm}
+ 
+ \noindent\begin{proof}
+ 	Insert Statement of Proof
+ 	\QEDAa
+ \end{proof}
+
+\chapter{CONCLUSION AND DISCUSSION}
+Insert Text
+
+
+
+\begin{thebibliography}{99}
+\addcontentsline{toc}{chapter}{REFERENCES}
+
+Insert References
+\end{thebibliography}
+
+
+\end{document}
