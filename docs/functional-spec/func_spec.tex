@@ -1,4 +1,4 @@
-% LaTeX Template taken from https://www.overleaf.com/latex/templates/kvis-project-template/tjtgbdhgzzyw
+%LaTeX Template taken from https://www.overleaf.com/latex/templates/kvis-project-template/tjtgbdhgzzyw
 
 \documentclass[12pt,a4paper,oneside]{book}
 \usepackage{amsmath}
@@ -45,7 +45,8 @@
 \newtheorem{de}[thm]{Definition}
 \renewcommand{\proof}{\textbf{Proof.}}
 
-\numberwithin{equation}{chapter} \DeclareMathOperator{\Var}{Var}
+\numberwithin{equation}{chapter}
+\DeclareMathOperator{\Var}{Var}
 \DeclareMathOperator{\Ima}{Im}
 
 \usepackage{float}
@@ -91,7 +92,7 @@
 \begin{figure}[h!]
 \vskip1in
 \begin{center}
-\includegraphics[width = 3.5 cm]{DCU_logo_square.png}
+\includegraphics[width = 3.5 cm]{res/DCU_logo_square.png}
 \end{center}
 \end{figure}
 
@@ -108,8 +109,8 @@
 \vskip0.6cm
 
 \begin{center}
-\textbf{Alan Devine}\\
-\textbf{Sean Moloney}
+\textbf{Alan Devine - 17412402}\\
+\textbf{Sean Moloney - 17477122}
 \end{center}
 
 \vskip3.5cm
@@ -143,8 +144,8 @@ and/or recommended in the assignment guidelines.
 \begin{table}[h]
 	\begin{tabular}{ll}
 		Project Title								   & Glovesy  \\
-		By							   					  & Alan Devine \\
-															& Sean Moloney \\
+		By							   					  & Alan Devine - 17412402\\
+															& Sean Moloney - 17477122\\
 		Field of Study			  					 & Computer science \\
 		Project Advisor								& David Sinclair \\
 		Academic Years							  & 2020/2021 \\
@@ -154,7 +155,7 @@ and/or recommended in the assignment guidelines.
   \large{\textbf{ABSTRACT}}\\
 \end{center}
 \addcontentsline{toc}{chapter}{ABSTRACT}
-Glovesy is a wearable computer interfacing device in the form of glove which will allow the user to interface with their computer by using custom macros, or use the device for hand-tracking in VR or AR applications. \\
+\noindent Glovesy is a wearable computer interfacing device in the form of glove which will allow the user to interface with their computer by using custom macros, or use the device for hand-tracking in VR or AR applications. \\
 \noindent {\textbf{Keywords:}} : Wearables, human-computer interfacing, VR, AR, Arduino
 
 \newpage
@@ -199,17 +200,29 @@ Glovesy is a wearable computer interfacing device in the form of glove which wil
 \pagenumbering{arabic}
 \chapter*{Introduction}
 
-\indent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the pc, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
+\noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the pc, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
 
 \vspace{2cm}
 
-\noindent Figure's number and caption will be shown in ``LIST OF FIGURES" automatically
-\begin{figure}[H]
-	\includegraphics[width = 3.5 cm]{KVIS_Logo.png}
-	\centering
-	\caption{Insert Caption for the figure}\label{fig1}
-\end{figure}
+\chapter*{General Description}
 
+\section{Product / System Functions}
+
+\noindent Glovesy is a wearable human/computer interacing device, which will allow users to interact with their pc in a number of different ways, for different scopes.  The primary focus of the device, will be to allow the user to set up macros, or certain movements or gestures, which the computer will recognise as a specific command, thereby allowing ease of use. Another function of the device will be to track user hand and finger movements for increased accuracy and control in VR applications, since the device is so low profile, as opposed to current VR controllers which tend to be bulky, handheld devices.
+
+\section{Constraints}
+
+\noindent There are a number of constraints that we foresee will have some impact on the development process of this project.
+
+\begin{itemize}
+    \item{\textbf{BlueTooth:} We can imagine that there may be some problems with connectivity over bluetooth.}
+    \item{\textbf{Distinguishing Gestures:} It may be challenging to distinguish hand movements between general movement and purposeful gestures.}
+    \item{\textbf{Application Support:} It could be difficult to set up programs to use the device, as, particularly in games, there may be different controls that are pre-defined.}
+\end{itemize}
+
+\chapter*{Functional Requirements}
+
+\noindent 
 \chapter*{PRELIMINARIES}
 
 \section{Insert Section Title}\label{Sec2.1}
