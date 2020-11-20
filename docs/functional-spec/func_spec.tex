@@ -199,12 +199,14 @@ and/or recommended in the assignment guidelines.
 \newpage
 \pagenumbering{arabic}
 \chapter*{Introduction}
+\addcontentsline{toc}{chapter}{Introduction}
 
 \noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the pc, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
 
 \vspace{2cm}
 
 \chapter*{General Description}
+\addcontentsline{toc}{chapter}{General Description}
 
 \section{Product / System Functions}
 
@@ -218,50 +220,29 @@ and/or recommended in the assignment guidelines.
     \item{\textbf{BlueTooth:} We can imagine that there may be some problems with connectivity over bluetooth.}
     \item{\textbf{Distinguishing Gestures:} It may be challenging to distinguish hand movements between general movement and purposeful gestures.}
     \item{\textbf{Application Support:} It could be difficult to set up programs to use the device, as, particularly in games, there may be different controls that are pre-defined.}
+    \item{\textbf{Cross-platform:} a different driver will need to be made for different operating systems, which could be challenging.}
 \end{itemize}
 
 \chapter*{Functional Requirements}
+\addcontentsline{toc}{chapter}{Functional Requirements}
 
-\noindent 
-\chapter*{PRELIMINARIES}
-
-\section{Insert Section Title}\label{Sec2.1}
-
-\begin{de}\label{def1}
-	Insert Definition
-\end{de}
-
-\vspace{1cm}
-
-\begin{lem}\label{lem1}
-	Insert Lemma
-\end{lem}
-
-\vspace{1cm}
-
-\begin{thm}\label{thm1}
-	Insert Theorem
-\end{thm}
-
-\noindent\begin{proof}
-	Insert Statement of Proof
-	\QEDAa
-\end{proof}
-
-\vspace{1cm}
-
-\begin{ex}\label{ex1}
-	Insert Example.
-\end{ex}
-\noindent\textbf{Solution.}\\
-Solution for the Example \QEDA
-
-\vspace{1cm}
-
-\begin{cor}
-	Insert Corollary
-\end{cor}
-
+\begin{itemize}
+    \item{\textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.}
+        \begin{itemize}
+            \item{\textbf{Criticality:} This aspect is quite important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition.}
+            \item{\textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.}
+        \end{itemize}
+    \item{\textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.}
+        \begin{itemize}
+            \item{\textbf{Criticality:} This aspect is also quite important, as it is one of the main functions of the device.}
+            \item{\textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.}
+        \end{itemize}
+    \item{\textbf{Data Transfer:} The device must be able to transfer data to the pc reliably.}
+        \begin{itemize}
+            \item{\textbf{Criticality:} This Aspect is very important, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.}
+            \item{\textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device wit}
+        \end{itemize}
+\end{itemize}
 
 \chapter*{REVIEW OF LITERATURE}
 \section{Insert Section Title}\label{Sec3.1}
@@ -271,24 +252,6 @@ Solution for the Example \QEDA
 \section{Insert Section Title}\label{Sec3.2}
 \subsection{Insert Subsection Title}\label{sub3.2.1}
 \subsection{Insert Subsection Title}\label{sub3.2.2}
-
-\chapter{MAIN RESULT}
-
-Insert Text
- 
- \begin{thm}\label{thmx}
- 	Insert Theorem
- \end{thm}
- 
- \noindent\begin{proof}
- 	Insert Statement of Proof
- 	\QEDAa
- \end{proof}
-
-\chapter{CONCLUSION AND DISCUSSION}
-Insert Text
-
-
 
 \begin{thebibliography}{99}
 \addcontentsline{toc}{chapter}{REFERENCES}
