@@ -282,6 +282,53 @@ and/or recommended in the assignment guidelines.
 
 \chapter*{System Architecture}
 
+\section{High-Level System Architecture Diagram}
+
+\begin{tikzpicture}
+
+\node[module] (ard) {Arduino};
+\node[module, above=of ard] (imu) {IMU};
+\node[module, below=of ard] (fn) {...};
+\node[module, left=of fn] (f1) {Flex 1};
+\node[module, right=of fn] (f8) {Flex 8};
+
+\node[fit=(f1) (fn) (f8), draw, inner sep=5mm] (fit3) {};
+
+\draw [->] (fit3)--(ard);
+\draw [->] (imu)--(ard);
+
+\node[fit=(ard) (imu) (fit3), draw, inner sep=5mm] (glove) {};
+
+\node[module, below=of glove] (btr) {Bluetooth Reciever};
+\draw [->] (glove)--(btr);
+
+\node[module, below=of btr] (driver) {Device Driver};
+\draw [->] (btr)--(driver);
+
+\node[module, below=of driver] (daemon) {Daemon};
+\draw [->] (driver)--(daemon);
+
+
+\node[module, right=of daemon] (gui) {GCS};
+\draw [->] (daemon)--(gui);
+
+
+\node[module, below=of daemon] (macro) {MacroDB};
+\draw [->] (gui)|-(macro);
+\draw [->] (macro)--(daemon);
+
+
+\node[module, left=of daemon] (host) {General Input};
+\draw [->] (daemon)--(host);
+
+\node[fit=(btr) (driver) (daemon) (host) (gui) (macro), draw, inner sep=5mm] (host) {};
+
+\node[left=of host] (hostLable) {Host Computer};
+\node[left=of glove] (hostLable) {Glovesy};
+
+
+\end{tikzpicture}
+
 \section{Arduino}
 
 \noindent The arduino in use is an *Adafruit Feather M0 Bluefruit*. This has an integreated Bluetooth controler which allows us to transfer data to and from the host computer. This Arduino has 10 analog pins which we can use to measure resistance on our flex sensors.
@@ -297,6 +344,16 @@ and/or recommended in the assignment guidelines.
 \section{Macro Database}
 
 \noindent User defined macros will be stored in a database implemented in MongoDB. We chose MongoDB as conceptually, it makes more sense to group these actions as an object rather than in a relational database.
+
+\section{Glovesy Configuration Suite}
+
+\noindent The Glovesy Configuration Suite or GSC will be a desktop application implemented in Java where a User can:
+
+\begin{itemize}
+\item Define Macros,
+\item Set Application specific behavour, and
+\item See a visual representation of the User's hand.
+\end{itemize}
 
 \chapter*{High-Level Design}
 \begin{figure}[h!]
