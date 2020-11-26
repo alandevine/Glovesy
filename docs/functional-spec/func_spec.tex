@@ -1,6 +1,5 @@
-%LaTeX Template taken from https://www.overleaf.com/latex/templates/kvis-project-template/tjtgbdhgzzyw
-
 \documentclass[12pt,a4paper,oneside]{book}
+
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -15,12 +14,7 @@
 \usepackage{multirow}
 \usepackage{fontspec}
 \usepackage{hyperref}
-% Times New Roman
-%\setromanfont[
-%BoldFont=Times New Roman Bold.ttf,
-%ItalicFont=Times New Roman Italic.ttf,
-%BoldItalicFont=Times New Roman Bold Italic.ttf,
-%]{Times New Roman.ttf}
+
 \setmainfont{Times New Roman}
 
 % Centering Chapter
@@ -32,8 +26,6 @@
 
 \usepackage[top=1.5in,bottom=1in,left=1.5in,right=1in]{geometry}
 
-
-
 % Theorem style-------------------------------------------------------------------
 \theoremstyle{plain}
 \newtheorem{thm}{Theorem}[chapter]
@@ -43,7 +35,6 @@
 \newtheorem{rem}[thm]{Remark}
 \newtheorem{ex}[thm]{Example}
 \newtheorem{de}[thm]{Definition}
-\renewcommand{\proof}{\textbf{Proof.}}
 
 \numberwithin{equation}{chapter}
 \DeclareMathOperator{\Var}{Var}
@@ -56,18 +47,15 @@
 \usepackage{graphics,graphicx}
 \usepackage{calc}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.markings, fit, positioning}
 \tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
+\uspackage{circuitikz}
 \newcommand{\vertex}{\node[vertex]}
 \newcounter{Angle}
 
 % Line space-------------------------------------------------------------------
 \renewcommand{\baselinestretch}{1.5}
 
-\newcommand*{\QEDA}{\hfill\ensuremath{\large{\lozenge}}}
-\newcommand*{\QEDAa}{\hfill\ensuremath{\square}}
-
-\renewcommand{\bibname}{\centerline{\Large REFERENCES}}
 
 %Centering table of contents and list of table
 \usepackage{tocloft}
@@ -87,6 +75,7 @@
 
 
 \begin{document}
+
 \thispagestyle{empty}
 
 \begin{figure}[h!]
@@ -97,7 +86,7 @@
 \end{figure}
 
 \begin{center}
-\large{\textbf{Glovesy}}
+\large\textbf{Glovesy}
 \end{center}
 
 \vskip2.5cm
@@ -130,7 +119,7 @@
 \newpage
 \pagenumbering{roman}
 \begin{center}
-    \large{\textbf{Plagiarism Declaration}
+    \large\textbf{Plagiarism Declaration}
 \end{center}
 \noindent I/We declare that this material, which I/We now submit for assessment, is entirely my/our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of my/our work. I/We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should I/We engage in plagiarism, collusion, or copying. I/We have read and understood the Assignment Regulations. I/We have identified and included the source of all facts, ideas, opinions, and viewpoints of others in the assignment references. Direct quotations from books, journal articles, internet sources, module text, or any other source whatsoever are acknowledged and the source cited are identified in the assignment refernces. This assignment, or any part of it, has not been previously submitted by me/us or any other person for assessment on this or any other course of study. \\
 \\
@@ -152,15 +141,15 @@ and/or recommended in the assignment guidelines.
 	\end{tabular}
 \end{table}
 \begin{center}
-  \large{\textbf{ABSTRACT}}\\
+  \large\textbf{ABSTRACT}\\
 \end{center}
 \addcontentsline{toc}{chapter}{ABSTRACT}
 \noindent Glovesy is a wearable computer interfacing device in the form of glove which will allow the user to interface with their computer by using custom macros, or use the device for hand-tracking in VR or AR applications. \\
-\noindent {\textbf{Keywords:}} : Wearables, human-computer interfacing, VR, AR, Arduino
+\noindent \textbf{Keywords:} : Wearables, human-computer interfacing, VR, AR, Arduino
 
 \newpage
 \begin{center}
-	\large{\textbf{ACKNOWLEDGEMENTS}} \\
+	\large\textbf{ACKNOWLEDGEMENTS} \\
 \end{center}
 \addcontentsline{toc}{chapter}{ACKNOWLEDGEMENTS}
 
@@ -217,47 +206,74 @@ and/or recommended in the assignment guidelines.
 \noindent There are a number of constraints that we foresee will have some impact on the development process of this project.
 
 \begin{itemize}
-    \item{\textbf{BlueTooth:} We can imagine that there may be some problems with connectivity over bluetooth.}
-    \item{\textbf{Distinguishing Gestures:} It may be challenging to distinguish hand movements between general movement and purposeful gestures.}
-    \item{\textbf{Application Support:} It could be difficult to set up programs to use the device, as, particularly in games, there may be different controls that are pre-defined.}
-    \item{\textbf{Cross-platform:} a different driver will need to be made for different operating systems, which could be challenging.}
+    \item \textbf{BlueTooth:} We can imagine that there may be some problems with connectivity over bluetooth.
+    \item \textbf{Distinguishing Gestures:} It may be challenging to distinguish hand movements between general movement and purposeful gestures.
+    \item \textbf{Application Support:} It could be difficult to set up programs to use the device, as, particularly in games, there may be different controls that are pre-defined.
+    \item \textbf{Cross-platform:} a different driver will need to be made for different operating systems, which could be challenging. 
 \end{itemize}
 
 \chapter*{Functional Requirements}
 \addcontentsline{toc}{chapter}{Functional Requirements}
 
 \begin{itemize}
-    \item{\textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.}
+    \item \textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.
         \begin{itemize}
-            \item{\textbf{Criticality:} This aspect is quite important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition.}
-            \item{\textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.}
+            \item \textbf{Criticality:} This aspect is quite important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition.
+            \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
         \end{itemize}
-    \item{\textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.}
+    \item \textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.
         \begin{itemize}
-            \item{\textbf{Criticality:} This aspect is also quite important, as it is one of the main functions of the device.}
-            \item{\textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.}
+            \item \textbf{Criticality:} This aspect is also quite important, as it is one of the main functions of the device.
+            \item \textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.
         \end{itemize}
-    \item{\textbf{Data Transfer:} The device must be able to transfer data to the pc reliably.}
+    \item \textbf{Data Transfer:} The device must be able to transfer data to the pc reliably.
         \begin{itemize}
-            \item{\textbf{Criticality:} This Aspect is very important, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.}
-            \item{\textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device wit}
+            \item \textbf{Criticality:} This Aspect is very important, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.
+            \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
+        \end{itemize}
+    \item \textbf{Gesture Recognition:} The system must be able to distinguish between random movements and intentional gestures.
+        \begin{itemize}
+            \item \textbf{Criticality:} This requirement is important for a specific use-case scenario which is not focused on gaming or vr, but rather on workflow.
+            \item \textbf{Technical Issues:} Due to the nature of the device, we only have a certain number of inputs, and thereby limited on the amount of information we get from the device, meaning that we will have to focus on some way to distinguish between gestures and non-gestures through pattern recogntition.
         \end{itemize}
 \end{itemize}
 
-\chapter*{REVIEW OF LITERATURE}
-\section{Insert Section Title}\label{Sec3.1}
-\subsection{Insert Subsection Title}\label{sub3.1.1}
-\subsection{Insert Subsection Title}\label{sub3.1.2}
+\chapter*{System Architecture}
 
-\section{Insert Section Title}\label{Sec3.2}
-\subsection{Insert Subsection Title}\label{sub3.2.1}
-\subsection{Insert Subsection Title}\label{sub3.2.2}
+\chapter*{High-Level Design}
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+            every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
+            source/.style={draw, thick, rounded corners, fill=yellow!20,inner sep=.3cm},
+            to/.style={->,>=stealth',shorten >=1pt,semithick,font=\rmfamily\scriptsize},
+            every node/.style={align=center}]
+        \matrix{%
+            \node[source, label=left:Flex Sensors] (A) {A}; \& \& \& \node[source, label=right:Configuration Suite] (B) {B}; \\
+            \\\\\\
+            \node[source, label=left:Feather Board] (C) {C}; \& \& \node[source, label=below:Driver] (D) {D}; \\
+            \\\\\\ 
+            \node[source, label=left:IMU] (F) {F}; \& \& \& \node[source, label=right:Visualiser] (E) {E}; \\
+        };
 
-\begin{thebibliography}{99}
-\addcontentsline{toc}{chapter}{REFERENCES}
+        \draw[->] (A) -- node[anchor=west] {Flex State} (C);
+        \draw[->] (F) -- node[anchor=west] {IMU Position} (C);
+        \draw[->] (C) -- node[anchor=south] {IMU and Flex Data} (D);
+        \draw[->] (D) -| node[anchor=west] {Standardized Data} (B); 
+        \draw[->] (D) -| (E);
 
-Insert References
-\end{thebibliography}
+        \node[draw,dotted,fit=(A) (C) (F),inner sep=4ex,] (ACF) {};
+        \node[above of =ACF] (ACFt) [above=-5ex of ACF] {Glove};
+        \node[draw, dotted,fit=(D) (B) (E), inner sep=5ex] (DBE) {};
+        \node[above of = DBE] (DBEt) [above=-5ex of DBE] {PC};
+        \node[draw, dotted, fit=(B) (E), inner sep=1ex] (BE) {};
+        \node[above of = BE] (BEt) [above=-5ex of BE] {UI};
+    \end{tikzpicture}
+    \caption{Data Flow Diagram}
+    \label{fig:DFD}
+\end{figure}
 
+\chapter*{Preliminary Schedule}
 
+\chapter*{Appendices}
 \end{document}
