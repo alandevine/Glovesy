@@ -18,7 +18,7 @@
 \setmainfont{Times New Roman}
 
 % Centering Chapter
-\usepackage{sectsty}   
+\usepackage{sectsty}
 \chapterfont{\centering}
 
 \pagestyle{myheadings}
@@ -59,13 +59,13 @@
 
 %Centering table of contents and list of table
 \usepackage{tocloft}
-\renewcommand{\contentsname}{\hfill\bfseries\Large TABLE OF CONTENTS \hfill}   
+\renewcommand{\contentsname}{\hfill\bfseries\Large TABLE OF CONTENTS \hfill}
 \renewcommand{\cftaftertoctitle}{\hfill}
 
-\renewcommand{\listtablename}{\hfill\bfseries\Large LIST OF TABLES} 
+\renewcommand{\listtablename}{\hfill\bfseries\Large LIST OF TABLES}
 \renewcommand{\cftafterlottitle}{\hfill}
 
-\renewcommand{\listfigurename}{\hfill\bfseries\Large LIST OF FIGURES} 
+\renewcommand{\listfigurename}{\hfill\bfseries\Large LIST OF FIGURES}
 \renewcommand{\cftafterloftitle}{\hfill}
 
 
@@ -103,7 +103,7 @@
 \end{center}
 
 \vskip3.5cm
- 
+
 \begin{center}
 \textbf{A functional specification document}
 \end{center}
@@ -123,7 +123,7 @@
 \end{center}
 \noindent I/We declare that this material, which I/We now submit for assessment, is entirely my/our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of my/our work. I/We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should I/We engage in plagiarism, collusion, or copying. I/We have read and understood the Assignment Regulations. I/We have identified and included the source of all facts, ideas, opinions, and viewpoints of others in the assignment references. Direct quotations from books, journal articles, internet sources, module text, or any other source whatsoever are acknowledged and the source cited are identified in the assignment refernces. This assignment, or any part of it, has not been previously submitted by me/us or any other person for assessment on this or any other course of study. \\
 \\
-I/We have read and understood the referencing guidelines found at \\ 
+I/We have read and understood the referencing guidelines found at \\
 \url{https://www.dcu.ie/info/regulations/plagiarism.shtml}, \\
 \url{https://www4.dcu.ie/students/az/plagiarism}, \\
 and/or recommended in the assignment guidelines.
@@ -201,6 +201,48 @@ and/or recommended in the assignment guidelines.
 
 \noindent Glovesy is a wearable human/computer interacing device, which will allow users to interact with their pc in a number of different ways, for different scopes.  The primary focus of the device, will be to allow the user to set up macros, or certain movements or gestures, which the computer will recognise as a specific command, thereby allowing ease of use. Another function of the device will be to track user hand and finger movements for increased accuracy and control in VR applications, since the device is so low profile, as opposed to current VR controllers which tend to be bulky, handheld devices.
 
+\section{User Characteristics and Objectives}
+
+\noindent Glovesy is designed for users who engage in VR/AR applications. This includes, but is not limited to, Gaming, Product prototyping across remote teams,  Creating virtual art, etc. In addition to VR/AR users, given that Glovesy is designed to be a standard input device, we also envision it being used in environments such as,  a presenter navigating a stage, users who for whatever reason may not feel comfortable/can use traditional input devices, etc. We hope to make Glovesy as accessible as possible to the vast majority of users, that being said, here is our idea of the "Ideal User".
+
+\begin{itemize}
+    \item Experience with gesture-based input devices
+    \begin{itemize}
+        \item e.g. Nintendo Wii, or an Air mouse.
+    \end{itemize}
+    \item Experience with defining Macros
+    \begin{itemize}
+        \item Keyboard and Mouse Combinations that are present with devices with extra additional keys/ buttons.
+    \end{itemize}
+\end{itemize}
+
+\section{Operational Scenarios}
+
+\begin{enumerate}
+\item \textbf{Gaming in a VR setting:}
+\begin{itemize}
+    \item The User would see a virtual representation of their hand (this is entirely dependent on the Game itself). The user would be able to interact with their surroundings using Gloves rather than a traditional controller.
+\end{itemize}
+
+\item \textbf{Using an AR Device:}
+\begin{itemize}
+    \item The User would be able to control their AR Device using hand gestures.
+\end{itemize}
+
+
+\item \textbf{Mouse Emulation:}
+\begin{itemize}
+    \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by tensing their index finger and right click using their middle finger.
+\end{itemize}
+
+
+\item \textbf{Gesture Control:}
+\begin{itemize}
+    \item The User would define some sequence of hand movement combined with finger position, and create a mapping to certain actions on their computer, e.g. raising and lowering system volume, advancing slides, etc.
+\end{itemize}
+
+\end{enumerate}
+
 \section{Constraints}
 
 \noindent There are a number of constraints that we foresee will have some impact on the development process of this project.
@@ -209,7 +251,7 @@ and/or recommended in the assignment guidelines.
     \item \textbf{BlueTooth:} We can imagine that there may be some problems with connectivity over bluetooth.
     \item \textbf{Distinguishing Gestures:} It may be challenging to distinguish hand movements between general movement and purposeful gestures.
     \item \textbf{Application Support:} It could be difficult to set up programs to use the device, as, particularly in games, there may be different controls that are pre-defined.
-    \item \textbf{Cross-platform:} a different driver will need to be made for different operating systems, which could be challenging. 
+    \item \textbf{Cross-platform:} a different driver will need to be made for different operating systems, which could be challenging.
 \end{itemize}
 
 \chapter*{Functional Requirements}
@@ -240,6 +282,22 @@ and/or recommended in the assignment guidelines.
 
 \chapter*{System Architecture}
 
+\section{Arduino}
+
+\noindent The arduino in use is an *Adafruit Feather M0 Bluefruit*. This has an integreated Bluetooth controler which allows us to transfer data to and from the host computer. This Arduino has 10 analog pins which we can use to measure resistance on our flex sensors.
+
+\section{Flex sensor Array}
+
+\noindent A flex sensor is a vairable resistor that changes resistence based on how much the sensor is bent. For this project we will be making use of 8 flex sensors which will measure the position of each knuckle as well as each finger joint. With the exception of the Thumb and pinky fingers, which will only have one flex sensor each. To help mitigate the costs associated with this project, we will be constructing our own flex sensors using several layers of velostat and conductive thread which will act as our positive and negative terminals.
+
+\section{IMU}
+
+\noindent The IMU, or *Inertial measurement unit* is the device which we will use to measure the device in 3D space. Our device in question, measures Acceleration and Gyroscopic data on the X, Y and Z Axises in meters per second and radians respectivly. Our IMU also measures temperature, however that will not be used for this project.
+
+\section{Macro Database}
+
+\noindent User defined macros will be stored in a database implemented in MongoDB. We chose MongoDB as conceptually, it makes more sense to group these actions as an object rather than in a relational database.
+
 \chapter*{High-Level Design}
 \begin{figure}[h!]
     \centering
@@ -252,14 +310,14 @@ and/or recommended in the assignment guidelines.
             \node[source, label=left:Flex Sensors] (A) {A}; \& \& \& \node[source, label=right:Configuration Suite] (B) {B}; \\
             \\\\\\
             \node[source, label=left:Feather Board] (C) {C}; \& \& \node[source, label=below:Driver] (D) {D}; \\
-            \\\\\\ 
+            \\\\\\
             \node[source, label=left:IMU] (F) {F}; \& \& \& \node[source, label=right:Visualiser] (E) {E}; \\
         };
 
         \draw[->] (A) -- node[anchor=west] {Flex State} (C);
         \draw[->] (F) -- node[anchor=west] {IMU Position} (C);
         \draw[->] (C) -- node[anchor=south] {IMU and Flex Data} (D);
-        \draw[->] (D) -| node[anchor=west] {Standardized Data} (B); 
+        \draw[->] (D) -| node[anchor=west] {Standardized Data} (B);
         \draw[->] (D) -| (E);
 
         \node[draw,dotted,fit=(A) (C) (F),inner sep=4ex,] (ACF) {};
