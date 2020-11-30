@@ -47,9 +47,9 @@
 \usepackage{graphics,graphicx}
 \usepackage{calc}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings, fit, positioning}
+\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds}
 \tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
-\uspackage{circuitikz}
+\usepackage{circuitikz}
 \newcommand{\vertex}{\node[vertex]}
 \newcounter{Angle}
 
@@ -181,17 +181,11 @@ and/or recommended in the assignment guidelines.
 \listoffigures
 
 \newpage
-\addcontentsline{toc}{chapter}{LIST OF TABLES}
-\listoftables
-
-
-\newpage
 \pagenumbering{arabic}
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
 \noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the pc, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
-
 \vspace{2cm}
 
 \chapter*{General Description}
@@ -283,51 +277,51 @@ and/or recommended in the assignment guidelines.
 \chapter*{System Architecture}
 
 \section{High-Level System Architecture Diagram}
-
-\begin{tikzpicture}
-
-\node[module] (ard) {Arduino};
-\node[module, above=of ard] (imu) {IMU};
-\node[module, below=of ard] (fn) {...};
-\node[module, left=of fn] (f1) {Flex 1};
-\node[module, right=of fn] (f8) {Flex 8};
-
-\node[fit=(f1) (fn) (f8), draw, inner sep=5mm] (fit3) {};
-
-\draw [->] (fit3)--(ard);
-\draw [->] (imu)--(ard);
-
-\node[fit=(ard) (imu) (fit3), draw, inner sep=5mm] (glove) {};
-
-\node[module, below=of glove] (btr) {Bluetooth Reciever};
-\draw [->] (glove)--(btr);
-
-\node[module, below=of btr] (driver) {Device Driver};
-\draw [->] (btr)--(driver);
-
-\node[module, below=of driver] (daemon) {Daemon};
-\draw [->] (driver)--(daemon);
-
-
-\node[module, right=of daemon] (gui) {GCS};
-\draw [->] (daemon)--(gui);
-
-
-\node[module, below=of daemon] (macro) {MacroDB};
-\draw [->] (gui)|-(macro);
-\draw [->] (macro)--(daemon);
-
-
-\node[module, left=of daemon] (host) {General Input};
-\draw [->] (daemon)--(host);
-
-\node[fit=(btr) (driver) (daemon) (host) (gui) (macro), draw, inner sep=5mm] (host) {};
-
-\node[left=of host] (hostLable) {Host Computer};
-\node[left=of glove] (hostLable) {Glovesy};
-
-
-\end{tikzpicture}
+\begin{figure}[h!]
+    \begin{tikzpicture}
+        \node[] (ard) {Arduino};
+        \node[above=of ard] (imu) {IMU};
+        \node[below=of ard] (fn) {...};
+        \node[left=of fn] (f1) {Flex 1};
+        \node[right=of fn] (f8) {Flex 8};
+        
+        \node[fit=(f1) (fn) (f8), draw, inner sep=5mm] (fit3) {};
+        
+        \draw [->] (fit3)--(ard);
+        \draw [->] (imu)--(ard);
+        
+        \node[fit=(ard) (imu) (fit3), draw, inner sep=5mm] (glove) {};
+        
+        \node[below=of glove] (btr) {Bluetooth Reciever};
+        \draw [->] (glove)--(btr);
+        
+        \node[below=of btr] (driver) {Device Driver};
+        \draw [->] (btr)--(driver);
+        
+        \node[below=of driver] (daemon) {Daemon};
+        \draw [->] (driver)--(daemon);
+        
+        
+        \node[right=of daemon] (gui) {GCS};
+        \draw [->] (daemon)--(gui);
+        
+        
+        \node[below=of daemon] (macro) {MacroDB};
+        \draw [->] (gui)|-(macro);
+        \draw [->] (macro)--(daemon);
+        
+        
+        \node[left=of daemon] (host) {General Input};
+        \draw [->] (daemon)--(host);
+        
+        \node[fit=(btr) (driver) (daemon) (host) (gui) (macro), draw, inner sep=5mm] (host) {};
+        
+        \node[left=of host] (hostLable) {Host Computer};
+        \node[left=of glove] (hostLable) {Glovesy};
+    \end{tikzpicture}
+    \caption{High-Level System Architecture Diagram}
+    \label{fig:sys-arch diagram}
+\end{figure}
 
 \section{Arduino}
 
@@ -376,6 +370,141 @@ and/or recommended in the assignment guidelines.
     \end{tikzpicture}
     \caption{Data Flow Diagram}
     \label{fig:DFD}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{circuitikz}
+        \ctikzset{multipoles/dipchip/width=2};
+        \ctikzset{multipoles/dipchip/pin spacing=.2};
+        \draw (8,6) node[dipchip, num pins=10,hide numbers, external pins width=0] (IMU) {\footnotesize IMU};
+        \draw (8,2) node[dipchip, num pins=32,hide numbers, external pins width=0] (Main) {\footnotesize Feather M0};
+        \draw (0,0) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex1) {};
+        \draw (0,1) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex2) {};
+        \draw (0,2) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex3) {};
+        \draw (0,3) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex4) {};
+        \draw (0,4) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex5) {};
+        \draw (0,5) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex6) {};
+        \draw (0,6) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex7) {};
+        \draw (0,7) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex8) {};
+
+        \node[right, font=\tiny] at (Main.bpin 2) {3V};
+        \node[right, font=\tiny] at (Main.bpin 4) {GND};
+        \node[right, font=\tiny] at (Main.bpin 5) {A0};
+        \node[right, font=\tiny] at (Main.bpin 6) {A1};
+        \node[right, font=\tiny] at (Main.bpin 7) {A2};
+        \node[right, font=\tiny] at (Main.bpin 8) {A3};
+        \node[right, font=\tiny] at (Main.bpin 9) {A4};
+        \node[right, font=\tiny] at (Main.bpin 10) {A5};
+        \node[left, font=\tiny] at (Main.bpin 29) {13};
+        \node[left, font=\tiny] at (Main.bpin 27) {11};
+        \node[left, font=\tiny] at (Main.bpin 25) {9};
+        \node[left, font=\tiny] at (Main.bpin 22) {SCL};
+        \node[left, font=\tiny] at (Main.bpin 21) {SDA};
+        
+        \node[right, font=\tiny] at (IMU.bpin 1) {VIN};
+        \node[right, font=\tiny] at (IMU.bpin 3) {GND};
+        \node[right, font=\tiny] at (IMU.bpin 4) {SCL};
+        \node[right, font=\tiny] at (IMU.bpin 5) {SDA};
+
+        \node[left, font=\tiny] at (Flex1.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex1.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex2.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex2.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex3.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex3.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex4.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex4.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex5.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex5.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex6.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex6.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex7.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex7.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex8.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex8.bpin 3) {-};
+
+        \node[draw,dotted,fit=(Flex1) (Flex2) (Flex3) (Flex4) (Flex5) (Flex6) (Flex7) (Flex8),inner sep=3ex] (FlexBox) {};
+        \node[above of=Flex8] (FlexBoxText) [above=-2ex of Flex8] {Flex Sensors};
+
+
+        \draw (Main.pin 2) -- + (-1.5,0) node[circ](IMUv){} |- (IMU.pin 1);
+        \draw (Main.pin 4) -- + (-2,0) node[circ](gnd){} |- (IMU.pin 3); 
+        \draw (Main.pin 22) -- + (.5,0) -- + (.5,3.2) -- + (-3.6,3.2) |- (IMU.pin 4);
+        \draw (Main.pin 21) -- + (.8,0) -- + (.8, 3.8) -- + (-3.3, 3.8) |- (IMU.pin 5);
+
+
+        \draw (Flex1.pin 3) -- + (1,0) node[circ](gflex){} -- + (3.2,0) node[circ](groundflex){};
+        \draw (Flex2.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex3.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex4.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex5.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex6.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex7.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex8.pin 3) -- + (1,0) -- (gflex);
+
+
+        \draw (gnd) -- (groundflex);
+
+        \draw (Flex1.pin 4) -- + (1.5,0) node[circ](vflex){} -| (IMUv);
+        \draw (Flex2.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex3.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex4.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex5.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex6.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex7.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex8.pin 4) -- + (1.5,0) -- (vflex);
+
+        \draw (Main.pin 5) -- + (-1,0) node[circ](a0){};
+        \draw (Main.pin 6) -- + (-1,0) node[circ](a1){};
+        \draw (Main.pin 7) -- + (-1,0) node[circ](a2){};
+        \draw (Main.pin 8) -- + (-1,0) node[circ](a3){};
+        \draw (Main.pin 9) -- + (-1,0) node[circ](a4){};
+        \draw (Main.pin 10) -- + (-1,0) node[circ](a5){};
+
+        \draw (Main.pin 27) -- + (1.3,0) node[circ](11){};
+        \draw (Main.pin 25) -- + (1.3,0) node[circ](9){};
+
+        \draw (Main.pin 29) -- + (1.3,0) -- (11);
+        \draw (groundflex) -| (a0);
+        \draw (groundflex) -- + (0,-.5) -| (11);
+
+    \end{circuitikz}
+    \caption{Circuit Diagram}
+    \label{fig:Circuit}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{circuitikz}
+        \tikzset={>=latex};
+        \draw (2, 0) node[resistivesensshape](r){};
+        \draw[->,>=stealth] (r.label) -- + (.49, .9);
+
+        \draw (r.east) -- + (1.5,0) node[ocirc](vin){};
+        \node [above of=vin] [above=-5ex of vin]{V\footnotesize in};
+
+        \draw (0,-1.5) node[resistorshape, rotate=90](pullup){};
+
+        \draw (pullup.east) -- + (0,.93) node[circ](a){};
+        \draw (a) -- (r.west);
+        \draw (a) -- + (-1,0) node[ocirc](vout){};
+        \draw (pullup.west) -- + (0,-.5) node[ground]{};
+
+        \node[above of=vout] [above=-5ex of vout] {V\footnotesize out};
+
+        \node[above of=r] {\footnotesize Flex Sensor};
+        \node[left of=pullup] {\footnotesize 4.7 \tiny k $\Omega$};
+    \end{circuitikz}
+    \caption{Flex Sensor Circuit}
+    \label{fig:flex}
 \end{figure}
 
 \chapter*{Preliminary Schedule}
