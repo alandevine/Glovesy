@@ -69,11 +69,7 @@
 \renewcommand{\listfigurename}{\hfill\bfseries\Large LIST OF FIGURES}
 \renewcommand{\cftafterloftitle}{\hfill}
 
-
-
-
-
-
+\renewcommand*\thesection{\arabic{section}}
 
 \begin{document}
 
@@ -152,16 +148,11 @@ and/or recommended in the assignment guidelines.
 %\renewcommand{\contentsname}{TABLE OF CONTENTS}
 
 \newpage
-
-%\pagenumbering{roman}
-%\addcontentsline{toc}{chapter}{LIST OF TABLES}
 \tableofcontents
-%
 
-
-\newpage
-\addcontentsline{toc}{chapter}{LIST OF FIGURES}
-\listoffigures
+%\newpage
+%\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+%\listoffigures
 
 \newpage
 \pagenumbering{arabic}
@@ -258,8 +249,8 @@ and/or recommended in the assignment guidelines.
 \end{itemize}
 
 \chapter*{System Architecture}
+\addcontentsline{toc}{chapter}{System Architecture}
 
-\section{High-Level System Architecture Diagram}
 \begin{figure}[h!]
     \begin{tikzpicture}
         \node[] (ard) {Arduino};
@@ -323,6 +314,8 @@ and/or recommended in the assignment guidelines.
 \noindent User defined macros will be stored in a database implemented in MongoDB. We chose MongoDB as conceptually, it makes more sense to group these actions as an object rather than in a relational database.
 
 \chapter*{High-Level Design}
+\addcontentsline{toc}{chapter}{High-Level Design}
+
 \begin{figure}[h!]
     \centering
     \begin{tikzpicture}[
@@ -498,6 +491,7 @@ and/or recommended in the assignment guidelines.
 \end{figure}
 
 \chapter*{Preliminary Schedule}
+\addcontentsline{toc}{chapter}{Preliminary Schedule}
 
 \noindent In this section we will outline our provisional Gantt chart depicting how work will be completed through the duration of this project. The document is layed out as follows:
 
@@ -509,10 +503,7 @@ and/or recommended in the assignment guidelines.
 
 \noindent \textbf{Note:} Time to write unit tests is factored in with each development task presented below.
 
-
 \includepdf[fitpaper=true, pages=-]{res/gantt.pdf}
-
-
 
 \chapter*{Appendices}
 \end{document}
