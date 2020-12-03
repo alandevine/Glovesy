@@ -268,6 +268,26 @@ and/or recommended in the assignment guidelines.
 \begin{itemize}
     \item \textbf{Criticality:} This requirement is important for a specific use-case scenario which is not focused on gaming or vr, but rather on workflow.
     \item \textbf{Technical Issues:} Due to the nature of the device, we only have a certain number of inputs, and thereby limited on the amount of information we get from the device, meaning that we will have to focus on some way to distinguish between gestures and non-gestures through pattern recogntition.
+    \item \textbf{Data Transfer:} The device must be able to transfer data to the PC reliably.
+        \begin{itemize}
+            \item \textbf{Criticality:} This Aspect is critical, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.
+            \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
+        \end{itemize}
+    \item \textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.
+        \begin{itemize}
+            \item \textbf{Criticality:} This aspect is very important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general usability as it is very frustrating to control a mouse cursor with a device which can't accurately track your inputs.
+            \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
+        \end{itemize}
+    \item \textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.
+        \begin{itemize}
+            \item \textbf{Criticality:} This aspect is also very important, as it is one of the main functions of the device.
+            \item \textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.
+        \end{itemize}
+    \item \textbf{Gesture Recognition:} The system must be able to distinguish between random movements and intentional gestures.
+        \begin{itemize}
+            \item \textbf{Criticality:} This requirement is important for a specific use-case scenario which is not focused on gaming or vr, but rather on workflow.
+            \item \textbf{Technical Issues:} Due to the nature of the device, we only have a certain number of inputs, and thereby limited on the amount of information we get from the device, meaning that we will have to focus on some way to distinguish between gestures and non-gestures through pattern recogntition.
+        \end{itemize}
 \end{itemize}
 
 
@@ -526,6 +546,4 @@ and/or recommended in the assignment guidelines.
 \noindent \textbf{Note:} Time to write unit tests is factored in with each development task presented below.
 
 \includepdf[fitpaper=true, pages=-]{res/gantt.pdf}
-
-\chapter*{Appendices}
 \end{document}
