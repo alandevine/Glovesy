@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{pdfpages}
 %\setmainfont{Times New Roman}
+\usepackage{gensymb}
 
 % Centering Chapter
 \usepackage{sectsty}
@@ -47,7 +48,7 @@
 \usepackage{graphics,graphicx}
 \usepackage{calc}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds}
+\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds, automata}
 \tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
 \usepackage{circuitikz}
 \newcommand{\vertex}{\node[vertex]}
@@ -161,8 +162,24 @@ and/or recommended in the assignment guidelines.
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-\noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the PC, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
-\vspace{2cm}
+\section{Overview}
+
+\noindent Glovesy is an Arduino based wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the PC, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
+
+\vspace{1cm}
+
+\noindent Gestures will be defined by a user and mapped to some action on their PC. Actions could include entering a combination of keystrokes, opening an application, raising/ lowering system volume, etc. The will be executed upon the user repeating their chosen gesture.
+
+\vspace{1cm}
+
+\section{Glossary}
+\begin{itemize}
+    \item \textbf{VR Headset} A head-mounted device for use in consuming Virtual Reality Content.
+    \item \textbf{AR Headset} Simillarly to a VR Headset, an AR Headset is a head-mounted device which aims to provide a User with content that is built around their surroundings rather than replace them in the case of a VR Headset.
+    \item \textbf{Arduino} An Open-Source electronic prototyping platform.
+\end{itemize}
+
+
 
 \chapter*{General Description}
 \addcontentsline{toc}{chapter}{General Description}
@@ -532,8 +549,127 @@ and/or recommended in the assignment guidelines.
     \label{fig:UMLClassDiagram}
 \end{figure}
 
+\begin{figure}
+    \noindent This is an example of how Gesture Recognition will be accomplished using the example of recognising a "Hand Wave" Gesture.
+
+    \vspace{1cm}
+
+    A "Hand Wave" is defined with the following steps.
+    \begin{enumerate}
+        \item Acceleration on the Z axis with a 90\degree rotation on the Y axis.
+        \item Decrease in Acceleration on Z Axis.
+        \item (Acceleration | Deceleration) on Y Axis with slight deceleration on Z Axis.
+        \item Opposed (Acceleration | Deceleration) to step 3 on Y axis with slight acceleration on Z Axis
+        \item (Go to step 3 | Deceleration on Z Axis)
+        \
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[state,initial] (q_0)   {$q_0$};
+        \node[state] (q_1) [below=of q_0] {$q_1$};
+        \node[state] (q_2) [below=of q_1] {$q_2$};
+
+        \node[state] (q_6) [right=of q_2] {$q_6$};
+        \node[state] (q_7) [right=of q_6] {$q_7$};
+
+        \node[state] (q_3) [below=of q_6] {$q_3$};
+        \node[state] (q_4) [right=of q_3] {$q_4$};
+        \node[state,accepting](q_5) [right=of q_4] {$q_5$};
+
+        \node[state,accepting] (q_8) [right=of q_7] {$q_8$};
+        \path[->]
+            (q_0)   edge                    node    [swap]      {ZAcc}      (q_1)
+            (q_1)   edge                    node    [swap]      {YPosRot}   (q_2)
+                    edge [loop right]       node                {ZAcc}      ()
+            (q_2)   edge                    node    [swap]      {YAcc}      (q_3)
+                    edge                    node    [swap]      {YDec}      (q_6)
+            (q_3)   edge                    node    [swap]      {YDec}      (q_4)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+            (q_4)   edge                    node    [swap]      {ZDec}      (q_5)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+                    edge [in=300,out=250]   node    [swap]      {YAcc}      (q_3)
+            (q_5)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+            (q_6)   edge                    node    [swap]      {YAcc}      (q_7)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+            (q_7)   edge                    node    [swap]      {ZDec}      (q_8)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+                    edge [in=300,out=250]   node    [swap]      {YDec}      (q_6)
+            (q_8)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+
+            ;
+    \end{tikzpicture}
+
+    \caption{Example of Gesture Recognition}
+    \label{fig:FSA}
+\end{figure}
+
 \chapter*{Preliminary Schedule}
 \addcontentsline{toc}{chapter}{Preliminary Schedule}
+
+% The plan also includes information on hardware, software, and wetware resource requirements.
+
+\section{Major Tasks}
+
+\noindent The Major tasks of this project are listed below. They are ordered from most critical to least and their Dependencies on other tasks are also provided.
+
+\begin{center}
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        Task ID & Task & Dependency \\
+        \hline
+        \hline
+        1 & Construct Glove & n/a \\
+        \hline
+        2 & Develop Linux Driver & 1 \\
+        \hline
+        3 & Develop OpenGL Environment & n/a \\
+        \hline
+        4 & Implement Gesture Recognition & 1, 2 \\
+        \hline
+        5 & Application Handler & n/a \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\section{Hardware Requirements}
+
+\noindent See below a table of the required hardware to complete this project.
+
+\begin{center}
+    \begin{tabular}{ |c|c| }
+        \hline
+        Name & Description \\
+        \hline
+        \hline
+        Adafruit Feather M0 Bluefruit LE & Arduino board with built in Bluetooth \\
+        \hline
+        Adafruit LSM6DS33 + LIS3MDL & 9-DoF IMU \\
+        \hline
+        Pressure-Sensitive Conductive Sheet & Velostat for Flex Sensors \\
+        \hline
+        Stainless Thin Conductive Yarn & 30ft of conductive thread \\
+        \hline
+        Adafruit Flex Perma-Proto & Flexable Bread board \\
+        \hline
+    \end{tabular}
+\end{center}
+
+\noindent The above hardware was ordered upon receiving project approval.
+
+\section{Software/ Wetware Requirements}
+
+\noindent There are no specific Software/ Wetware requirements to complete this project.
+
+\section{Gantt Chart}
 
 \noindent In this section we will outline our provisional Gantt chart depicting how work will be completed through the duration of this project. The document is layed out as follows:
 
