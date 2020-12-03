@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{pdfpages}
 %\setmainfont{Times New Roman}
+\usepackage{gensymb}
 
 % Centering Chapter
 \usepackage{sectsty}
@@ -47,7 +48,7 @@
 \usepackage{graphics,graphicx}
 \usepackage{calc}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds}
+\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds, automata}
 \tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
 \usepackage{circuitikz}
 \newcommand{\vertex}{\node[vertex]}
@@ -526,6 +527,69 @@ and/or recommended in the assignment guidelines.
     \includegraphics[]{res/UMLClassDiagram.pdf}
     \caption{UML Class Diagram}
     \label{fig:UMLClassDiagram}
+\end{figure}
+
+\begin{figure}
+    \noindent This is an example of how Gesture Recognition will be accomplished using the example of recognising a "Hand Wave" Gesture.
+
+    \vspace{1cm}
+
+    A "Hand Wave" is defined with the following steps.
+    \begin{enumerate}
+        \item Acceleration on the Z axis with a 90\degree rotation on the Y axis.
+        \item Decrease in Acceleration on Z Axis.
+        \item (Acceleration | Deceleration) on Y Axis with slight deceleration on Z Axis.
+        \item Opposed (Acceleration | Deceleration) to step 3 on Y axis with slight acceleration on Z Axis
+        \item (Go to step 3 | Deceleration on Z Axis)
+        \
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[state,initial] (q_0)   {$q_0$};
+        \node[state] (q_1) [below=of q_0] {$q_1$};
+        \node[state] (q_2) [below=of q_1] {$q_2$};
+
+        \node[state] (q_6) [right=of q_2] {$q_6$};
+        \node[state] (q_7) [right=of q_6] {$q_7$};
+
+        \node[state] (q_3) [below=of q_6] {$q_3$};
+        \node[state] (q_4) [right=of q_3] {$q_4$};
+        \node[state,accepting](q_5) [right=of q_4] {$q_5$};
+
+        \node[state,accepting] (q_8) [right=of q_7] {$q_8$};
+        \path[->]
+            (q_0)   edge                    node    [swap]      {ZAcc}      (q_1)
+            (q_1)   edge                    node    [swap]      {YPosRot}   (q_2)
+                    edge [loop right]       node                {ZAcc}      ()
+            (q_2)   edge                    node    [swap]      {YAcc}      (q_3)
+                    edge                    node    [swap]      {YDec}      (q_6)
+            (q_3)   edge                    node    [swap]      {YDec}      (q_4)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+            (q_4)   edge                    node    [swap]      {ZDec}      (q_5)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+                    edge [in=300,out=250]   node    [swap]      {YAcc}      (q_3)
+            (q_5)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+            (q_6)   edge                    node    [swap]      {YAcc}      (q_7)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+            (q_7)   edge                    node    [swap]      {ZDec}      (q_8)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+                    edge [in=300,out=250]   node    [swap]      {YDec}      (q_6)
+            (q_8)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+
+            ;
+    \end{tikzpicture}
+
+    \caption{Example of Gesture Recognition}
+    \label{fig:FSA}
 \end{figure}
 
 \chapter*{Preliminary Schedule}
