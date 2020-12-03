@@ -16,6 +16,7 @@
 \usepackage{hyperref}
 \usepackage{pdfpages}
 %\setmainfont{Times New Roman}
+\usepackage{gensymb}
 
 % Centering Chapter
 \usepackage{sectsty}
@@ -47,7 +48,7 @@
 \usepackage{graphics,graphicx}
 \usepackage{calc}
 \usepackage{tikz}
-\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds}
+\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds, automata}
 \tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
 \usepackage{circuitikz}
 \newcommand{\vertex}{\node[vertex]}
@@ -164,14 +165,15 @@ and/or recommended in the assignment guidelines.
 \end{itemize}
 
 
-%\renewcommand{\contentsname}{TABLE OF CONTENTS}
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
 
 \newpage
 \tableofcontents
 
 %\newpage
-%\addcontentsline{toc}{chapter}{LIST OF FIGURES}
-%\listoffigures
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\listoffigures
 
 \newpage
 \renewcommand*\thesection{\arabic{Chapnum}.\arabic{Secnum}}
@@ -179,12 +181,6 @@ and/or recommended in the assignment guidelines.
 \stepcounter{Chapnum}
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
-
-<<<<<<< HEAD
-=======
-\noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the PC, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
-\vspace{2cm}
->>>>>>> functional-spec
 
 \stepcounter{Secnum}
 \section{Overview}
@@ -240,11 +236,7 @@ and/or recommended in the assignment guidelines.
 
 \item \textbf{Mouse Emulation:}
 \begin{itemize}
-<<<<<<< HEAD
     \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by curling their index finger and right click using their middle finger. The threshold for when a click is actuated will be set by the user.
-=======
-    \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by using their index finger and right click using their middle finger.
->>>>>>> functional-spec
 \end{itemize}
 
 
@@ -288,31 +280,8 @@ and/or recommended in the assignment guidelines.
 \section{\textbf{Hand Tracking}}
 
 \begin{itemize}
-<<<<<<< HEAD
     \item \textbf{Criticality:} This aspect is critical to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general use, as it can be very frustrating to move a mouse cursor with a device that doesn't accurately read user inputs.
     \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
-=======
-    \item \textbf{Data Transfer:} The device must be able to transfer data to the PC reliably.
-        \begin{itemize}
-            \item \textbf{Criticality:} This Aspect is critical, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.
-            \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
-        \end{itemize}
-    \item \textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.
-        \begin{itemize}
-            \item \textbf{Criticality:} This aspect is very important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general usability as it is very frustrating to control a mouse cursor with a device which can't accurately track your inputs.
-            \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
-        \end{itemize}
-    \item \textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.
-        \begin{itemize}
-            \item \textbf{Criticality:} This aspect is also very important, as it is one of the main functions of the device.
-            \item \textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.
-        \end{itemize}
-    \item \textbf{Gesture Recognition:} The system must be able to distinguish between random movements and intentional gestures.
-        \begin{itemize}
-            \item \textbf{Criticality:} This requirement is important for a specific use-case scenario which is not focused on gaming or vr, but rather on workflow.
-            \item \textbf{Technical Issues:} Due to the nature of the device, we only have a certain number of inputs, and thereby limited on the amount of information we get from the device, meaning that we will have to focus on some way to distinguish between gestures and non-gestures through pattern recogntition.
-        \end{itemize}
->>>>>>> functional-spec
 \end{itemize}
 
 
@@ -585,6 +554,11 @@ and/or recommended in the assignment guidelines.
 \end{figure}
 
 \begin{figure}[h!]
+
+    \noindent The task calls the device driver via a Kernel device call, the driver receives the message from the queue and returns the data to the task and the buffer to the memorry partition. When new data arrives, the ISR$^\arabic{Glossary}$ allocates a buffer from the memory partition, puts the data in the buffer, and puts the pointer in a message which is then sent to the queue.
+
+    \vspace{1cm}
+
     \centering
     \begin{tikzpicture}[
             every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
@@ -610,21 +584,111 @@ and/or recommended in the assignment guidelines.
 
     \end{tikzpicture}
 
-    \caption{Device Driver \\
-    The task calls the device driver via a Kernel device call, the driver receives the message from the queue and returns the data to the task and the buffer to the memorry partition. When new data arrives, the ISR$^\arabic{Glossary}$ allocates a buffer from the memory partition, puts the data in the buffer, and puts the pointer in a message which is then sent to the queue}
+    \caption{Device Driver}
     \label{fig:DeviceDriver}
 \end{figure}
 
+\begin{figure}
+    \noindent This is an example of how Gesture Recognition will be accomplished using the example of recognising a "Hand Wave" Gesture.
+
+    \vspace{1cm}
+
+    A "Hand Wave" is defined with the following steps.
+    \begin{enumerate}
+        \item Acceleration on the Z axis with a 90\degree rotation on the Y axis.
+        \item Decrease in Acceleration on Z Axis.
+        \item (Acceleration | Deceleration) on Y Axis with slight deceleration on Z Axis.
+        \item Opposed (Acceleration | Deceleration) to step 3 on Y axis with slight acceleration on Z Axis
+        \item (Go to step 3 | Deceleration on Z Axis)
+    \end{enumerate}
+
+    \vspace{1cm}
+
+    \centering
+    \begin{tikzpicture}[shorten >=1pt,node distance=3.5cm,on grid,auto]
+        \node[state,initial] (q_0)   {$q_0$};
+        \node[state] (q_1) [below=of q_0] {$q_1$};
+        \node[state] (q_2) [below=of q_1] {$q_2$};
+
+        \node[state] (q_6) [right=of q_2] {$q_6$};
+        \node[state] (q_7) [right=of q_6] {$q_7$};
+
+        \node[state] (q_3) [below=of q_6] {$q_3$};
+        \node[state] (q_4) [right=of q_3] {$q_4$};
+        \node[state,accepting](q_5) [right=of q_4] {$q_5$};
+
+        \node[state,accepting] (q_8) [right=of q_7] {$q_8$};
+        \path[->]
+            (q_0)   edge                    node    [swap]      {ZAcc}      (q_1)
+            (q_1)   edge                    node    [swap]      {YPosRot}   (q_2)
+                    edge [loop right]       node                {ZAcc}      ()
+            (q_2)   edge                    node    [swap]      {YAcc}      (q_3)
+                    edge                    node    [swap]      {YDec}      (q_6)
+            (q_3)   edge                    node    [swap]      {YDec}      (q_4)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+            (q_4)   edge                    node    [swap]      {ZDec}      (q_5)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+                    edge [in=300,out=250]   node    [swap]      {YAcc}      (q_3)
+            (q_5)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+            (q_6)   edge                    node    [swap]      {YAcc}      (q_7)
+                    edge [loop above]       node                {YDec}      ()
+                    edge [loop below]       node                {ZAcc}      ()
+            (q_7)   edge                    node    [swap]      {ZDec}      (q_8)
+                    edge [loop above]       node                {YAcc}      ()
+                    edge [loop below]       node                {ZDec}      ()
+                    edge [in=300,out=250]   node    [swap]      {YDec}      (q_6)
+            (q_8)   edge [loop below]       node                {ZDec}      ()
+                    edge [loop above]       node                {YNegRot}   ()
+
+            ;
+    \end{tikzpicture}
+
+    \caption{Example of Gesture Recognition}
+    \label{fig:FSA}
+\end{figure}
+
 \stepcounter{Chapnum}
+
 \chapter*{Preliminary Schedule}
 \addcontentsline{toc}{chapter}{Preliminary Schedule}
 
 % The plan also includes information on hardware, software, and wetware resource requirements.
 
+\section{Major Tasks}
+
+\noindent The Major tasks of this project are listed below. They are ordered from most critical to least and their Dependencies on other tasks are also provided.
+
+\begin{center}
+    \begin{tabular}{ |c|c|c| }
+        \hline
+        Task ID & Task & Dependency \\
+        \hline
+        \hline
+        1 & Construct Glove & n/a \\
+        \hline
+        2 & Develop Linux Driver & 1 \\
+        \hline
+        3 & Develop OpenGL Environment & n/a \\
+        \hline
+        4 & Implement Gesture Recognition & 1, 2 \\
+        \hline
+        5 & Application Handler & n/a \\
+        \hline
+    \end{tabular}
+\end{center}
+
+
 \stepcounter{Secnum}
+
+\newpage
+
 \section{Hardware Requirements}
 
 \noindent See below a table of the required hardware to complete this project.
+
 
 \begin{center}
     \begin{tabular}{ |c|c| }
@@ -651,35 +715,6 @@ and/or recommended in the assignment guidelines.
 \section{Software/ Wetware Requirements}
 
 \noindent There are no specific Software/ Wetware requirements to complete this project.
-
-\stepcounter{Secnum}
-\section{Major Tasks}
-
-\begin{itemize}
-    \item Construct Glove
-    \item Develop Linux Driver
-    \item Develop OpenGL Environment
-    \item Implement Gesture Recognition
-\end{itemize}
-
-\begin{center}
-    \begin{tabular}{ |c|c|c| }
-        \hline
-        Task ID & Task & Dependency \\
-        \hline
-        \hline
-        1 & Construct Glove & n/a \\
-        \hline
-        2 & Develop Linux Driver & 1 \\
-        \hline
-        3 & Develop OpenGL Environment & n/a \\
-        \hline
-        4 & Implement Gesture Recognition & 1, 2 \\
-        \hline
-    \end{tabular}
-\end{center}
-
-
 
 \stepcounter{Secnum}
 \section{Gantt Chart}
