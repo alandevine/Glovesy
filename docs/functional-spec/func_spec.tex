@@ -243,13 +243,22 @@ and/or recommended in the assignment guidelines.
 \addcontentsline{toc}{chapter}{Functional Requirements}
 
 
-\section{\textbf{Hand Tracking}}
+
+\section{\textbf{Data Transfer}}
+
+\noindent The device must be able to transfer data to the PC reliably.
+
+\begin{itemize}
+    \item \textbf{Criticality} This Aspect is critical, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless, meaning the entire functinality of the device is dependent on this.
+    \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
+\end{itemize}
 
 \noindent The device must be able to track the overall hand's orientation and position in 3D space.
 
+\section{\textbf{Hand Tracking}}
 
 \begin{itemize}
-    \item \textbf{Criticality:} This aspect is critical to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition.
+    \item \textbf{Criticality:} This aspect is critical to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general use, as it can be very frustrating to move a mouse cursor with a device that doesn't accurately read user inputs.
     \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
 \end{itemize}
 
@@ -262,20 +271,6 @@ and/or recommended in the assignment guidelines.
     \item \textbf{Criticality:} This aspect is also critical, as it is one of the main functions of the device.
     \item \textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.
 \end{itemize}
-
-
-\newpage
-
-
-\section{\textbf{Data Transfer}}
-
-\noindent The device must be able to transfer data to the PC reliably.
-
-\begin{itemize}
-    \item \textbf{Criticality} This Aspect is very important, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.
-    \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
-\end{itemize}
-
 
 \section{\textbf{Gesture Recognition}}
 
@@ -528,6 +523,26 @@ and/or recommended in the assignment guidelines.
     \label{fig:UMLClassDiagram}
 \end{figure}
 
+\begin{figure}[h!]
+    \centering
+
+    \begin{tikzpicture}[
+            every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
+            source/.style={draw, thick, rounded corners, fill=yellow!20,inner sep=.3cm},
+            to/.style={->,>=stealth',shorten >=1pt,semithick,font=\rmfamily\scriptsize},
+            every node/.style={align=center}]
+        \matrix{%
+            \node[source, label=left:Task\\get()] (A) {A}; \& \node[source, label=above:Kernel] (B) {B}; \& \node[source, label=above:Driver get()](C) {C};\\
+            \& \& \node[source, label=left:Memory\\Buffer](D){D}; \& \node[source, label=right:Memory\\Partition](E){E};\\ \\
+            \& \& \node[source, label=left:ISR](F){F}; \& \node[source, label=right:Device](G){G};\\
+        };
+
+    \end{tikzpicture}
+
+    \caption{Device Driver}
+    \label{fig:DeviceDriver}
+\end{figure}
+
 \chapter*{Preliminary Schedule}
 \addcontentsline{toc}{chapter}{Preliminary Schedule}
 
@@ -603,6 +618,4 @@ and/or recommended in the assignment guidelines.
 \noindent \textbf{Note:} Time to write unit tests is factored in with each development task presented below.
 
 \includepdf[fitpaper=true, pages=-]{res/gantt.pdf}
-
-\chapter*{Appendices}
 \end{document}
