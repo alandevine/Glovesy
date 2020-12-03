@@ -18,6 +18,7 @@
 %\setmainfont{Times New Roman}
 \usepackage{mathptmx}
 \usepackage{gensymb}
+\usepackage{longtable,array}
 
 % Centering Chapter
 \usepackage{sectsty}
@@ -223,30 +224,278 @@ and/or recommended in the assignment guidelines.
 \stepcounter{Secnum}
 \section{Operational Scenarios}
 
+\begin{longtable}{| p{3cm} | p{12cm} |}
+\caption{Gaming in VR}\label{chap3:tab1}\\[12pt]
+\endfirsthead
+\multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Continued from previous page}}\\[12pt]
+\hline
+\endhead
+\hline
+\multicolumn{2}{r}{\tablename\ \thetable\ -- \textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case ID: & 1\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case Name: & Gaming in a VR Setting\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+Actors & User\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Description: &
+The User would see a virtual representation of their hand (this is entirely dependent on the Game itself). The user would be able to interact with their surroundings using Gloves rather than a traditional controller.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Preconditions: &\mbox{}\par\vspace{-\baselineskip}
 \begin{enumerate}
-\item \textbf{Gaming in a VR setting:}
-\begin{itemize}
-    \item The User would see a virtual representation of their hand (this is entirely dependent on the Game itself). The user would be able to interact with their surroundings using Gloves rather than a traditional controller.
-\end{itemize}
+\item The User has Connected Glovesy to their PC.
+\item The User has opened a VR game.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Postconditions: & The User is able to use Glovesy as a standin for a traditional controller.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Trigger: & The User Opens a VR Game.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Normal flow: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User loads a level;
+\item The User interacts with their surroundings using Glovesy;
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Exceptions: & In the case that the User opens a VR title which does not track individual fingers, the User have
+map a key press to an individual finger.\\
+% --------------------------------------------------------------------------------------------------------------
+\end{longtable}
 
-\item \textbf{Using an AR Device:}
-\begin{itemize}
-    \item The User would be able to control their AR Device using hand gestures.
-\end{itemize}
+\begin{longtable}{| p{3cm} | p{12cm} |}
+\caption{Use case detail}\label{chap3:tab1}\\[12pt]
+\endfirsthead
+\multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Continued from previous page}}\\[12pt]
+\hline
+\endhead
+\hline
+\multicolumn{2}{r}{\tablename\ \thetable\ -- \textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case ID: & 2\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case Name: & Mouse Emulation\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+Actors & User\newline
+         Host Operating System\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Description: &
+The User controls their mouse cursor by moving their hand in a way similar to the WiiMote.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Preconditions: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User has Connected Glovesy to their PC.
+\item The User has enabled Mouse Emulation mode.
+\item The User has defined a threshold for click actuation.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Postconditions: & The User is able to control the Mouse Cursor using their hand.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Trigger: & The User Enables Mouse Emulation Mode.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Normal flow: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User Moves their hand along the YZ plane;
+\item The User positions Mouse Cursor relevant item;
+\item The User curls their index finger past the predefined threshold to initiate a click;
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+
+% --------------------------------------------------------------------------------------------------------------
+\end{longtable}
 
 
-\item \textbf{Mouse Emulation:}
-\begin{itemize}
-    \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by curling their index finger and right click using their middle finger. The threshold for when a click is actuated will be set by the user.
-\end{itemize}
 
+\begin{longtable}{| p{3cm} | p{12cm} |}
+\caption{Recording a Macro}\label{chap3:tab1}\\[12pt]
+\endfirsthead
+\multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Continued from previous page}}\\[12pt]
+\hline
+\endhead
+\hline
+\multicolumn{2}{r}{\tablename\ \thetable\ -- \textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
 
-\item \textbf{Gesture Control:}
-\begin{itemize}
-    \item The User would define some sequence of hand movement combined with finger position, and create a mapping to certain actions on their computer, e.g. raising and lowering system volume, advancing slides, etc.
-\end{itemize}
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case ID: & 3\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case Name: & Record Gesture Macro\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+Actors & User\newline
+         Glovesy Configuration Suite\newline
+         Host Operating System\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Description: &
+The User records a sequence of hand movements and maps them to take a certain action.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Preconditions: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User has Connected Glovesy to their PC.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Postconditions: & Macro is added to Macro Database.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Trigger: & The User Clicks "Record" in Glovesy Configuration Suite.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Normal flow: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User performs a number of distinct actions while recording is active;
+\item Relevant data is extracted from the Input Stream and places them into an input queue;
+\item A MongoDB "Collection" is created;
+\item A MongoDB "Document" is created for each of the items in the queue;
+\item Each of the MongoDB "Documents" are added to the Collection;
+\item The User is notified that their Macro has been recorded.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+\end{longtable}
 
-\end{enumerate}
+\center
+\begin{longtable}{| p{3cm} | p{12cm} |}
+\caption{Recognise Gesture}\label{chap3:tab1}\\[12pt]
+\endfirsthead
+\multicolumn{2}{c}{\tablename\ \thetable\ -- \textit{Continued from previous page}}\\[12pt]
+\hline
+\endhead
+\hline
+\multicolumn{2}{r}{\tablename\ \thetable\ -- \textit{Continued on next page}} \\
+\endfoot
+\hline
+\endlastfoot
+
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case ID: & 4\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Use Case Name: & Recognise Gesture\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+Actors & User\newline
+         Recogniser Daemon\newline
+         Host Operating System\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Description: &
+A sequence of movements are parsed and an attempt to match is made.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Preconditions: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User has Connected Glovesy to their PC.
+\item The User has recorded a Macro.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Postconditions: & An Action defined by the User is Executed.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Trigger: & The User has enabled Macros.\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Normal flow: &\mbox{}\par\vspace{-\baselineskip}
+\begin{enumerate}
+\item The User performs some sequence of Movements;
+\item Glovesy sends finger and positional data to the Host Machine;
+\item The Recogniser Daemon extracts Relevant data from the Input Stream and places them into an input queue;
+\item The first item in the input queue will be searched for in the first level of the Macro Tree;
+\item The subsequent actions in the input queue will be searched for in the first level following the tree,
+      with the Head being redefined upon every success.
+\item Upon reaching a terminal leaf, the action defined by the user in the macro will be executed.
+\end{enumerate}\\
+% --------------------------------------------------------------------------------------------------------------
+\hline
+
+Alternative flows: &
+4.a If no match is found on the first item of the input queue, it will be removed from the list and Step 4 is repeated
+using the next item as the Head.\newline
+
+5.a If no match is found in the subsequent searchs, the Head item in the input queue is removed from the queue and Step 4
+is repeated using the next item as the Head.\newline
+
+\\
+
+\hline
+% --------------------------------------------------------------------------------------------------------------
+Notes and issues: &
+Relevant Data means any change in state, such as a rapid change in Acceleration, a change in direction, a change
+in finger position, etc.
+\\
+
+% --------------------------------------------------------------------------------------------------------------
+% --------------------------------------------------------------------------------------------------------------
+\end{longtable}
+
+\newpage
 
 \stepcounter{Secnum}
 \section{Constraints}
