@@ -180,6 +180,11 @@ and/or recommended in the assignment guidelines.
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
+<<<<<<< HEAD
+=======
+\noindent Glovesy is a wearable device which will allow the user to inteface with their computer, either by using user-defined macros, which will be set up using our program which will allow a number of gestures do be defined to certain actions within the PC, or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
+\vspace{2cm}
+>>>>>>> functional-spec
 
 \stepcounter{Secnum}
 \section{Overview}
@@ -235,7 +240,11 @@ and/or recommended in the assignment guidelines.
 
 \item \textbf{Mouse Emulation:}
 \begin{itemize}
+<<<<<<< HEAD
     \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by curling their index finger and right click using their middle finger. The threshold for when a click is actuated will be set by the user.
+=======
+    \item Within a normal desktop, a User would be able to control their mouse cursor by moving their hand in a way similar to the WiiMote. The user would be able to left click by using their index finger and right click using their middle finger.
+>>>>>>> functional-spec
 \end{itemize}
 
 
@@ -279,8 +288,31 @@ and/or recommended in the assignment guidelines.
 \section{\textbf{Hand Tracking}}
 
 \begin{itemize}
+<<<<<<< HEAD
     \item \textbf{Criticality:} This aspect is critical to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general use, as it can be very frustrating to move a mouse cursor with a device that doesn't accurately read user inputs.
     \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
+=======
+    \item \textbf{Data Transfer:} The device must be able to transfer data to the PC reliably.
+        \begin{itemize}
+            \item \textbf{Criticality:} This Aspect is critical, since, even if the rest of the data is accurately measured, if the data isn't transferred reliably, the device is useless.
+            \item \textbf{Technical Issues:} One of the issues with this will be getting the bluetooth module on the board we are using to be reliable, otherwise we can use the device with
+        \end{itemize}
+    \item \textbf{Hand Tracking:} The device must be able to track the overall hand's orientation and position in 3D space.
+        \begin{itemize}
+            \item \textbf{Criticality:} This aspect is very important to the overall accuracy of the device, especially for tracking the hand for VR and for Gesture Recognition, as well as for general usability as it is very frustrating to control a mouse cursor with a device which can't accurately track your inputs.
+            \item \textbf{Technical Issues:} A significant issue with this is that the accuracy is almost entirely dependent on the hardware, meaning if the IMU device we use is innacruate, we wont be able to do anything to improve the tracking.
+        \end{itemize}
+    \item \textbf{Finger Tracking:} The device must be able to track the fingers' individual joints accurately.
+        \begin{itemize}
+            \item \textbf{Criticality:} This aspect is also very important, as it is one of the main functions of the device.
+            \item \textbf{Technical Issues:} One of the main issues with this is that the flex sensors that we are using are made by us, so there will need to be some calibration when first using the device.
+        \end{itemize}
+    \item \textbf{Gesture Recognition:} The system must be able to distinguish between random movements and intentional gestures.
+        \begin{itemize}
+            \item \textbf{Criticality:} This requirement is important for a specific use-case scenario which is not focused on gaming or vr, but rather on workflow.
+            \item \textbf{Technical Issues:} Due to the nature of the device, we only have a certain number of inputs, and thereby limited on the amount of information we get from the device, meaning that we will have to focus on some way to distinguish between gestures and non-gestures through pattern recogntition.
+        \end{itemize}
+>>>>>>> functional-spec
 \end{itemize}
 
 
