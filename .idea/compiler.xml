@@ -2,7 +2,12 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel>
+      <module name="GCS" target="11" />
+      <module name="GCS.main" target="11" />
+      <module name="GCS.test" target="11" />
       <module name="GSC" target="11" />
+      <module name="GSC.main" target="11" />
+      <module name="GSC.test" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

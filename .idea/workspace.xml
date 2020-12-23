@@ -1,19 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="AutoImportSettings">
-    <option name="autoReloadType" value="SELECTIVE" />
+    <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42d38351-14ec-4500-8bed-caf1422329ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Glovesy.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/GSC.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_16_ea_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_linux_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_linux_16_ea_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_linux_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_linux_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_linux_13.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_16_ea_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_linux_11_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_linux_16_ea_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/gui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Glovesy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Glovesy.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,17 +59,21 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="GSC" type="f1a62948:ProjectNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+        <option value="FxmlFile" />
+        <option value="JavaFXApplication" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -71,8 +101,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
+    <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/GCS/lib/javafx-sdk-11.0.2/lib" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pathVariables" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -80,6 +114,14 @@
     </key>
   </component>
   <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="gui.Main" />
+      <module name="GCS.main" />
+      <option name="VM_PARAMETERS" value="--module-path ${PATH_TO_FX} --add-modules javafx.controls,javafx.fxml" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
@@ -100,7 +142,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608727306787</updated>
-      <workItem from="1608727307901" duration="842000" />
+      <workItem from="1608727307901" duration="6908000" />
     </task>
     <servers />
   </component>
@@ -108,17 +150,65 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="903" y="383" width="743" height="634" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1608727655676">
+    <state x="371" y="232" width="1028" height="841" key="#Project_Structure" timestamp="1608733440119">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="903" y="383" width="743" height="634" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608727655676" />
+    <state x="371" y="232" width="1028" height="841" key="#Project_Structure/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733440119" />
+    <state x="346" y="312" width="1084" height="709" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1608733737050">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="346" y="312" width="1084" height="709" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733737050" />
+    <state x="671" y="374" width="428" height="580" key="#com.intellij.ide.macro.MacrosDialog" timestamp="1608733506607">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="671" y="374" width="428" height="580" key="#com.intellij.ide.macro.MacrosDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733506607" />
+    <state x="698" y="387" width="378" height="579" key="#com.intellij.ide.util.MemberChooser" timestamp="1608729421163">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="698" y="387" width="378" height="579" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608729421163" />
+    <state x="622" y="483" width="529" height="411" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608729746056">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="622" y="483" width="529" height="411" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608729746056" />
+    <state x="901" y="359" width="743" height="634" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1608728942126">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="901" y="359" width="743" height="634" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608728942126" />
+    <state x="620" y="434" width="528" height="480" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog" timestamp="1608730748355">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="620" y="434" width="528" height="480" key="#com.intellij.util.ui.classpath.ChooseLibrariesDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608730748355" />
+    <state x="584" y="309" width="614" height="508" key="FileChooserDialogImpl" timestamp="1608733696232">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="584" y="309" width="614" height="508" key="FileChooserDialogImpl/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733696232" />
+    <state width="1660" height="377" key="GridCell.Tab.0.bottom" timestamp="1608734187073">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1660" height="377" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
+    <state width="1660" height="377" key="GridCell.Tab.0.center" timestamp="1608734187073">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1660" height="377" key="GridCell.Tab.0.center/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
+    <state width="1660" height="377" key="GridCell.Tab.0.left" timestamp="1608734187073">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1660" height="377" key="GridCell.Tab.0.left/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
+    <state width="1660" height="377" key="GridCell.Tab.0.right" timestamp="1608734187073">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state width="1660" height="377" key="GridCell.Tab.0.right/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
     <state x="1143" y="397" width="264" height="606" key="RollbackChangesDialog" timestamp="1608727377041">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="1143" y="397" width="264" height="606" key="RollbackChangesDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608727377041" />
-    <state x="649" y="267" width="1243" height="770" key="new project wizard" timestamp="1608728146873">
+    <state x="388" y="241" width="1028" height="841" key="SettingsEditor" timestamp="1608733699485">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="649" y="267" width="1243" height="770" key="new project wizard/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608728146873" />
+    <state x="388" y="241" width="1028" height="841" key="SettingsEditor/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733699485" />
+    <state x="647" y="243" width="1243" height="770" key="new project wizard" timestamp="1608728920731">
+      <screen x="0" y="0" width="2560" height="1440" />
+    </state>
+    <state x="647" y="243" width="1243" height="770" key="new project wizard/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608728920731" />
   </component>
 </project>

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GCS.iml" filepath="$PROJECT_DIR$/.idea/modules/GCS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GCS.main.iml" filepath="$PROJECT_DIR$/.idea/modules/GCS.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/GCS.test.iml" filepath="$PROJECT_DIR$/.idea/modules/GCS.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Glovesy.iml" filepath="$PROJECT_DIR$/.idea/Glovesy.iml" />
     </modules>
   </component>
