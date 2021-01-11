@@ -5,41 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42d38351-14ec-4500-8bed-caf1422329ab" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_16_ea_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_linux_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_base_linux_16_ea_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_linux_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_controls_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_linux_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_fxml_linux_13.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_16_ea_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_linux_11_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_openjfx_javafx_graphics_linux_16_ea_5.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/lib.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/GCS.test.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/gui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Glovesy.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Glovesy.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/viewer/Finger.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/viewer/Hand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/viewer/View.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GCS/src/main/java/viewer/util.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/6.5/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/6.5/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCS/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GCS/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GCS/src/main/java/gui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GCS/src/main/java/gui/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,7 +39,12 @@
       <state>
         <projects_view>
           <tree_state>
-            <expand />
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="GCS" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
             <select />
           </tree_state>
         </projects_view>
@@ -69,9 +54,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="FxmlFile" />
         <option value="JavaFXApplication" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -142,7 +127,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1608727306787</updated>
-      <workItem from="1608727307901" duration="6908000" />
+      <workItem from="1608727307901" duration="10255000" />
+      <workItem from="1608825151700" duration="1197000" />
+      <workItem from="1610360707099" duration="8120000" />
     </task>
     <servers />
   </component>
@@ -162,10 +149,10 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="671" y="374" width="428" height="580" key="#com.intellij.ide.macro.MacrosDialog/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733506607" />
-    <state x="698" y="387" width="378" height="579" key="#com.intellij.ide.util.MemberChooser" timestamp="1608729421163">
+    <state x="692" y="315" width="378" height="579" key="#com.intellij.ide.util.MemberChooser" timestamp="1608826254166">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state x="698" y="387" width="378" height="579" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608729421163" />
+    <state x="692" y="315" width="378" height="579" key="#com.intellij.ide.util.MemberChooser/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608826254166" />
     <state x="622" y="483" width="529" height="411" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1608729746056">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
@@ -182,22 +169,22 @@
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="584" y="309" width="614" height="508" key="FileChooserDialogImpl/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608733696232" />
-    <state width="1660" height="377" key="GridCell.Tab.0.bottom" timestamp="1608734187073">
+    <state width="2432" height="105" key="GridCell.Tab.0.bottom" timestamp="1610367538580">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1660" height="377" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
-    <state width="1660" height="377" key="GridCell.Tab.0.center" timestamp="1608734187073">
+    <state width="2432" height="105" key="GridCell.Tab.0.bottom/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1610367538580" />
+    <state width="2432" height="105" key="GridCell.Tab.0.center" timestamp="1610367538580">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1660" height="377" key="GridCell.Tab.0.center/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
-    <state width="1660" height="377" key="GridCell.Tab.0.left" timestamp="1608734187073">
+    <state width="2432" height="105" key="GridCell.Tab.0.center/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1610367538580" />
+    <state width="2432" height="105" key="GridCell.Tab.0.left" timestamp="1610367538580">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1660" height="377" key="GridCell.Tab.0.left/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
-    <state width="1660" height="377" key="GridCell.Tab.0.right" timestamp="1608734187073">
+    <state width="2432" height="105" key="GridCell.Tab.0.left/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1610367538580" />
+    <state width="2432" height="105" key="GridCell.Tab.0.right" timestamp="1610367538580">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
-    <state width="1660" height="377" key="GridCell.Tab.0.right/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1608734187073" />
+    <state width="2432" height="105" key="GridCell.Tab.0.right/0.0.2560.1440/2560.0.1080.1920@0.0.2560.1440" timestamp="1610367538580" />
     <state x="1143" y="397" width="264" height="606" key="RollbackChangesDialog" timestamp="1608727377041">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
