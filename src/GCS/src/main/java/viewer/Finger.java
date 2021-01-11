@@ -1,8 +1,5 @@
 package viewer;
 
-import javafx.scene.Node;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.PhongMaterial;
 import javafx.scene.Group;
 import javafx.scene.shape.Sphere;
 
