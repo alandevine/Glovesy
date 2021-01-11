@@ -18,8 +18,17 @@ dependencies {
 }
 
 javafx {
-    javafx {
-        modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
-        version = '11.0.2'
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
+    version = '11.0.2'
+    application {
+        def javafxHome = System.getenv('JAVAFX_HOME')
+        mainClassName = 'gui.Main'
+        applicationName = 'foo-app'
+        applicationDefaultJvmArgs = [
+                "--module-path=${javafxHome}" + File.separator + 'lib',
+                '--add-modules=javafx.controls,javafx.graphics']
+        println("applicationDefaultJvmArgs:" + applicationDefaultJvmArgs)
     }
 }
+
+
