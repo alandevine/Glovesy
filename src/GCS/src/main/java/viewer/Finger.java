@@ -1,9 +1,8 @@
 package viewer;
 
 import javafx.scene.Group;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Sphere;
-
-import static viewer.util.setColor;
 
 /**
  * Representation of a finger.
@@ -11,6 +10,7 @@ import static viewer.util.setColor;
 public class Finger {
 
     private final Group fingerGroup;
+    private final Sphere knuckle;
 
     /**
      * Finger Constructor method.
@@ -20,30 +20,40 @@ public class Finger {
      */
     public Finger (double ratio, int x, int y) {
         // instantiate joint positions
-        Sphere knuckle = new Sphere(10);
+        knuckle = new Sphere(10);
         Sphere joint = new Sphere(10);
         Sphere tip = new Sphere(10);
 
         knuckle.setLayoutX(x);
         knuckle.setLayoutY(y);
-        setColor(knuckle, 1.0, 0.0, 0.0);
+        util.setColor(knuckle, 1.0, 0.0, 0.0);
 
         joint.setLayoutX(x);
         joint.setLayoutY((double) y - 50 * ratio);
-        setColor(joint, 0.0, 1.0, 0.0);
+        util.setColor(joint, 0.0, 1.0, 0.0);
+
+        Line edge1 = util.addEdge(knuckle, joint);
 
         tip.setLayoutX(x);
         tip.setLayoutY((double) y - 80 * ratio);
-        setColor(tip, 0.0, 0.0, 1.0);
+        util.setColor(tip, 0.0, 0.0, 1.0);
+
+        Line edge2 = util.addEdge(joint, tip);
 
         this.fingerGroup = new Group();
 
         this.fingerGroup.getChildren().add(knuckle);
         this.fingerGroup.getChildren().add(joint);
         this.fingerGroup.getChildren().add(tip);
+        this.fingerGroup.getChildren().add(edge1);
+        this.fingerGroup.getChildren().add(edge2);
     }
 
     public Group getFinger() {
         return this.fingerGroup;
+    }
+
+    public Sphere getKnuckle() {
+        return knuckle;
     }
 }
