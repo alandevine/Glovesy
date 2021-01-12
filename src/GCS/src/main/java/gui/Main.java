@@ -4,7 +4,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import src.main.java.viewer.View;
+
+import viewer.View;
 
 public class Main extends Application {
 
