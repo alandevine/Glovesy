@@ -1,5 +1,6 @@
 package viewer;
 
+import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
@@ -11,11 +12,13 @@ public class View {
         this.width = width;
         this.height = height;
     }
+
     public Scene getScene() {
         Hand hand = new Hand(width / 2, height / 2);
         Group handGroup = hand.getHand();
 
-        return new Scene(handGroup, width, height);
+        Scene scene = new Scene(handGroup, width, height);
+
+        return scene;
     }
 }
-

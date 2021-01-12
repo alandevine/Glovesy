@@ -2,7 +2,10 @@ package viewer;
 
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Cylinder;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Sphere;
+import javafx.scene.shape.Shape;
 
 
 /**
@@ -13,7 +16,6 @@ public class util {
 
     /**
      * Method for adding material mask to a supplied node.
-     * 
      * @param sphere Object to apply PhongMaterial.
      * @param red Double of red value.
      * @param green Double of green value.
@@ -26,7 +28,15 @@ public class util {
         sphere.setMaterial(material);
     }
 
-    public static void addEdge(Sphere a, Sphere b) {}
+    public static Line addEdge(Sphere a, Sphere b) {
+        Line line = new Line();
+        line.startXProperty().bind(a.layoutXProperty());
+        line.startYProperty().bind(a.layoutYProperty());
+        line.endXProperty().bind(b.layoutXProperty());
+        line.endYProperty().bind(b.layoutYProperty());
+
+        return line;
+    }
 
     public static void rotateGroup(Sphere a) {}
 }

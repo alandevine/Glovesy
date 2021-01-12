@@ -4,7 +4,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import viewer.View;
+import src.main.java.viewer.View;
 
 public class Main extends Application {
 
@@ -24,7 +24,6 @@ public class Main extends Application {
         button.setText("Button");
 
         Scene scene = new View(WIDTH, HEIGHT).getScene();
-
         primaryStage.setScene(scene);
         primaryStage.show();
     }
