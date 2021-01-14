@@ -1,11 +1,10 @@
 package viewer;
 
+import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Sphere;
-import javafx.scene.shape.Shape;
 
 
 /**
@@ -28,7 +27,7 @@ public class util {
         sphere.setMaterial(material);
     }
 
-    public static Line addEdge(Sphere a, Sphere b) {
+    public static Line addEdge(Node a, Node b) {
         Line line = new Line();
         line.startXProperty().bind(a.layoutXProperty());
         line.startYProperty().bind(a.layoutYProperty());
