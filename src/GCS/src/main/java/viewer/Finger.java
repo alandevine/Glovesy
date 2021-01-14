@@ -7,10 +7,11 @@ import javafx.scene.shape.Sphere;
 /**
  * Representation of a finger.
  */
-public class Finger {
+public class Finger extends Group {
 
-    private final Group fingerGroup;
     private final Sphere knuckle;
+    private final Sphere joint;
+    private final Sphere tip;
 
     /**
      * Finger Constructor method.
@@ -21,8 +22,14 @@ public class Finger {
     public Finger (double ratio, int x, int y) {
         // instantiate joint positions
         knuckle = new Sphere(10);
-        Sphere joint = new Sphere(10);
-        Sphere tip = new Sphere(10);
+        joint = new Sphere(10);
+        tip = new Sphere(10);
+
+
+        this.getChildren().add(knuckle);
+        this.getChildren().add(joint);
+        this.getChildren().add(tip);
+
 
         knuckle.setLayoutX(x);
         knuckle.setLayoutY(y);
@@ -40,20 +47,17 @@ public class Finger {
 
         Line edge2 = util.addEdge(joint, tip);
 
-        this.fingerGroup = new Group();
-
-        this.fingerGroup.getChildren().add(knuckle);
-        this.fingerGroup.getChildren().add(joint);
-        this.fingerGroup.getChildren().add(tip);
-        this.fingerGroup.getChildren().add(edge1);
-        this.fingerGroup.getChildren().add(edge2);
-    }
-
-    public Group getFinger() {
-        return this.fingerGroup;
+        this.getChildren().add(edge1);
+        this.getChildren().add(edge2);
     }
 
     public Sphere getKnuckle() {
         return knuckle;
     }
+
+    public void contractJoint() {}
+
+    public void contractTip() {}
+
+
 }
