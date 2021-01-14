@@ -1,6 +1,5 @@
 package viewer;
 
-import javafx.scene.Camera;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 
