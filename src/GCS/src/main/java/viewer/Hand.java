@@ -2,67 +2,50 @@ package viewer;
 
 import javafx.scene.Group;
 import javafx.scene.Node;
-import javafx.scene.shape.Cylinder;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Sphere;
 
-/**
- * @TODO: 12/01/2021: Refactor Constructor method
- */
-public class Hand {
-
-    private final Group hand;
+public class Hand extends Group {
 
     public Hand(int width, int height) {
-        this.hand = new Group();
-
-        Finger thumb = new Finger(0.6, width - 60, height + 40);
-        Finger index = new Finger(0.8, width - 30, height + 10);
-
-        Line thumbToIndex = util.addEdge(thumb.getKnuckle(), index.getKnuckle());
-
-        Finger middle = new Finger(1.0, width, height);
-        Line indexToMiddle = util.addEdge(index.getKnuckle(), middle.getKnuckle());
-
-        Finger ring = new Finger(0.8, width + 30, height + 10);
-        Line middleToRing = util.addEdge(middle.getKnuckle(), ring.getKnuckle());
-
-        Finger pinky = new Finger(0.6, width + 60, height + 20);
-        Line ringToPinky = util.addEdge(ring.getKnuckle(), pinky.getKnuckle());
 
         Sphere leftHandBase = new Sphere(10);
         leftHandBase.setLayoutX(width - 30);
         leftHandBase.setLayoutY(height + 100);
         util.setColor(leftHandBase, 1.0, 1.0, 0.0);
 
+        this.getChildren().add(leftHandBase);
+        this.getChildren().add(new Finger(0.6, width - 60, height + 40));
+        this.getChildren().add(new Finger(0.8, width - 30, height + 10));
+        this.getChildren().add(new Finger(1.0, width, height));
+        this.getChildren().add(new Finger(0.8, width + 30, height + 10));
+        this.getChildren().add(new Finger(0.6, width + 60, height + 20));
+
         Sphere rightHandBase = new Sphere(10);
         rightHandBase.setLayoutX(width + 30);
         rightHandBase.setLayoutY(height + 100);
         util.setColor(rightHandBase, 1.0, 1.0, 0.0);
 
-        Line edge = util.addEdge(leftHandBase, rightHandBase);
-        Line thumbToLBase = util.addEdge(thumb.getKnuckle(), leftHandBase);
-        Line pinkyToRBase = util.addEdge(pinky.getKnuckle(), rightHandBase);
+        this.getChildren().add(rightHandBase);
 
-        this.hand.getChildren().add(thumb.getFinger());
-        this.hand.getChildren().add(index.getFinger());
-        this.hand.getChildren().add(middle.getFinger());
-        this.hand.getChildren().add(ring.getFinger());
-        this.hand.getChildren().add(pinky.getFinger());
-        this.hand.getChildren().add(leftHandBase);
-        this.hand.getChildren().add(rightHandBase);
+        int size = this.getChildren().size();
+        Line edge;
+        edge = util.addEdge(this.getChildren().get(0), this.getChildren().get(size - 1));
+        this.getChildren().add(edge);
 
-        this.hand.getChildren().add(edge);
-        this.hand.getChildren().add(thumbToIndex);
-        this.hand.getChildren().add(indexToMiddle);
-        this.hand.getChildren().add(middleToRing);
-        this.hand.getChildren().add(ringToPinky);
-        this.hand.getChildren().add(thumbToLBase);
-        this.hand.getChildren().add(pinkyToRBase);
+        Node curr;
+        Node last;
+        // loop through
+        for (int i = 1; i < size; i++) {
+            curr = this.getChildren().get(i) instanceof Finger ? ((Finger) this.getChildren().get(i)).getKnuckle() : this.getChildren().get(i);
+            last = this.getChildren().get(i - 1) instanceof Finger ? ((Finger) this.getChildren().get(i - 1)).getKnuckle() : this.getChildren().get(i - 1);
 
+            edge = util.addEdge(curr, last);
+            this.getChildren().add(edge);
+        }
     }
 
     public Group getHand() {
-        return this.hand;
+        return this;
     }
 }
