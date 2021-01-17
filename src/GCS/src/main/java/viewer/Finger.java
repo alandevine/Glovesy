@@ -49,15 +49,23 @@ public class Finger extends Group {
 
         this.getChildren().add(edge1);
         this.getChildren().add(edge2);
+
+        contractTip(90);
     }
 
     public Sphere getKnuckle() {
         return knuckle;
     }
 
-    public void contractJoint() {}
+    public void contractJoint(double degree) {
+        contractTip(degree);
+        util.rotateAboutPoint(this.knuckle, this.joint, degree);
+    }
 
-    public void contractTip() {}
+    public void contractTip(double degree) {
+        util.rotateAboutPoint(this.joint, this.tip, degree);
+
+    }
 
 
 }
