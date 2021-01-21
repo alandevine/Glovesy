@@ -2,6 +2,9 @@ package Database;
 
 import org.bson.Document;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+
 public class Application {
 
     private String name;
@@ -12,9 +15,12 @@ public class Application {
         this.path = (String) doc.get("path");
     }
 
-    public Application(String name, String path) {
+    public Application(String name, String path) throws FileNotFoundException {
         this.name = name;
-        this.path = path;
+        if (this.verifyPath(path))
+            this.path = path;
+        else
+            throw new FileNotFoundException();
     }
 
     public String getName() {
@@ -23,6 +29,22 @@ public class Application {
 
     public String getPath() {
         return this.path;
+    }
+
+    private boolean verifyPath(String path) {
+        File file = new File(path);
+        return file.exists();
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPath(String path) throws FileNotFoundException {
+        if (this.verifyPath(path))
+            this.path = path;
+        else
+            throw new FileNotFoundException(String.format("The file \"%s\" does not exist", path));
     }
 
     @Override
