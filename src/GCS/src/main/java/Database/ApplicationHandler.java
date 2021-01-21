@@ -48,7 +48,7 @@ public class ApplicationHandler {
      * Method for returning all program entries
      * @return List of Application objects
      */
-    public List<Application> findAllEntrys() {
+    public List<Application> findAllEntries() {
         List<Application> apps = new ArrayList<>();
         FindIterable<Document> iterable = collection.find();
         Iterator<Document> iterator = iterable.iterator();
@@ -98,7 +98,7 @@ public class ApplicationHandler {
      * Method for deleting all entries. Should only be used in testing scenarios.
      */
     public void deleteAll() {
-        List<Application> apps = this.findAllEntrys();
+        List<Application> apps = this.findAllEntries();
         for (Application app : apps) {
             this.deleteEntry(app.getName());
         }

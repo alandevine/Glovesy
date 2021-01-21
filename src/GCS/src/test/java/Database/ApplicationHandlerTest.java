@@ -18,10 +18,10 @@ class ApplicationHandlerTest {
     }
 
     @Test
-    void findAllEntrys() {
+    void findAllEntries() {
         db.addEntry("test1", "/foo/bar");
         db.addEntry("test2", "/foo/bar");
-        List<Application> apps = db.findAllEntrys();
+        List<Application> apps = db.findAllEntries();
         assertEquals(apps.size(), 2);
         assertEquals(apps.get(0).getName(), "test1");
         assertEquals(apps.get(0).getPath(), "/foo/bar");
