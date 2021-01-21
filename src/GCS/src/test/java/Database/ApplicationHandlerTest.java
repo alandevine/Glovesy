@@ -1,5 +1,6 @@
 package Database;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -12,44 +13,52 @@ class ApplicationHandlerTest {
 
     @Test
     void addEntry() {
-        db.addEntry("test", "/foo/bar");
-        assertTrue(db.containsEntry("test"));
+        db.deleteAll();
+        db.addEntry("gcc", "/usr/bin/gcc");
+        assertTrue(db.containsEntry("gcc"));
         db.deleteAll();
     }
 
     @Test
     void findAllEntries() {
-        db.addEntry("test1", "/foo/bar");
-        db.addEntry("test2", "/foo/bar");
+        db.deleteAll();
+        db.addEntry("gcc", "/usr/bin/gcc");
+        db.addEntry("g++", "/usr/bin/g++");
         List<Application> apps = db.findAllEntries();
         assertEquals(apps.size(), 2);
-        assertEquals(apps.get(0).getName(), "test1");
-        assertEquals(apps.get(0).getPath(), "/foo/bar");
-        assertEquals(apps.get(1).getName(), "test2");
-        assertEquals(apps.get(1).getPath(), "/foo/bar");
+        assertEquals(apps.get(0).getName(), "gcc");
+        assertEquals(apps.get(0).getPath(), "/usr/bin/gcc");
+        assertEquals(apps.get(1).getName(), "g++");
+        assertEquals(apps.get(1).getPath(), "/usr/bin/g++");
+        db.deleteAll();
     }
 
     @Test
     void findEntry() {
-        db.addEntry("test", "/foo/bar");
-        String expected = "Application:\n"
-                        + "\tname: test\n"
-                        + "\tpath: /foo/bar\n";
+        db.deleteAll();
+        db.addEntry("gcc", "/usr/bin/gcc");
+        String actual = "Application:\n"
+                        + "\tname: gcc\n"
+                        + "\tpath: /usr/bin/gcc\n";
 
-        assertEquals(db.findEntry("test").toString(), expected);
+        assertEquals(db.findEntry("gcc").toString(), actual);
         db.deleteAll();
     }
 
     @Test
     void containsEntry() {
-        db.addEntry("test", "/foo/bar");
-        assertTrue(db.containsEntry("test"));
+        db.deleteAll();
+        db.addEntry("gcc", "/usr/bin/gcc");
+        assertTrue(db.containsEntry("gcc"));
         db.deleteAll();
     }
 
     @Test
     void deleteEntry() {
-        db.deleteEntry("test");
-        assertFalse(db.containsEntry("test"));
+        db.deleteAll();
+        db.addEntry("gcc", "/usr/bin/gcc");
+        assertTrue(db.containsEntry("gcc"));
+        db.deleteEntry("gcc");
+        assertFalse(db.containsEntry("gcc"));
     }
 }
