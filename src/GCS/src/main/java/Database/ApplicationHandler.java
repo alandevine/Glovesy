@@ -51,12 +51,7 @@ public class ApplicationHandler {
     public List<Application> findAllEntries() {
         List<Application> apps = new ArrayList<>();
         FindIterable<Document> iterable = collection.find();
-        Iterator<Document> iterator = iterable.iterator();
-        Application curr;
-        while (iterator.hasNext()) {
-            curr = new Application(iterator.next());
-            apps.add(curr);
-        }
+        for (Document document : iterable) apps.add(new Application(document));
         return apps;
     }
 
