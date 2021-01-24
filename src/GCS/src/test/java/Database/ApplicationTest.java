@@ -2,15 +2,24 @@ package Database;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.rmi.AccessException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class ApplicationTest {
     Application app;
+    File testFile;
 
-    ApplicationTest() throws FileNotFoundException {
+    ApplicationTest() throws IOException {
         app = new Application("gcc", "/usr/bin/gcc");
+        String cwd = new File("").getAbsolutePath();
+        testFile = new File(cwd + "/foo");
+        testFile.createNewFile();
+        testFile.deleteOnExit();
     }
 
     @Test
@@ -38,15 +47,19 @@ class ApplicationTest {
     }
 
     @Test
-    void setPath() throws FileNotFoundException {
-        app.setPath("/usr/bin/g++");
-        assertEquals(app.getPath(), "/usr/bin/g++");
+    void setPathSuccess() throws FileNotFoundException, AccessException {
+        app.setPath("/bin/g++");
+        assertEquals(app.getPath(), "/bin/g++");
     }
 
     @Test
-    void setPathException() {
+    void setPathBadPathException() {
         Exception e = assertThrows(FileNotFoundException.class, () -> app.setPath("/usr/bin/aprogramthatdoesntexist"));
-
         assertEquals(e.getMessage(), String.format("The file \"%s\" does not exist", "/usr/bin/aprogramthatdoesntexist"));
+    }
+
+    @Test
+    void setPathNonExecutableException() {
+         assertThrows(AccessException.class, () -> app.setPath(testFile.getPath()));
     }
 }
