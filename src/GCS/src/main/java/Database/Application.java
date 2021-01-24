@@ -4,6 +4,7 @@ import org.bson.Document;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.rmi.AccessException;
 
 public class Application {
 
@@ -15,12 +16,9 @@ public class Application {
         this.path = (String) doc.get("path");
     }
 
-    public Application(String name, String path) throws FileNotFoundException {
+    public Application(String name, String path) throws FileNotFoundException, AccessException {
         this.name = name;
-        if (this.verifyPath(path))
-            this.path = path;
-        else
-            throw new FileNotFoundException();
+        setPath(path);
     }
 
     public String getName() {
@@ -36,15 +34,21 @@ public class Application {
         return file.exists();
     }
 
+    private boolean verifyExecutable(String path) {
+        File file = new File(path);
+        return file.canExecute();
+    }
+
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPath(String path) throws FileNotFoundException {
-        if (this.verifyPath(path))
-            this.path = path;
-        else
+    public void setPath(String path) throws FileNotFoundException, AccessException {
+        if (!this.verifyPath(path))
             throw new FileNotFoundException(String.format("The file \"%s\" does not exist", path));
+        if (!this.verifyExecutable(path))
+            throw new AccessException(String.format("The file \"%s\" is not an executable.", path));
+        this.path = path;
     }
 
     @Override
