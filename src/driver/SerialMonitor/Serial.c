@@ -33,7 +33,7 @@ int main(int argc, char** argv) {
     tio.c_cc[VMIN] = 1;
     tio.c_cc[VTIME] = 5;
 
-    tty_fd = open(argv[1], O_RDWR | O_NONBLOCK);
+    tty_fd = open("/dev/ttyACM0", O_RDWR | O_NONBLOCK);
     cfsetospeed(&tio, B115200);
     cfsetispeed(&tio, B115200);
 
@@ -41,8 +41,6 @@ int main(int argc, char** argv) {
     while (c != 'q') {
         if(read(tty_fd, &c, 1)>0)
             write(STDOUT_FILENO,&c,1);
-        if(read(STDIN_FILENO,&c,1)>0)
-            write(tty_fd, &c, 1);
     }
 
     close(tty_fd);

@@ -1,0 +1,187 @@
+\documentclass{standalone}
+\usepackage{color}
+\usepackage{tikz}
+
+\usepackage{pgfgantt}
+\newganttchartelement{purplebar}{
+    purplebar/.style={
+        inner sep=0pt,
+        draw=red!66!black,
+        very thick,
+        top color=purple,
+        bottom color=purple!80
+    },
+    purplebar label font=\slshape,
+    purplebar left shift=.1,
+    purplebar right shift=-.1
+}
+
+\newganttchartelement{bluebar}{
+    bluebar/.style={
+        inner sep=0pt,
+        draw=blue!44!blue,
+        very thick,
+        top color=blue,
+        bottom color=blue!80
+    },
+    bluebar label font=\slshape,
+    bluebar left shift=.1,
+    bluebar right shift=-.1
+}
+
+\newganttchartelement{redbar}{
+    redbar/.style={
+        inner sep=0pt,
+        draw=red!44!red,
+        very thick,
+        top color=red,
+        bottom color=red!80
+    },
+    redbar label font=\slshape,
+    redbar left shift=.1,
+    redbar right shift=-.1
+}
+
+
+\newganttchartelement{greenbar}{
+    greenbar/.style={
+        inner sep=0pt,
+        draw=green!50!black,
+        very thick,
+        top color=white,
+        bottom color=green!80
+    },
+    greenbar label font=\slshape,
+    greenbar left shift=.1,
+    greenbar right shift=-.1
+}
+
+\begin{document}
+\begin{ganttchart}[
+    hgrid style/.style={black, dotted},
+    vgrid={*5{black,dotted}, *1{white, dotted}, *1{black, dashed}},
+    x unit=3mm,
+    y unit chart=9mm,
+    y unit title=12mm,
+    time slot format=isodate,
+    group label font=\bfseries \Large,
+    link/.style={->, thick}
+    ]{2020-11-06}{2021-05-21}
+    \gantttitlecalendar{year, month=name, week}\\
+
+    \ganttgroup[
+        group/.append style={fill=purple}
+    ]{Functional Spec}{2020-11-06}{2020-11-30}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=purple}
+    ]{Hardware}{2020-11-15}{2020-11-18}\\ [grid]
+
+    \ganttpurplebar[]{Test Components}{2020-11-15}{2020-11-17}\\ [grid]
+    \ganttpurplebar[]{Make Flexsenosrs}{2020-11-18}{2020-11-18}\\ [grid]
+
+    \ganttgroup[
+      group/.append style={fill=blue}
+    ]{Create Drivers}{2020-12-01}{2021-02-01}
+    \ganttnewline
+
+    \ganttbluebar[]{Create Linux Driver}{2020-12-01}{2020-12-26}\\ [grid]
+    \ganttbluebar[]{Create Windows Driver}{2021-01-10}{2021-02-01}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=blue}
+    ]{Mouse Emulation}{2021-02-02}{2021-02-10}
+    \ganttnewline
+
+    \ganttbluebar[]{Mouse Movement}{2021-02-02}{2021-02-07}\\ [grid]
+
+    \ganttbluebar[]{Mouse Clicks}{2021-02-08}{2021-02-10}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=blue}
+    ]{Create Demo Hub}{2021-02-11}{2021-02-21}
+    \ganttnewline
+
+    \ganttbluebar[]{Create Basic GUI}{2021-02-11}{2021-02-14}\\ [grid]
+    \ganttbluebar[]{Add Functionality}{2021-02-15}{2021-02-19}\\ [grid]
+    \ganttbluebar[]{Refine GUI}{2021-02-20}{2021-02-21}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=blue}
+    ]{Create Physics Demo}{2021-02-22}{2021-03-11}
+    \ganttnewline
+
+    \ganttbluebar[]{Create Game Environment}{2021-02-22}{2021-02-27}\\ [grid]
+    \ganttbluebar[]{Implement Hand Controls}{2021-02-28}{2021-03-08}\\ [grid]
+    \ganttbluebar[]{Testing \& Patching}{2021-03-09}{2021-03-11}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=blue}
+    ]{Create Rock, Paper, Scissors Demo}{2021-03-12}{2021-03-31}
+    \ganttnewline
+
+    \ganttbluebar[]{Create Game Environment}{2021-03-12}{2021-03-17}\\ [grid]
+    \ganttbluebar[]{Implement Gesture Recognition}{2021-03-18}{2021-03-28}\\ [grid]
+    \ganttbluebar[]{Testing \& Patching}{2021-03-29}{2021-03-31}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{OpenGL Sandbox}{2020-12-01}{2020-12-20}
+    \ganttnewline
+
+    \ganttredbar[]{Create Basic Environment}{2020-12-01}{2020-12-11}\\ [grid]
+    \ganttredbar[]{Make Interactable Actors}{2020-12-12}{2020-12-20}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{Application Handler}{2020-12-21}{2020-12-27}
+    \ganttnewline
+
+    \ganttredbar[]{Perform Opperations System wide}{2020-12-21}{2020-12-25}\\ [grid]
+    \ganttredbar[]{Perform Actions on dependant on Application}{2020-12-26}{2020-12-27}\\ [grid]
+
+
+    \ganttgroup[
+        group/.append style={fill=green}
+    ]{Semester 1 Exams Period}{2020-12-28}{2021-01-09}
+    \ganttnewline
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{Create Serial Handler}{2021-01-10}{2021-01-30}
+    \ganttnewline
+
+    \ganttredbar[]{Create Driver Handler}{2021-01-10}{2021-01-20}\\ [grid]
+    \ganttredbar[]{Create Glove Objects}{2021-01-21}{2021-01-30}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{GUI Application Development}{2021-02-01}{2021-02-29}
+    \ganttnewline
+
+    \ganttredbar[]{Create OpenGL Environment Window}{2021-02-01}{2021-02-04}\\ [grid]
+    \ganttredbar[]{Create Macro Interface}{2021-02-05}{2021-02-12}\\ [grid]
+    \ganttredbar[]{Create Configuration Interface}{2021-02-13}{2021-02-22}\\ [grid]
+    \ganttredbar[]{Refine UI}{2021-02-23}{2021-02-29}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{Gesture Recognition}{2021-03-02}{2021-03-30}
+    \ganttnewline
+
+    \ganttredbar[]{Create Database for storing Gestures}{2021-03-02}{2021-03-05}\\ [grid]
+    \ganttredbar[]{Implement Action Recording}{2021-03-06}{2021-03-12}\\ [grid]
+    \ganttredbar[]{Implement Pattern Matching}{2021-03-13}{2021-03-30}\\ [grid]
+
+    \ganttgroup[
+        group/.append style={fill=red}
+    ]{Application Handler Cont.}{2021-04-01}{2021-04-05}
+    \ganttnewline
+
+    \ganttredbar[]{Implement Action Triggering}{2021-04-01}{2021-04-05}\\ [grid]
+
+
+    \ganttnewline
+
+\end{ganttchart}
+\end{document}

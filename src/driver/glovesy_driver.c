@@ -1,8 +1,17 @@
+// Driver Requirements
 #include <linux/init.h>
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/fs.h>
 #include <linux/uaccess.h>
+
+// Serial Communication requirements
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <termios.h>
 
 #define DEVICE_NAME "glovesy"
 
@@ -19,8 +28,14 @@ static struct file_operations fops = {
 };
 
 static int major;
+struct termios tio;
+struct termios stdio;
+struct termios old_stdio;
+int tty_fd;
 
-static int __init example_init(void) {
+unsigned char c='D';
+
+static int __init init(void) {
     major = register_chrdev(0, DEVICE_NAME, &fops);
 
     if (major < 0) {
@@ -28,6 +43,29 @@ static int __init example_init(void) {
         return major;
     }
 
+    // Store file attributes in old_stdio
+    tcgetattr(STDOUT_FILENO, &old_stdio);
+
+    memset(&stdio, 0, sizeof(stdio));
+    stdio.c_iflag = 0;
+    stdio.c_oflag = 0;
+    stdio.c_cflag = 0;
+    stdio.c_lflag = 0;
+    stdio.c_cc[VMIN] = 1;
+    stdio.c_cc[VTIME] = 0;
+    tcsetattr(STDOUT_FILENO, TCSANOW, &stdio);
+    tcsetattr(STDOUT_FILENO, TCSAFLUSH, &stdio);
+
+    memset(&tio, 0, sizeof(tio));
+    tio.c_iflag = 0;
+    tio.c_oflag = 0;
+    tio.c_cflag = CS8|CREAD|CLOCAL;
+    tio.c_lflag = 0;
+    tio.c_cc[VMIN] = 1;
+    tio.c_cc[VTIME] = 5;
+
+    tty_fd = open("/dev/ttyACM0", O_RDWR | O_NONBLOCK);
+    cfsetspeed(&tio
     printk(KERN_INFO "Glovesy module has been loaded: %d\n", major);
     return 0;
 }
@@ -58,10 +96,10 @@ static ssize_t dev_read(struct file *filep, char *buffer, size_t len, loff_t *of
     return errors == 0 ? message_len : -EFAULT;
 }
 
-static void __exit example_exit(void) {
+static void __exit exit(void) {
     unregister_chrdev(major, DEVICE_NAME);
     printk(KERN_INFO "Exiting Kernel Module\n");
 }
 
-module_init(example_init);
-module_exit(example_exit);
+module_init(init);
+module_exit(exit);

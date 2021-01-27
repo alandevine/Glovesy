@@ -1,0 +1,27 @@
+\contentsline {chapter}{PLAGIARISM DECLARATION}{i}{Doc-Start}%
+\contentsline {chapter}{ABSTRACT}{ii}{Doc-Start}%
+\contentsline {chapter}{GLOSSARY}{ii}{Doc-Start}%
+\contentsline {chapter}{LIST OF FIGURES}{iv}{Item.4}%
+\contentsline {chapter}{Introduction}{1}{chapter*.1}%
+\contentsline {section}{\numberline {1.1}Overview}{1}{section.0.1}%
+\contentsline {chapter}{General Description}{2}{chapter*.2}%
+\contentsline {section}{\numberline {2.1}Product / System Functions}{2}{section.0.2}%
+\contentsline {section}{\numberline {2.2}User Characteristics and Objectives}{2}{section.0.3}%
+\contentsline {section}{\numberline {2.3}Operational Scenarios}{3}{section.0.4}%
+\contentsline {section}{\numberline {2.4}Constraints}{3}{section.0.5}%
+\contentsline {chapter}{Functional Requirements}{5}{chapter*.3}%
+\contentsline {section}{\numberline {3.1}\textbf {Data Transfer}}{5}{section.0.6}%
+\contentsline {section}{\numberline {3.2}\textbf {Hand Tracking}}{5}{section.0.7}%
+\contentsline {section}{\numberline {3.3}\textbf {Finger Tracking}}{6}{section.0.8}%
+\contentsline {section}{\numberline {3.4}\textbf {Gesture Recognition}}{6}{section.0.9}%
+\contentsline {chapter}{System Architecture}{7}{chapter*.4}%
+\contentsline {section}{\numberline {4.1}Arduino}{8}{section.0.10}%
+\contentsline {section}{\numberline {4.2}Flex sensor Array}{8}{section.0.11}%
+\contentsline {section}{\numberline {4.3}IMU}{8}{section.0.12}%
+\contentsline {section}{\numberline {4.4}Macro Database}{8}{section.0.13}%
+\contentsline {chapter}{High-Level Design}{9}{chapter*.5}%
+\contentsline {chapter}{Preliminary Schedule}{14}{chapter*.6}%
+\contentsline {section}{\numberline {6.0}Major Tasks}{14}{section.0.14}%
+\contentsline {section}{\numberline {6.1}Hardware Requirements}{15}{section.0.15}%
+\contentsline {section}{\numberline {6.2}Software/ Wetware Requirements}{15}{section.0.16}%
+\contentsline {section}{\numberline {6.3}Gantt Chart}{15}{section.0.17}%
