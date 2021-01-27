@@ -3,6 +3,8 @@ package Database;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
+import java.rmi.AccessException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,7 +14,7 @@ class ApplicationHandlerTest {
     ApplicationHandler db = new ApplicationHandler("mongodb://127.0.0.1:27017", "test");
 
     @Test
-    void addEntry() {
+    void addEntry() throws FileNotFoundException, AccessException {
         db.deleteAll();
         db.addEntry("gcc", "/usr/bin/gcc");
         assertTrue(db.containsEntry("gcc"));
@@ -20,7 +22,7 @@ class ApplicationHandlerTest {
     }
 
     @Test
-    void findAllEntries() {
+    void findAllEntries() throws FileNotFoundException, AccessException {
         db.deleteAll();
         db.addEntry("gcc", "/usr/bin/gcc");
         db.addEntry("g++", "/usr/bin/g++");
@@ -34,7 +36,7 @@ class ApplicationHandlerTest {
     }
 
     @Test
-    void findEntry() {
+    void findEntry() throws FileNotFoundException, AccessException {
         db.deleteAll();
         db.addEntry("gcc", "/usr/bin/gcc");
         String actual = "Application:\n"
@@ -46,7 +48,7 @@ class ApplicationHandlerTest {
     }
 
     @Test
-    void containsEntry() {
+    void containsEntry() throws FileNotFoundException, AccessException {
         db.deleteAll();
         db.addEntry("gcc", "/usr/bin/gcc");
         assertTrue(db.containsEntry("gcc"));
@@ -54,7 +56,7 @@ class ApplicationHandlerTest {
     }
 
     @Test
-    void deleteEntry() {
+    void deleteEntry() throws FileNotFoundException, AccessException {
         db.deleteAll();
         db.addEntry("gcc", "/usr/bin/gcc");
         assertTrue(db.containsEntry("gcc"));
