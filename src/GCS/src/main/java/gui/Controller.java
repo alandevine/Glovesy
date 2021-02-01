@@ -27,11 +27,12 @@ public class Controller implements Initializable {
     @FXML public VBox applicationList;
     @FXML public Button addApplication;
     @FXML public Hand handGroup;
-    public AnchorPane handPane;
+    @FXML public AnchorPane handPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        handGroup = new Hand(250, 250);
+        handGroup = new Hand(handPane.getMaxWidth() / 4,
+                             handPane.getMaxHeight() / 4);
         handPane.getChildren().add(handGroup);
 
         try {
@@ -46,7 +47,6 @@ public class Controller implements Initializable {
         newApplicationPrompt();
     }
 
-
     void populateApplicationList() throws FileNotFoundException, AccessException {
         ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
         List<Application> apps = applicationHandler.findAllEntries();
@@ -58,7 +58,6 @@ public class Controller implements Initializable {
             this.applicationList.getChildren().add(entry);
         }
     }
-
 
     private void newApplicationPrompt() {
 
@@ -119,7 +118,6 @@ public class Controller implements Initializable {
     }
 
     public void keyHandler(KeyEvent keyEvent) {
-        System.out.println("owh");
         switch (keyEvent.getCode()) {
             case K:
                 this.handGroup.rotateOnXAxis(+10);
