@@ -1,7 +1,6 @@
 package viewer;
 
 import javafx.geometry.Point3D;
-import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
