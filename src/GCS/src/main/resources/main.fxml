@@ -3,18 +3,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller" onKeyPressed="#keyHandler">
+<AnchorPane onKeyPressed="#keyHandler" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
       <TabPane prefHeight="1920.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab closable="false" text="3D View" >
+          <Tab closable="false" text="3D View">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1366.0">
+              <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="768.0" prefWidth="1366.0">
                      <children>
-                        <SplitPane dividerPositions="0.3" prefHeight="768.0" prefWidth="1366.0"  >
+                        <SplitPane dividerPositions="0.3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="768.0" prefWidth="1366.0">
                           <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-                            <AnchorPane fx:id="handPane" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+                            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0" />
+                            <AnchorPane fx:id="handPane" maxHeight="768" maxWidth="1066" minHeight="768" minWidth="1066" />
                           </items>
                         </SplitPane>
                      </children></AnchorPane>
