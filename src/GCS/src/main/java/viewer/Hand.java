@@ -1,5 +1,6 @@
 package viewer;
 
+import gui.VectorMath;
 import javafx.geometry.Point3D;
 import javafx.scene.Group;
 import javafx.scene.shape.Cylinder;
@@ -9,55 +10,81 @@ import javafx.scene.transform.Transform;
 
 public class Hand extends Group {
     private Rotate r;
-    private Transform t = new Rotate();
-    private final int startX;
-    private final int startY;
+
+    private final double startX;
+    private final double startY;
 
     private final Sphere[] homo = new Sphere[5];
     private final Sphere[] neutro = new Sphere[5];
     private final Sphere[] hetro = new Sphere[5];
     private final Sphere[] tip = new Sphere[5];
+    private final Sphere wrist = new Sphere();
     private final Group phalanges = new Group();
 
-    public Hand(int startX, int startY) {
+    public Hand(double startX, double startY) {
         this.startX = startX;
         this.startY = startY;
+        int xOffset = -60;
+        int[] yOffset = {10, 70, 80, 60, 40};
+
+        double xPos;
+        double yPos;
+
+        this.setTranslateX(startX);
+        this.setTranslateY(startY);
+
+        wrist.setTranslateX(startX);
+        wrist.setTranslateY(startY + yOffset[2] / 2.5d);
+        wrist.setTranslateZ(0);
+        wrist.setRadius(20);
+
+        this.getChildren().add(wrist);
 
         for (int i = 0; i < homo.length; i++) {
+            xPos = startX + xOffset;
+            yPos = startY - yOffset[i];
+
             homo[i] = new Sphere();
-            homo[i].setTranslateX(startX + 50 * i);
-            homo[i].setTranslateY(startY / 2.0);
+            homo[i].setTranslateX(xPos);
+            homo[i].setTranslateY(yPos);
             homo[i].setTranslateZ(0);
             homo[i].setRadius(10);
             util.setColor(homo[i], 1, 0, 0);
 
             neutro[i] = new Sphere();
-            neutro[i].setTranslateX(startX + 50 * i);
-            neutro[i].setTranslateY((startY / 2.0) - 40);
+            neutro[i].setTranslateX(xPos);
+            neutro[i].setTranslateY(yPos - 40);
             neutro[i].setTranslateZ(0);
             neutro[i].setRadius(10);
             util.setColor(neutro[i], 0, 1, 0);
 
             hetro[i] = new Sphere();
-            hetro[i].setTranslateX(startX + 50 * i);
-            hetro[i].setTranslateY((startY / 2.0) - 80);
+            hetro[i].setTranslateX(xPos);
+            hetro[i].setTranslateY(yPos - 80);
             hetro[i].setTranslateZ(0);
             hetro[i].setRadius(10);
             util.setColor(hetro[i], 0, 0, 1);
+            this.getChildren().addAll(homo[i], neutro[i], hetro[i]);
 
+            if (i != 0) {
+                tip[i] = new Sphere();
+                tip[i].setTranslateX(xPos);
+                tip[i].setTranslateY(yPos - 120);
+                tip[i].setTranslateZ(0);
+                tip[i].setRadius(10);
+                util.setColor(tip[i], 1, 0, 1);
+                this.getChildren().add(tip[i]);
+            }
 
-            tip[i] = new Sphere();
-            tip[i].setTranslateX(startX + 50 * i);
-            tip[i].setTranslateY((startY / 2.0) - 120);
-            tip[i].setTranslateZ(50);
-            tip[i].setRadius(10);
-            util.setColor(tip[i], 1, 0, 1);
-
-            this.getChildren().addAll(homo[i], neutro[i], hetro[i], tip[i]);
+            xOffset += 30;
         }
 
         this.connectAll();
         this.getChildren().add(phalanges);
+    }
+
+    public Sphere[] getThumb() {
+        return new Sphere[] {homo[0], neutro[0], hetro[0], null};
     }
 
     public Sphere[] getIndex() {
@@ -76,98 +103,96 @@ public class Hand extends Group {
         return new Sphere[] {homo[4], neutro[4], hetro[4], tip[4]};
     }
 
-    public Sphere[] getThumb() {
-        return new Sphere[] {homo[0], neutro[0], hetro[0], tip[0]};
-    }
-
     private void connectAll() {
         this.phalanges.getChildren().clear();
 
-        Cylinder[] thumbPhalanges = connectFinger(getThumb());
+        connectFinger(getThumb());
+        connectFinger(getIndex());
+        connectFinger(getMiddle());
+        connectFinger(getRing());
+        connectFinger(getPinky());
+        addCylinder(this.wrist, getThumb()[0]);
+        addCylinder(this.wrist, getIndex()[0]);
+        addCylinder(this.wrist, getMiddle()[0]);
+        addCylinder(this.wrist, getRing()[0]);
+        addCylinder(this.wrist, getPinky()[0]);
+    }
 
-        for (Cylinder phalange : thumbPhalanges) {
-            this.phalanges.getChildren().add(phalange);
-        }
-
-        Cylinder[] indexPhalanges = connectFinger(getIndex());
-
-        for (Cylinder phalange : indexPhalanges) {
-            this.phalanges.getChildren().add(phalange);
-        }
-
-        Cylinder[] middlePhalanges = connectFinger(getMiddle());
-
-        for (Cylinder phalange : middlePhalanges) {
-            this.phalanges.getChildren().add(phalange);
-        }
-
-        Cylinder[] ringPhalanges = connectFinger(getRing());
-
-        for (Cylinder phalange : ringPhalanges) {
-            this.phalanges.getChildren().add(phalange);
-        }
-
-        Cylinder[] pinkyPhalanges = connectFinger(getPinky());
-
-        for (Cylinder phalange : pinkyPhalanges) {
-            this.phalanges.getChildren().add(phalange);
+    private void connectFinger(Sphere[] finger) {
+        for (int i = 0; i < finger.length - 1; i++) {
+            if (finger[i + 1] != null)
+                addCylinder(finger[i], finger[i + 1]);
         }
     }
 
-    private Cylinder[] connectFinger(Sphere[] finger) {
-        Cylinder[] fingerPhalanges = new Cylinder[3];
+    private void addCylinder(Sphere parent, Sphere child) {
         Cylinder cylinder;
-        Rotate rotate = new Rotate();
-        rotate.setAxis(Rotate.X_AXIS);
         double distance;
-        Point3D a;
-        Point3D b;
+
         Point3D midpoint;
+        cylinder = new Cylinder();
+        Point3D a = new Point3D(parent.getTranslateX(), parent.getTranslateY(), parent.getTranslateZ());
+        Point3D b = new Point3D(child.getTranslateX(), child.getTranslateY(), child.getTranslateZ());
 
-        for (int i = 0; i < finger.length - 1; i++) {
-            cylinder = new Cylinder();
-            a = new Point3D(finger[i].getTranslateX(), finger[i].getTranslateY(), finger[i].getTranslateZ());
-            b = new Point3D(finger[i + 1].getTranslateX(), finger[i + 1].getTranslateY(), finger[i + 1].getTranslateZ());
-            rotate.setAngle(-a.angle(b));
+        distance = a.distance(b);
+        midpoint = a.midpoint(b);
 
-            distance = a.distance(b);
-            midpoint = a.midpoint(b);
+        Rotate rotateAboutX = new Rotate(VectorMath.getAngleYZ(a, b), Rotate.X_AXIS);
+        Rotate rotateAboutZ = new Rotate(VectorMath.getAngleXY(a, b), Rotate.Z_AXIS);
+        Transform finalRotation = rotateAboutX.createConcatenation(rotateAboutZ);
 
-            cylinder.setTranslateX(midpoint.getX());
-            cylinder.setTranslateY(midpoint.getY());
-            cylinder.setTranslateZ(midpoint.getZ());
+        cylinder.setTranslateX(midpoint.getX());
+        cylinder.setTranslateY(midpoint.getY());
+        cylinder.setTranslateZ(midpoint.getZ());
 
-            cylinder.setHeight(distance);
-            cylinder.setRadius(5);
+        cylinder.setHeight(distance);
+        cylinder.setRadius(5);
 
-            cylinder.getTransforms().add(rotate);
-            util.setColor(cylinder, .2, .2, .2);
+        cylinder.getTransforms().clear();
+        cylinder.getTransforms().add(finalRotation);
 
-            fingerPhalanges[i] = cylinder;
-            System.out.println(cylinder.getHeight());
-        }
-
-        return fingerPhalanges;
+        this.phalanges.getChildren().add(cylinder);
     }
 
     public void rotateOnXAxis(int ang) {
         this.r = new Rotate(ang, Rotate.X_AXIS);
-        this.t = this.t.createConcatenation(this.r);
-        this.getTransforms().clear();
-        this.getTransforms().addAll(this.t);
-        this.setTranslateX(this.startX);
-        this.setTranslateX(this.startY);
-        this.setTranslateZ(0);
+        this.r.setPivotX(startX);
+        this.r.setPivotY(startY);
+        this.r.setPivotZ(0);
+        this.getTransforms().addAll(r);
     }
 
     public void rotateOnYAxis(int ang) {
         this.r = new Rotate(ang, Rotate.Y_AXIS);
-        this.t = t.createConcatenation(this.r);
-        this.getTransforms().clear();
-        this.getTransforms().addAll(this.t);
-        this.setTranslateX(this.startX);
-        this.setTranslateX(this.startY);
-        this.setTranslateZ(0);
+        this.r.setPivotX(startX);
+        this.r.setPivotY(startY);
+        this.r.setPivotZ(0);
+        this.getTransforms().addAll(r);
     }
 
+    /**
+     *
+     * @param angle angle of rotation in degrees
+     * @param finger array of finger objects
+     * @param index index of
+     */
+    public void contractJoint(double angle, Sphere[] finger, int index) {
+        for (int i = index; i < finger.length - 1; i++) {
+            Point3D pivot = util.sphereToPoint(finger[i]);
+            Point3D point = util.sphereToPoint(finger[i + 1]);
+            Point3D newPos = VectorMath.rotateAboutPoint(angle, pivot, point);
+
+            double deltaY = -Math.abs(newPos.getY() - point.getY());
+            double deltaZ = Math.abs(newPos.getZ() - point.getZ());
+
+            finger[i + 1].setTranslateX(newPos.getX());
+            finger[i + 1].setTranslateY(newPos.getY());
+            finger[i + 1].setTranslateZ(newPos.getZ());
+
+            for (int j = i + 2; j < finger.length; j++) {
+                finger[j].setTranslateY(finger[j].getTranslateY() - deltaY);
+                finger[j].setTranslateZ(finger[j].getTranslateZ() - deltaZ);
+            }
+        }
+    }
 }
