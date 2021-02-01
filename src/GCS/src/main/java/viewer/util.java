@@ -1,17 +1,12 @@
 package viewer;
 
+import javafx.geometry.Point3D;
 import javafx.scene.Node;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
 import javafx.scene.shape.Cylinder;
-import javafx.scene.shape.Line;
 import javafx.scene.shape.Sphere;
 
-
-/**
- * Util class for common procedures
- * @TODO: 11/01/2021: Make this class generic
- */
 public class util {
 
     /**
@@ -34,14 +29,9 @@ public class util {
         cylinder.setMaterial(material);
     }
 
-
-    public static Line addEdge(Node a, Node b) {
-        Line line = new Line();
-        line.startXProperty().bind(a.layoutXProperty());
-        line.startYProperty().bind(a.layoutYProperty());
-        line.endXProperty().bind(b.layoutXProperty());
-        line.endYProperty().bind(b.layoutYProperty());
-
-        return line;
+    public static Point3D sphereToPoint(Sphere sphere) {
+        return new Point3D(sphere.getTranslateX(),
+                           sphere.getTranslateY(),
+                           sphere.getTranslateZ());
     }
 }
