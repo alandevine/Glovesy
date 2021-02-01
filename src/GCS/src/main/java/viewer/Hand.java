@@ -13,6 +13,12 @@ public class Hand extends Group {
     private final double startX;
     private final double startY;
 
+    private final double[] thumbRotations;
+    private final double[] indexRotations;
+    private final double[] middleRotations;
+    private final double[] ringRotations;
+    private final double[] pinkyRotations;
+
     private final Sphere[] homo = new Sphere[5];
     private final Sphere[] neutro = new Sphere[5];
     private final Sphere[] hetro = new Sphere[5];
@@ -78,9 +84,16 @@ public class Hand extends Group {
             xOffset += 30;
         }
 
+        thumbRotations = new double[] {90, 90, 90};
+        indexRotations = new double[] {90, 90, 90, 90};
+        middleRotations = new double[] {90, 90, 90, 90};
+        ringRotations  = new double[] {90, 90, 90, 90};
+        pinkyRotations = new double[] {90, 90, 90, 90};
+
         this.connectAll();
         this.getChildren().add(phalanges);
     }
+
 
     public Sphere[] getThumb() {
         return new Sphere[] {homo[0], neutro[0], hetro[0], null};
@@ -170,12 +183,55 @@ public class Hand extends Group {
     }
 
     /**
-     *
+     * Method for contracting fingers at specific knuckles, and their subsequent knuckles.
      * @param angle angle of rotation in degrees
-     * @param finger array of finger objects
-     * @param index index of
+     * @param fingerName Either "thumb", "index", "middle", "ring" or "pinky".
+     * @param index index of the joint to be rotated.
      */
-    public void contractJoint(double angle, Sphere[] finger, int index) {
+    public void contractJoint(double angle, String fingerName, int index) {
+
+        if (-90 <= angle && angle <= 90)
+            throw new IllegalArgumentException("The angle argument must be a value between -90 and 90 degrees (inclusive).");
+
+        Sphere[] finger;
+        double newAngle;
+
+        switch (fingerName) {
+            case "thumb":
+                finger = getThumb();
+                newAngle = this.thumbRotations[index] - angle;
+                this.thumbRotations[index] = newAngle;
+                break;
+            case "index":
+                finger = getIndex();
+                newAngle = this.indexRotations[index] - angle;
+                this.indexRotations[index] = newAngle;
+                break;
+            case "middle":
+                finger = getMiddle();
+                newAngle = this.middleRotations[index] - angle;
+                this.middleRotations[index] = newAngle;
+                break;
+            case "ring":
+                finger = getIndex();
+                newAngle = this.ringRotations[index] - angle;
+                this.ringRotations[index] = newAngle;
+                break;
+            case "pinky":
+                finger = getPinky();
+                newAngle = this.pinkyRotations[index] - angle;
+                this.pinkyRotations[index] = newAngle;
+                break;
+            default:
+                throw new IllegalArgumentException();
+        }
+
+        if (newAngle < -90)
+            throw new IllegalArgumentException("The angle after rotation is lower than the minimal acceptable angle for a given finger");
+
+        if (newAngle > 90)
+            throw new IllegalArgumentException("The angle after rotation is higher than the maximum acceptable angle for a given finger");
+
         for (int i = index; i < finger.length - 1; i++) {
             Point3D pivot = util.sphereToPoint(finger[i]);
             Point3D point = util.sphereToPoint(finger[i + 1]);
