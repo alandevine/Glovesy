@@ -1,15 +1,40 @@
 package viewer;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class HandTest {
 
-    Hand hand = new Hand(500, 500);
+    @Test
+    void testContractJointSmallAngle(){
+        Hand hand = new Hand(0, 0);
+        assertThrows(IllegalArgumentException.class, () -> hand.contractJoint(-100, "index", 0));
+    }
 
     @Test
-    void testNodeCount() {
-        int nodeCount = hand.getChildren().size();
-        Assertions.assertEquals(nodeCount, 14);
+    void testContractJointLargeAngle(){
+        Hand hand = new Hand(0, 0);
+        assertThrows(IllegalArgumentException.class, () -> hand.contractJoint(100, "index", 0));
+    }
+
+    @Test
+    void testIllegalNewAngleLarge(){
+        Hand hand = new Hand(0, 0);
+        hand.contractJoint(50, "index", 0);
+        assertThrows(IllegalArgumentException.class, () -> hand.contractJoint(50, "index", 0));
+    }
+
+    @Test
+    void testIllegalNewAngleSmall(){
+        Hand hand = new Hand(0, 0);
+        assertThrows(IllegalArgumentException.class, () -> hand.contractJoint(-5, "index", 0));
+    }
+
+    @Test
+    void testLegalAngles(){
+        Hand hand = new Hand(0, 0);
+        hand.contractJoint(90, "index", 0);
+        hand.contractJoint(-90, "index", 0);
     }
 }
