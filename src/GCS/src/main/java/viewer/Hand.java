@@ -190,7 +190,7 @@ public class Hand extends Group {
      */
     public void contractJoint(double angle, String fingerName, int index) {
 
-        if (-90 <= angle && angle <= 90)
+        if (!(-90 <= angle && angle <= 90))
             throw new IllegalArgumentException("The angle argument must be a value between -90 and 90 degrees (inclusive).");
 
         Sphere[] finger;
@@ -226,7 +226,7 @@ public class Hand extends Group {
                 throw new IllegalArgumentException();
         }
 
-        if (newAngle < -90)
+        if (newAngle < 0)
             throw new IllegalArgumentException("The angle after rotation is lower than the minimal acceptable angle for a given finger");
 
         if (newAngle > 90)
