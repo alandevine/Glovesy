@@ -131,6 +131,36 @@ public class Controller implements Initializable {
             case L:
                 this.handGroup.rotateOnYAxis(10);
                 break;
+            case A:
+                handGroup.contractThumb(5);
+                break;
+            case Q:
+                handGroup.contractThumb(-5);
+                break;
+            case S:
+                handGroup.contractIndex(5);
+                break;
+            case W:
+                handGroup.contractIndex(-5);
+                break;
+            case D:
+                handGroup.contractMiddle(5);
+                break;
+            case E:
+                handGroup.contractMiddle(-5);
+                break;
+            case F:
+                handGroup.contractRing(5);
+                break;
+            case R:
+                handGroup.contractRing(-5);
+                break;
+            case G:
+                handGroup.contractPinky(5);
+                break;
+            case T:
+                handGroup.contractPinky(-5);
+                break;
         }
     }
 }
