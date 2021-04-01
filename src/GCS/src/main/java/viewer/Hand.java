@@ -32,10 +32,15 @@ public class Hand extends Group {
         this.getChildren().add(wrist);
 
         thumb  = new Thumb(startX - 60, startY - 10, 0);
+        thumb.init();
         index  = new Finger(startX - 30, startY - 70, 0);
+        index.init();
         middle = new Finger(startX - 0,  startY - 80, 0);
+        middle.init();
         ring   = new Finger(startX + 30, startY - 60, 0);
+        ring.init();
         pinky  = new Finger(startX + 60, startY - 40, 0);
+        pinky.init();
 
         Cylinder thumbToWrist = new Cylinder();
         Cylinder indexToWrist = new Cylinder();
@@ -55,8 +60,6 @@ public class Hand extends Group {
         this.setTranslateX(startX);
         this.setTranslateY(startY);
     }
-
-
 
     public void contractThumb(double angle) {
         this.thumb.rotateKnuckle(angle);
