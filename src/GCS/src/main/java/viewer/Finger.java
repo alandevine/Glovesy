@@ -34,10 +34,10 @@ public class Finger extends Group {
     }
 
     private void init() {
-        knuckle = util.addSphere(0,   new double[]{1, 0, 0}, this.startX, this.startY, this.startZ);
-        neutro  = util.addSphere(40,  new double[]{0, 1, 0}, this.startX, this.startY, this.startZ);
-        hetro   = util.addSphere(80,  new double[]{0, 0, 1}, this.startX, this.startY, this.startZ);
-        tip     = util.addSphere(120, new double[]{1, 0, 1}, this.startX, this.startY, this.startZ);
+        knuckle = util.addSphere(0,   new double[] {1, 0, 0}, this.startX, this.startY, this.startZ);
+        neutro  = util.addSphere(40,  new double[] {0, 1, 0}, this.startX, this.startY, this.startZ);
+        hetro   = util.addSphere(80,  new double[] {0, 0, 1}, this.startX, this.startY, this.startZ);
+        tip     = util.addSphere(120, new double[] {1, 0, 1}, this.startX, this.startY, this.startZ);
 
         knuckleToNeutro = new Cylinder();
         neutroToHetro   = new Cylinder();
@@ -125,9 +125,14 @@ public class Finger extends Group {
             this.joints.getChildren().get(i + 1).setTranslateY(newPos.getY());
             this.joints.getChildren().get(i + 1).setTranslateZ(newPos.getZ());
 
+            if (angle > 0) {
+                deltaY *= -1;
+                deltaZ *= -1;
+            }
+
             for (int j = i + 2; j < joints.getChildren().size(); j++) {
-                joints.getChildren().get(j).setTranslateY(joints.getChildren().get(j).getTranslateY() - deltaY);
-                joints.getChildren().get(j).setTranslateZ(joints.getChildren().get(j).getTranslateZ() - deltaZ);
+                joints.getChildren().get(j).setTranslateY(joints.getChildren().get(j).getTranslateY() + deltaY);
+                joints.getChildren().get(j).setTranslateZ(joints.getChildren().get(j).getTranslateZ() + deltaZ);
             }
         }
     }
