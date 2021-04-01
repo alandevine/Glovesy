@@ -29,11 +29,9 @@ public class Finger extends Group {
         this.startX = startX;
         this.startY = startY;
         this.startZ = startZ;
-
-        this.init();
     }
 
-    private void init() {
+    public void init() {
         knuckle = util.addSphere(0,   new double[] {1, 0, 0}, this.startX, this.startY, this.startZ);
         neutro  = util.addSphere(40,  new double[] {0, 1, 0}, this.startX, this.startY, this.startZ);
         hetro   = util.addSphere(80,  new double[] {0, 0, 1}, this.startX, this.startY, this.startZ);
