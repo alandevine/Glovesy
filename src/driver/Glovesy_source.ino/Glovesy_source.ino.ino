@@ -1,5 +1,3 @@
-// Basic demo for accelerometer/gyro readings from Adafruit LSM6DS33
-
 #include <Adafruit_LSM6DS33.h>
 
 // For SPI mode, we need a CS pin
@@ -13,11 +11,9 @@ Adafruit_LSM6DS33 lsm6ds33;
 void setup(void) {
   Serial.begin(115200);
   while (!Serial)
-    delay(10); // will pause Zero, Leonardo, etc until serial console opens
+    delay(10);
 
   if (!lsm6ds33.begin_I2C()) {
-    // if (!lsm6ds33.begin_SPI(LSM_CS)) {
-    // if (!lsm6ds33.begin_SPI(LSM_CS, LSM_SCK, LSM_MISO, LSM_MOSI)) {
     Serial.println("Failed to find LSM6DS33 chip");
     while (1) {
       delay(10);
@@ -30,6 +26,7 @@ void setup(void) {
 }
 
 float get_resistance(int ADCflex) {
+  // Convert value from flex sensor to resistance
   float VCC = 3.3;
   int R_DIV = 4700;
   float Vflex = ADCflex * VCC / 1023.0;
@@ -72,6 +69,8 @@ void loop() {
   // Pinky
   Serial.print(get_resistance(analogRead(9)));
   Serial.print(",");
+
+  // Accelerometer and Gyro data
   Serial.print(accel.acceleration.x);
   Serial.print(",");
   Serial.print(accel.acceleration.y);
