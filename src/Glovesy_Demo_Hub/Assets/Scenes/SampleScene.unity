@@ -541,7 +541,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.55, z: 0}
   m_Axis: {x: -1, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.58263004, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.5316635, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 152305042}
   - component: {fileID: 152305041}
   - component: {fileID: 152305045}
+  - component: {fileID: 152305046}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Hand
@@ -861,6 +862,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &152305046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152305040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c260eff3848d8c4658d6f810d7a2addc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &347213029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,7 +1712,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.55, z: 0}
   m_Axis: {x: -1, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0, y: 0.5713415, z: 0}
+  m_ConnectedAnchor: {x: 0, y: 0.54965484, z: 0}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2319,7 +2332,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: -0.55, z: 0}
   m_Axis: {x: -1, y: 0, z: 1}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.328, y: 0.5262184, z: 0.09}
+  m_ConnectedAnchor: {x: -0.41, y: 0.5112939, z: 0.09}
   m_UseSpring: 0
   m_Spring:
     spring: 0
