@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,10 @@ public class ApplicationDaemon implements Runnable {
         this.kill = true;
     }
 
+    public Set<String> getActivePrograms() {
+        return this.activePrograms;
+    }
+
     private Set<String> getRunningPrograms() throws IOException {
         Set<String> newPrograms = new HashSet<>();
         Process proc = Runtime.getRuntime().exec("ps -eo command");
@@ -36,30 +41,49 @@ public class ApplicationDaemon implements Runnable {
         BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 
         String line;
-        while ((line = reader.readLine()) != null)
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
             newPrograms.add(line);
+        }
 
+        notify();
         return newPrograms;
     }
 
     @Override
     public void run() {
-        BufferedReader reader;
-        InputStream stream;
-        Process proc;
-        String line;
-
+        Set<String> running;
 
         while (kill = false) {
             this.activePrograms = new HashSet<>(relevantPrograms);
 
             try {
-                activePrograms.retainAll(getRunningPrograms());
+                running = getRunningPrograms();
+                System.out.println(running);
+                activePrograms.retainAll(running);
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             } catch (IOException e) {
-                System.err.println(e);
+                e.printStackTrace();
             }
         }
+    }
 
-        Thread.sleep();
+    public static void main(String[] args) throws InterruptedException {
+        List<String> progs = new ArrayList<>();
+        progs.add("spotify");
+        progs.add("/usr/lib/firefox/firefox");
+        ApplicationDaemon app = new ApplicationDaemon(progs);
+        Thread t = new Thread(app);
+        t.start();
+
+        for (int i = 0; i < 1000000; i++) {
+            System.out.println(app.getActivePrograms());
+        }
+
+        t.join();
     }
 }
