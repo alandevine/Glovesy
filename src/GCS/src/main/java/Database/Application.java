@@ -4,8 +4,9 @@ import org.bson.Document;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.Writer;
 import java.rmi.AccessException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Application {
 
@@ -24,6 +25,12 @@ public class Application {
 
     public Application(String name) {
         this.name = name;
+    }
+
+    public static List<Application> fromDocList(List<Document> allEntries) throws FileNotFoundException, AccessException {
+        List <Application> apps = new ArrayList<>();
+        for (Document doc : allEntries) apps.add(new Application(doc.getString("name"), doc.getString("path")));
+        return apps;
     }
 
     public String getName() {
