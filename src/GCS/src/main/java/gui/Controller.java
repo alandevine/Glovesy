@@ -1,6 +1,5 @@
 package gui;
 
-import Database.Application;
 import Database.ApplicationHandler;
 import com.mongodb.MongoException;
 import javafx.fxml.FXML;
@@ -14,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import org.bson.Document;
 import viewer.Hand;
 
 import java.io.FileNotFoundException;
@@ -28,6 +28,8 @@ public class Controller implements Initializable {
     @FXML public Button addApplication;
     @FXML public Hand handGroup;
     @FXML public AnchorPane handPane;
+
+    private final ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -48,12 +50,13 @@ public class Controller implements Initializable {
     }
 
     void populateApplicationList() throws FileNotFoundException, AccessException {
-        ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
-        List<Application> apps = applicationHandler.findAllEntries();
+        List<Document> apps = applicationHandler.findAllEntries();
+
+        System.out.println(apps);
 
         ApplicationLabel entry;
-        for (Application app : apps) {
-            entry = new ApplicationLabel(app.getName(), this);
+        for (Document app : apps) {
+            entry = new ApplicationLabel(app, this);
             System.out.println(entry.toString());
             this.applicationList.getChildren().add(entry);
         }
@@ -94,9 +97,8 @@ public class Controller implements Initializable {
         ok.setOnAction(event -> {
             String nameContent = appNameField.getText();
             String pathContent = appPathField.getText();
-            ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
             try {
-                applicationHandler.addEntry( nameContent, pathContent);
+                applicationHandler.addEntry(new Document("name", nameContent).append("path", pathContent));
                 this.applicationList.getChildren().clear();
                 this.populateApplicationList();
                 stage.close();
