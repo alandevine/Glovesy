@@ -9,7 +9,7 @@ import java.io.InputStream;
 public class SerialComms {
 
     private SerialPort arduino = null;
-    public static int PACKET_BYTE_LENGTH = 16;
+    public static int PACKET_BYTE_LENGTH = 64;
 
     public SerialComms() throws FileNotFoundException {
         SerialPort[] ports = SerialPort.getCommPorts();
