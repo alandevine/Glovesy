@@ -3,9 +3,7 @@ package viewer;
 import javafx.geometry.Point3D;
 import org.junit.jupiter.api.Test;
 
-import java.awt.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static viewer.VectorMath.rotateAboutPoint;
 
 class VectorMathTest {
