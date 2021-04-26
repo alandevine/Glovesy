@@ -3,13 +3,20 @@ package OSHandler;
 import com.fazecast.jSerialComm.SerialPort;
 
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 public class SerialComms {
 
     private SerialPort arduino = null;
-    public static int PACKET_BYTE_LENGTH = 64;
+    private static int PACKET_BYTE_LENGTH = 64;
+    private GloveState gloveState = new GloveState();
+
+    public GloveState getGloveState() {
+        return this.gloveState;
+    }
+
+    public static int getPacketByteLength() {
+        return PACKET_BYTE_LENGTH;
+    }
 
     public SerialComms() throws FileNotFoundException {
         SerialPort[] ports = SerialPort.getCommPorts();
@@ -48,14 +55,6 @@ public class SerialComms {
         this.arduino.setComPortTimeouts(SerialPort.TIMEOUT_WRITE_BLOCKING, 0, 0);
         this.arduino.openPort();
 
-        this.arduino.addDataListener(new SerialPortListener());
-    }
-
-    public InputStream getInputStream() {
-        return this.arduino.getInputStream();
-    }
-
-    public static void main(String[] args) throws IOException {
-        SerialComms comms = new SerialComms();
+        this.arduino.addDataListener(new SerialPortListener(gloveState));
     }
 }
