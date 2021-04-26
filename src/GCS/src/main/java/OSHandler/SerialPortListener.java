@@ -19,11 +19,19 @@ public class SerialPortListener implements SerialPortPacketListener {
         return SerialPort.LISTENING_EVENT_DATA_RECEIVED;
     }
 
+    /**
+     * Get packet size from SerialComms.
+     * @return Byte length of message.
+     */
     @Override
     public int getPacketSize() {
         return SerialComms.getPacketByteLength();
     }
 
+    /**
+     * Method for capturing serial events, and updating the Glove State object with the data received from the arduino.
+     * @param event A serial port event
+     */
     @Override
     public void serialEvent(SerialPortEvent event) {
         byte[] newData = event.getReceivedData();
