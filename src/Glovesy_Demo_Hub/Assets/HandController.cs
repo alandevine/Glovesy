@@ -7,11 +7,10 @@ using UnityEngine;
 public class HandController : MonoBehaviour
 {
     StreamReader reader;
-    int LOADED;
     string path = "/dev/ttyACM0";
     string GlovesyData;
-    float[] ParsedData;
-    
+    float[] ParsedData = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
+   
     // Start is called before the first frame update
     void Start() {
         init_serial(path);
@@ -21,7 +20,6 @@ public class HandController : MonoBehaviour
     void init_serial(string path) {
         try {
             reader = new StreamReader(path);
-            LOADED = 1;
             return;
         } catch (FileNotFoundException e) {
             return;
@@ -30,8 +28,14 @@ public class HandController : MonoBehaviour
     }
 
     void ReadSerial() {
-        Debug.Log(reader.Peek());
         GlovesyData = reader.ReadLine();
+        if (GlovesyData.Length > 0) {
+            string[] tmp = GlovesyData.Split(',');
+            for (int i=0; i < tmp.Length; i++) {
+                float toFloat = float.Parse(tmp[i]);
+                ParsedData[i] = toFloat;
+            }
+        }
         return;
     }
 
