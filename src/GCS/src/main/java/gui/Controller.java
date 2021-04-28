@@ -1,6 +1,7 @@
 package gui;
 
 import Database.ApplicationHandler;
+import Database.GloveConfigurationHandler;
 import com.mongodb.MongoException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -25,11 +26,13 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML public VBox applicationList;
+    @FXML public VBox configList;
     @FXML public Button addApplication;
     @FXML public Hand handGroup;
     @FXML public AnchorPane handPane;
 
     private final ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
+    private final GloveConfigurationHandler gloveConfigurationHandler = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -39,6 +42,7 @@ public class Controller implements Initializable {
 
         try {
             populateApplicationList();
+            populateGloveConfig();
         } catch (FileNotFoundException | AccessException e) {
             e.printStackTrace();
         }
@@ -59,6 +63,16 @@ public class Controller implements Initializable {
             entry = new ApplicationLabel(app, this);
             System.out.println(entry.toString());
             this.applicationList.getChildren().add(entry);
+        }
+    }
+
+    void populateGloveConfig () {
+        List<Document> fields = gloveConfigurationHandler.findAllEntries();
+        ConfigLabel entry;
+        for (Document field : fields) {
+            entry = new ConfigLabel(field);
+            this.configList.getChildren().add(entry);
+
         }
     }
 
