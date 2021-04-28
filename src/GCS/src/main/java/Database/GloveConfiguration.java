@@ -2,6 +2,8 @@ package Database;
 
 import org.bson.Document;
 
+import java.util.HashMap;
+
 /**
  * Object comprised of low-level glove related settings.
  */
@@ -55,25 +57,51 @@ public class GloveConfiguration {
     public Document toBson() {
         Document config = new Document();
 
-        config.append("minThumbResistance", this.minThumbResistance);
-        config.append("maxThumbResistance", this.maxThumbResistance);
-        config.append("minIndexKnuckleResistance", this.minIndexKnuckleResistance);
-        config.append("maxIndexKnuckleResistance", this.maxIndexKnuckleResistance);
-        config.append("minIndexNeutroResistance", this.minIndexNeutroResistance);
-        config.append("maxIndexNeutroResistance", this.maxIndexNeutroResistance);
+        config.append("minThumbResistance",         this.minThumbResistance);
+        config.append("maxThumbResistance",         this.maxThumbResistance);
+        config.append("minIndexKnuckleResistance",  this.minIndexKnuckleResistance);
+        config.append("maxIndexKnuckleResistance",  this.maxIndexKnuckleResistance);
+        config.append("minIndexNeutroResistance",   this.minIndexNeutroResistance);
+        config.append("maxIndexNeutroResistance",   this.maxIndexNeutroResistance);
         config.append("minMiddleKnuckleResistance", this.minMiddleKnuckleResistance);
         config.append("maxMiddleKnuckleResistance", this.maxMiddleKnuckleResistance);
-        config.append("minMiddleNeutroResistance", this.minMiddleNeutroResistance);
-        config.append("maxMiddleNeutroResistance", this.maxMiddleNeutroResistance);
-        config.append("minRingKnuckleResistance", this.minRingKnuckleResistance);
-        config.append("maxRingKnuckleResistance", this.maxRingKnuckleResistance);
-        config.append("minRingNeutroResistance", this.minRingNeutroResistance);
-        config.append("maxRingNeutroResistance", this.maxRingNeutroResistance);
-        config.append("minPinkyResistance", this.minPinkyResistance);
-        config.append("maxPinkyResistance", this.maxPinkyResistance);
-        config.append("initialGyroX", this.initialGyroX);
-        config.append("initialGyroY", this.initialGyroY);
-        config.append("initialGyroZ", this.initialGyroZ);
+        config.append("minMiddleNeutroResistance",  this.minMiddleNeutroResistance);
+        config.append("maxMiddleNeutroResistance",  this.maxMiddleNeutroResistance);
+        config.append("minRingKnuckleResistance",   this.minRingKnuckleResistance);
+        config.append("maxRingKnuckleResistance",   this.maxRingKnuckleResistance);
+        config.append("minRingNeutroResistance",    this.minRingNeutroResistance);
+        config.append("maxRingNeutroResistance",    this.maxRingNeutroResistance);
+        config.append("minPinkyResistance",         this.minPinkyResistance);
+        config.append("maxPinkyResistance",         this.maxPinkyResistance);
+        config.append("initialGyroX",               this.initialGyroX);
+        config.append("initialGyroY",               this.initialGyroY);
+        config.append("initialGyroZ",               this.initialGyroZ);
+
+        return config;
+    }
+
+    public HashMap<String, Double> toHashMap() {
+        HashMap<String, Double> config = new HashMap<>();
+
+        config.put("minThumbResistance",         this.minThumbResistance);
+        config.put("maxThumbResistance",         this.maxThumbResistance);
+        config.put("minIndexKnuckleResistance",  this.minIndexKnuckleResistance);
+        config.put("maxIndexKnuckleResistance",  this.maxIndexKnuckleResistance);
+        config.put("minIndexNeutroResistance",   this.minIndexNeutroResistance);
+        config.put("maxIndexNeutroResistance",   this.maxIndexNeutroResistance);
+        config.put("minMiddleKnuckleResistance", this.minMiddleKnuckleResistance);
+        config.put("maxMiddleKnuckleResistance", this.maxMiddleKnuckleResistance);
+        config.put("minMiddleNeutroResistance",  this.minMiddleNeutroResistance);
+        config.put("maxMiddleNeutroResistance",  this.maxMiddleNeutroResistance);
+        config.put("minRingKnuckleResistance",   this.minRingKnuckleResistance);
+        config.put("maxRingKnuckleResistance",   this.maxRingKnuckleResistance);
+        config.put("minRingNeutroResistance",    this.minRingNeutroResistance);
+        config.put("maxRingNeutroResistance",    this.maxRingNeutroResistance);
+        config.put("minPinkyResistance",         this.minPinkyResistance);
+        config.put("maxPinkyResistance",         this.maxPinkyResistance);
+        config.put("initialGyroX",               this.initialGyroX);
+        config.put("initialGyroY",               this.initialGyroY);
+        config.put("initialGyroZ",               this.initialGyroZ);
 
         return config;
     }
