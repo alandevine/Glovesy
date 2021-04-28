@@ -17,6 +17,7 @@ repositories {
 
 dependencies {
     compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.6.3'
+    implementation group: 'org.openjfx', name: 'javafx', version: '11', ext: 'pom'
     compile 'com.fazecast:jSerialComm:[2.0.0,3.0.0)'
     testCompile('org.junit.jupiter:junit-jupiter-api:5.3.1')
     testCompile('org.junit.jupiter:junit-jupiter-engine:5.3.1')
@@ -31,7 +32,8 @@ javafx {
         applicationName = 'foo-app'
         applicationDefaultJvmArgs = [
                 "--module-path=${javafxHome}" + File.separator + 'lib',
-                '--add-modules=javafx.controls,javafx.graphics']
+                '--add-modules=javafx.controls,javafx.graphics',
+                '-Dprism.forceGPU=true']
         println("applicationDefaultJvmArgs:" + applicationDefaultJvmArgs)
     }
 }
