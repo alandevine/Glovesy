@@ -51,15 +51,15 @@ public class ApplicationHandler implements DBHandler {
         return apps;
     }
 
-    public Document findEntry(Document query) throws NoSuchElementException, AccessException {
-        FindIterable<Document> docs = collection.find(Filters.eq("name", query.getString("name")));
+    public Document findEntry(String query) throws NoSuchElementException, AccessException {
+        FindIterable<Document> docs = collection.find(Filters.eq("name", query));
         Iterator<Document> doc = docs.iterator();
         return doc.next();
     }
 
     public Boolean containsEntry(Document query) {
         try {
-            this.findEntry(query);
+            this.findEntry(query.getString("name"));
             return true;
         } catch (NoSuchElementException | AccessException ex) {
             return false;
