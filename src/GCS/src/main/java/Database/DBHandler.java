@@ -14,7 +14,7 @@ interface DBHandler {
     void addEntry(Document doc);
 
     List<Document> findAllEntries();
-    Document findEntry(Document query) throws NoSuchElementException, AccessException;
+    Document findEntry(String query) throws NoSuchElementException, AccessException;
     Boolean containsEntry(Document query);
     void deleteEntry(String query);
 }
