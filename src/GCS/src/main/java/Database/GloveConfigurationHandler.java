@@ -5,13 +5,10 @@ import com.mongodb.MongoClientURI;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
-import java.rmi.AccessException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class GloveConfigurationHandler implements DBHandler {
 
@@ -42,8 +39,12 @@ public class GloveConfigurationHandler implements DBHandler {
     }
 
     @Override
-    public Document findEntry(Document query) throws NoSuchElementException, AccessException {
-        return null;
+    public Document findEntry(String query) throws NoSuchElementException {
+        FindIterable<Document> docs = collection.find(Filters.eq("field", query));
+        Iterator<Document> doc = docs.iterator();
+        Document entry = doc.next();
+        System.out.println(entry);
+        return entry;
     }
 
     @Override
@@ -54,16 +55,5 @@ public class GloveConfigurationHandler implements DBHandler {
     @Override
     public void deleteEntry(String query) {
 
-    }
-
-    public static void main(String[] args) {
-        GloveConfiguration gc = new GloveConfiguration();
-        GloveConfigurationHandler gch = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
-//        gch.addAll(gc);
-
-        for (Document entry : gch.findAllEntries()) {
-            System.out.println(entry);
-
-        }
     }
 }
