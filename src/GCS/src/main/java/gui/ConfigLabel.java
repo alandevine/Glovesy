@@ -5,6 +5,6 @@ import org.bson.Document;
 
 public class ConfigLabel extends Label {
     public ConfigLabel (Document doc) {
-        this.setText(doc.getString("field") + "\t" + doc.get("value"));
+        this.setText(doc.getDouble("value").toString());
     }
 }
