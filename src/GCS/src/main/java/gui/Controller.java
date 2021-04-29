@@ -5,8 +5,10 @@ import Database.GloveConfigurationHandler;
 import com.mongodb.MongoException;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -26,7 +28,7 @@ import java.util.ResourceBundle;
 public class Controller implements Initializable {
 
     @FXML public VBox applicationList;
-    @FXML public VBox configList;
+    @FXML public AnchorPane configList;
     @FXML public Button addApplication;
     @FXML public Hand handGroup;
     @FXML public AnchorPane handPane;
@@ -61,19 +63,66 @@ public class Controller implements Initializable {
         ApplicationLabel entry;
         for (Document app : apps) {
             entry = new ApplicationLabel(app, this);
-            System.out.println(entry.toString());
+            System.out.println(entry);
             this.applicationList.getChildren().add(entry);
         }
     }
 
-    void populateGloveConfig () {
-        List<Document> fields = gloveConfigurationHandler.findAllEntries();
-        ConfigLabel entry;
-        for (Document field : fields) {
-            entry = new ConfigLabel(field);
-            this.configList.getChildren().add(entry);
+    void populateGloveConfig () throws AccessException {
 
-        }
+        HBox columns = new HBox();
+        VBox rowTitle = new VBox();
+        rowTitle.setPadding(new Insets(10));
+        rowTitle.getChildren().add(new Label(""));
+        rowTitle.getChildren().add(new Label("Max"));
+        rowTitle.getChildren().add(new Label("Min"));
+
+        VBox thumb = new VBox();
+        thumb.setPadding(new Insets(10));
+        thumb.getChildren().add(new Label("Thumb"));
+        thumb.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxThumbResistance")));
+        thumb.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minThumbResistance")));
+
+        VBox indexKnuckle = new VBox();
+        indexKnuckle.setPadding(new Insets(10));
+        indexKnuckle.getChildren().add(new Label("Index Knuckle"));
+        indexKnuckle.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxIndexKnuckleResistance")));
+        indexKnuckle.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minIndexKnuckleResistance")));
+
+        VBox indexNeutro = new VBox();
+        indexNeutro.setPadding(new Insets(10));
+        indexNeutro.getChildren().add(new Label("Index Neutro"));
+        indexNeutro.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxIndexNeutroResistance")));
+        indexNeutro.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minIndexNeutroResistance")));
+
+        VBox middleKnucle = new VBox();
+        middleKnucle.setPadding(new Insets(10));
+        middleKnucle.getChildren().add(new Label("Middle Knuckle "));
+        middleKnucle.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxMiddleKnuckleResistance")));
+        middleKnucle.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minMiddleKnuckleResistance")));
+
+        VBox middleNeutro = new VBox();
+        middleNeutro.setPadding(new Insets(10));
+        middleNeutro.getChildren().add(new Label("Middle Neutro"));
+        middleNeutro.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxMiddleNeutroResistance")));
+        middleNeutro.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minMiddleNeutroResistance")));
+
+        VBox ring = new VBox();
+        ring.setPadding(new Insets(10));
+        ring.getChildren().add(new Label("Ring"));
+        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxRingNeutroResistance")));
+        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minRingNeutroResistance")));
+
+        VBox pinky = new VBox();
+        pinky.setPadding(new Insets(10));
+        pinky.getChildren().add(new Label("Pinky"));
+        pinky.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxPinkyResistance")));
+        pinky.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minPinkyResistance")));
+
+        columns.getChildren().addAll(rowTitle, thumb, indexKnuckle, indexNeutro, middleKnucle, middleNeutro, ring, pinky);
+        configList.getChildren().add(columns);
+
+
     }
 
     private void newApplicationPrompt() {
@@ -95,7 +144,6 @@ public class Controller implements Initializable {
 
         Button cancel = new Button("Cancel");
         Button ok = new Button("OK");
-
 
         buttons.getChildren().addAll(cancel, ok);
         elements.getChildren().addAll(name, path, buttons);
