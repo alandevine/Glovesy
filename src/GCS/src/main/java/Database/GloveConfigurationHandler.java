@@ -8,6 +8,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
+import javax.print.Doc;
 import java.util.*;
 
 public class GloveConfigurationHandler implements DBHandler {
@@ -18,6 +19,15 @@ public class GloveConfigurationHandler implements DBHandler {
         MongoClient mongoClient = new MongoClient(new MongoClientURI(url));
         MongoDatabase database = mongoClient.getDatabase(collectionName);
         collection = database.getCollection("configuration");
+
+        List<Document> fields = findAllEntries();
+        if (fields.size() == 0)
+            this.populateDefaults();
+    }
+
+    private void populateDefaults() {
+        GloveConfiguration defaults = new GloveConfiguration();
+        this.addAll(defaults);
     }
 
     public void addAll(GloveConfiguration gloveConfiguration) {
