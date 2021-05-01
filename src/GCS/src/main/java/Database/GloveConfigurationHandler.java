@@ -32,7 +32,7 @@ public class GloveConfigurationHandler implements DBHandler {
 
     public void addAll(GloveConfiguration gloveConfiguration) {
         for (Map.Entry<String, Double> entry : gloveConfiguration.toHashMap().entrySet())
-            collection.insertOne(new Document("field", entry.getKey()).append("value", entry.getValue()));
+            collection.insertOne(new Document("_id", entry.getKey()).append("value", entry.getValue()));
     }
 
     @Override
@@ -50,7 +50,7 @@ public class GloveConfigurationHandler implements DBHandler {
 
     @Override
     public Document findEntry(String query) throws NoSuchElementException {
-        FindIterable<Document> docs = collection.find(Filters.eq("field", query));
+        FindIterable<Document> docs = collection.find(Filters.eq("_id", query));
         Iterator<Document> doc = docs.iterator();
         Document entry = doc.next();
         System.out.println(entry);
@@ -64,6 +64,13 @@ public class GloveConfigurationHandler implements DBHandler {
 
     @Override
     public void deleteEntry(String query) {
+        collection.deleteOne(Filters.eq("field", query));
+    }
 
+    private void deleteAll() {
+        List<Document> apps = this.findAllEntries();
+        for (Document app : apps) {
+            this.deleteEntry(app.getString("field"));
+        }
     }
 }
