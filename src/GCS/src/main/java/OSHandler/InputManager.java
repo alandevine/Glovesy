@@ -5,6 +5,7 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
 public class InputManager {
@@ -24,10 +25,8 @@ public class InputManager {
         String key;
         String action;
 
-        if (!parseKeySequence(keySequence)) {
-            System.out.println("bad ks m8");
-            return;
-        }
+        if (!parseKeySequence(keySequence))
+            throw new InvalidParameterException("The provided key sequence failed to parse successfully");
 
         for (String line : keySequence) {
             action = line.split(",")[0];
@@ -91,5 +90,10 @@ public class InputManager {
         robot.delay(200);
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
         robot.delay(200);
+    }
+
+    public static void main(String[] args) throws AWTException {
+        InputManager inputManager = new InputManager();
+        inputManager.moveMouse(100, 0);
     }
 }
