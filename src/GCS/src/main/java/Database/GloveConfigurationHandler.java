@@ -8,7 +8,6 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 
-import javax.print.Doc;
 import java.util.*;
 
 public class GloveConfigurationHandler implements DBHandler {
@@ -21,8 +20,10 @@ public class GloveConfigurationHandler implements DBHandler {
         collection = database.getCollection("configuration");
 
         List<Document> fields = findAllEntries();
-        if (fields.size() == 0)
+        if (fields.size() == 0) {
             this.populateDefaults();
+            this.addEntry(new Document("_id", "defaultConfig").append("value", true));
+        }
     }
 
     private void populateDefaults() {
@@ -33,6 +34,14 @@ public class GloveConfigurationHandler implements DBHandler {
     public void addAll(GloveConfiguration gloveConfiguration) {
         for (Map.Entry<String, Double> entry : gloveConfiguration.toHashMap().entrySet())
             collection.insertOne(new Document("_id", entry.getKey()).append("value", entry.getValue()));
+    }
+
+    public void updateValue(String key, double value) {
+        collection.replaceOne(Filters.eq("_id", key), new Document("value", value));
+    }
+
+    public void updateValue(String key, boolean value) {
+        collection.replaceOne(Filters.eq("_id", key), new Document("value", value));
     }
 
     @Override
