@@ -46,6 +46,9 @@ public class GloveConfigurationHandler implements DBHandler {
 
     @Override
     public void addEntry(Document doc) {
+        if (this.containsEntry(doc))
+            throw new IllegalArgumentException("Entries in this database must be unique");
+
         collection.insertOne(doc);
     }
 
@@ -68,7 +71,12 @@ public class GloveConfigurationHandler implements DBHandler {
 
     @Override
     public Boolean containsEntry(Document query) {
-        return null;
+        try {
+            this.findEntry(query.getString("_id"));
+            return true;
+        } catch (NoSuchElementException ex) {
+            return false;
+        }
     }
 
     @Override
