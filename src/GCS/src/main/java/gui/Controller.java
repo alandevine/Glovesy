@@ -3,9 +3,14 @@ package gui;
 import Database.ApplicationHandler;
 import Database.GloveConfigurationHandler;
 import com.mongodb.MongoException;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -16,12 +21,17 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.bson.Document;
 import viewer.Hand;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.AccessException;
+import java.sql.Time;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -32,6 +42,7 @@ public class Controller implements Initializable {
     @FXML public Button addApplication;
     @FXML public Hand handGroup;
     @FXML public AnchorPane handPane;
+    @FXML public Button configurationButton;
 
     private final ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
     private final GloveConfigurationHandler gloveConfigurationHandler = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
@@ -47,6 +58,15 @@ public class Controller implements Initializable {
             populateGloveConfig();
         } catch (FileNotFoundException | AccessException e) {
             e.printStackTrace();
+        }
+
+        if (gloveConfigurationHandler.findEntry("defaultConfig").getBoolean("value")) {
+            try {
+                this.reconfigureGlove();
+                this.gloveConfigurationHandler.updateValue("defaultConfig", false);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -68,7 +88,17 @@ public class Controller implements Initializable {
         }
     }
 
-    void populateGloveConfig () throws AccessException {
+    @FXML
+    public void reconfigureGlove() throws IOException {
+        URL url =  new File("src/main/resources/configurationWindow.fxml").toURI().toURL();
+        Parent root = FXMLLoader.load(url);
+        Stage stage = new Stage();
+        stage.setScene(new Scene(root, 500, 500));
+        stage.setAlwaysOnTop(true);
+        stage.show();
+    }
+
+    void populateGloveConfig() throws AccessException {
 
         HBox columns = new HBox();
         VBox rowTitle = new VBox();
