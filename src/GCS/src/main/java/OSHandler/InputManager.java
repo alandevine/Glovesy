@@ -44,27 +44,25 @@ public class InputManager {
      * @param keySequence Array of strings which follow the format $ACTION,$KEYCODE, where action could be press, or release.
      * @return Boolean denoting success or failure.
      */
-    private boolean parseKeySequence(String[] keySequence) {
+    public boolean parseKeySequence(String[] keySequence) {
         ArrayList<String> keys = new ArrayList<>();
         String key;
         String action;
 
         for (String line : keySequence) {
-            System.out.println(line);
             action = line.split(",")[0];
             key = line.split(",")[1];
 
             if (!action.equals("press") && !action.equals("release"))
                 return false;
 
-            if (action == "press") {
+            if (action.equals("press")) {
                 keys.add(key);
                 continue;
             }
 
             if (keys.contains(key)) {
                 keys.remove(key);
-                continue;
             }
         }
         
