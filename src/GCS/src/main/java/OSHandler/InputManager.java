@@ -85,4 +85,11 @@ public class InputManager {
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
         robot.delay(200);
     }
+
+    public void rightClick() {
+        robot.mousePress(InputEvent.BUTTON3_DOWN_MASK);
+        robot.delay(200);
+        robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
+        robot.delay(200);
+    }
 }
