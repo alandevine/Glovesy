@@ -8,6 +8,7 @@ import java.util.HashMap;
  * Object comprised of low-level glove related settings.
  */
 public class GloveConfiguration {
+    private boolean defaultConfig;
     private double minThumbResistance;
     private double maxThumbResistance;
     private double minIndexKnuckleResistance;
@@ -29,6 +30,7 @@ public class GloveConfiguration {
     private double initialGyroZ;
 
     public GloveConfiguration() {
+        this.defaultConfig = true;
         this.minThumbResistance = 0;
         this.maxThumbResistance = 0;
         this.minIndexKnuckleResistance = 0;
@@ -57,6 +59,7 @@ public class GloveConfiguration {
     public Document toBson() {
         Document config = new Document();
 
+        config.append("defaultConfig",              false);
         config.append("minThumbResistance",         this.minThumbResistance);
         config.append("maxThumbResistance",         this.maxThumbResistance);
         config.append("minIndexKnuckleResistance",  this.minIndexKnuckleResistance);
