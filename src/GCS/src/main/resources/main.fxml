@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <AnchorPane onKeyPressed="#keyHandler" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
    <children>
       <TabPane prefHeight="1920.0" prefWidth="1080.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -39,7 +40,10 @@
           </Tab>
             <Tab closable="false" text="Glovesy Settings">
               <content>
-                <AnchorPane fx:id="configList" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane fx:id="configList" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="configurationButton" layoutX="622.0" layoutY="575.0" mnemonicParsing="false" onAction="#reconfigureGlove" text="Configure Glove" />
+                     </children></AnchorPane>
               </content>
             </Tab>
         </tabs>
