@@ -7,8 +7,10 @@ import java.io.FileNotFoundException;
 public class SerialComms {
 
     private SerialPort arduino = null;
-    private static int PACKET_BYTE_LENGTH = 64;
-    private GloveState gloveState = new GloveState();
+    private static final int PACKET_BYTE_LENGTH = 64;
+    private static final int POLLING_RATE = 10;  // ms
+    private final GloveState gloveState = new GloveState();
+    private boolean captureEvents = false;
 
     public GloveState getGloveState() {
         return this.gloveState;
@@ -16,6 +18,22 @@ public class SerialComms {
 
     public static int getPacketByteLength() {
         return PACKET_BYTE_LENGTH;
+    }
+
+    public static int getPollingRate() {
+        return POLLING_RATE;
+    }
+
+    public void startCapture() {
+        this.captureEvents = true;
+    }
+
+    public void stopCapture() {
+        this.captureEvents = false;
+    }
+
+    public boolean isCapturing() {
+        return this.captureEvents;
     }
 
     public SerialComms() throws FileNotFoundException {
