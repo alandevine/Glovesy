@@ -33,7 +33,6 @@ public class ApplicationHandler implements DBHandler {
     }
 
     public void addEntry(Document query) {
-        System.out.println(query.toString());
         if (!isValidFile(query))
             throw new IllegalArgumentException("");
 
