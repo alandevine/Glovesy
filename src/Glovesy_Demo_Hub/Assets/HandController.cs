@@ -39,15 +39,15 @@ public class HandController : MonoBehaviour {
         if (timer < 5.0f) {
             instruction.text = "Open your hand as much as possible";
             for (int i=0; i < 7; i++) {
-                if (Min[i] == -1.0f || ParsedData[i] < Min[i]) {
-                    Min[i] = ParsedData[i];
+                if (Max[i] == -1.0f || ParsedData[i] > Max[i]) {
+                    Max[i] = ParsedData[i];
                 }
             }
         } else if (timer < 10.0f) {
             instruction.text = "Now make a fist as tightly as possible";
             for (int i=0; i < 7; i++) {
-                if (Max[i] == -1.0f || ParsedData[i] > Max[i]) {
-                    Max[i] = ParsedData[i];
+                if (Min[i] == -1.0f || ParsedData[i] < Min[i]) {
+                    Min[i] = ParsedData[i];
                 }
             }
         } else {
@@ -74,6 +74,14 @@ public class HandController : MonoBehaviour {
         yield return null;
     }
 
+    void Normalize() {
+        for (int i=0; i < 7; i++) {
+            float Normalized = (ParsedData[i] - Min[i]) / (Max[i] - Min[i]);
+            NormalizedValues[i] = Normalized;
+        }
+        return;
+    }    
+
     // Update is called once per frame
     void Update() {
 
@@ -81,6 +89,9 @@ public class HandController : MonoBehaviour {
             StartCoroutine(GetMinMax());
             StartCoroutine(UpdateTimer());
             Debug.Log(timer);
+        } else {
+            Normalize();
+            Debug.Log(NormalizedValues[0]);
         }
     }
 }
