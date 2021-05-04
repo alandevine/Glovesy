@@ -106,4 +106,12 @@ public class Hand extends Group {
         this.r.setPivotZ(0);
         this.getTransforms().addAll(r);
     }
+
+    public void rotateOnZAxis(int ang) {
+        this.r = new Rotate(ang, Rotate.Z_AXIS);
+        this.r.setPivotX(startX);
+        this.r.setPivotY(startY);
+        this.r.setPivotZ(0);
+        this.getTransforms().addAll(r);
+    }
 }
