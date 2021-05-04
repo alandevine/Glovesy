@@ -1,6 +1,5 @@
 package gui;
 
-import Database.GloveConfigurationHandler;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -28,8 +27,6 @@ public class ConfigurationWindow implements Initializable {
     private int durationOfCountdown = 5;
 
     Queue<String> instructions = new PriorityQueue<>();
-
-    private final GloveConfigurationHandler gloveConfigurationHandler = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
