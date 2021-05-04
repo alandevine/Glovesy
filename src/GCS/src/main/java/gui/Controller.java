@@ -1,7 +1,10 @@
 package gui;
 
 import Database.ApplicationHandler;
+import Database.GloveConfiguration;
 import Database.GloveConfigurationHandler;
+import Database.StateHandler;
+import OSHandler.SerialComms;
 import com.mongodb.MongoException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -38,14 +40,31 @@ public class Controller implements Initializable {
     @FXML public AnchorPane handPane;
     @FXML public Button configurationButton;
 
-    private final ApplicationHandler applicationHandler = new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
-    private final GloveConfigurationHandler gloveConfigurationHandler = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
+    private final ApplicationHandler applicationHandler;
+    private final GloveConfigurationHandler gloveConfigurationHandler;
+    private final StateHandler stateHandler;
+    private final SerialComms serialComms;
+
+    public Controller() throws FileNotFoundException {
+        this.applicationHandler =  new ApplicationHandler("mongodb://127.0.0.1:27017", "glovesy");
+        this.gloveConfigurationHandler = new GloveConfigurationHandler( "mongodb://127.0.0.1:27017", "glovesy");
+        this.stateHandler = new StateHandler( "mongodb://127.0.0.1:27017", "glovesy");
+        this.serialComms = new SerialComms();
+        Thread serial = new Thread(serialComms);
+        serial.start();
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
         handGroup = new Hand(handPane.getMaxWidth() / 4,
                              handPane.getMaxHeight() / 4);
         handPane.getChildren().add(handGroup);
+
+        HandModelThread handModelThread = new HandModelThread(handGroup, serialComms.getGloveState());
+        Thread thread = new Thread(handModelThread);
+        thread.start();
 
         try {
             populateApplicationList();
@@ -84,12 +103,26 @@ public class Controller implements Initializable {
 
     @FXML
     public void reconfigureGlove() throws IOException {
+        this.serialComms.startCapture();
+
         URL url =  new File("src/main/resources/configurationWindow.fxml").toURI().toURL();
         Parent root = FXMLLoader.load(url);
         Stage stage = new Stage();
         stage.setScene(new Scene(root, 500, 500));
         stage.setAlwaysOnTop(true);
-        stage.show();
+        stage.showAndWait();
+
+        this.serialComms.stopCapture();
+
+        Document maxValues = stateHandler.findMax();
+        Document minValues = stateHandler.findMin();
+
+        GloveConfiguration gloveConfiguration = new GloveConfiguration();
+        gloveConfiguration.setMinValues(minValues);
+        gloveConfiguration.setMaxValues(maxValues);
+
+        gloveConfigurationHandler.updateAll(gloveConfiguration);
+        populateGloveConfig();
     }
 
     void populateGloveConfig() throws AccessException {
@@ -134,8 +167,8 @@ public class Controller implements Initializable {
         VBox ring = new VBox();
         ring.setPadding(new Insets(10));
         ring.getChildren().add(new Label("Ring"));
-        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxRingNeutroResistance")));
-        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minRingNeutroResistance")));
+        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("maxRingResistance")));
+        ring.getChildren().add(new ConfigLabel(gloveConfigurationHandler.findEntry("minRingResistance")));
 
         VBox pinky = new VBox();
         pinky.setPadding(new Insets(10));
@@ -203,52 +236,5 @@ public class Controller implements Initializable {
 
     public VBox getApplicationList() {
         return this.applicationList;
-    }
-
-    public void keyHandler(KeyEvent keyEvent) {
-        switch (keyEvent.getCode()) {
-            case K:
-                this.handGroup.rotateOnXAxis(+10);
-                break;
-            case J:
-                this.handGroup.rotateOnXAxis(-10);
-                break;
-            case H:
-                this.handGroup.rotateOnYAxis(-10);
-                break;
-            case L:
-                this.handGroup.rotateOnYAxis(10);
-                break;
-            case A:
-                handGroup.contractThumb(5);
-                break;
-            case Q:
-                handGroup.contractThumb(-5);
-                break;
-            case S:
-                handGroup.contractIndex(5);
-                break;
-            case W:
-                handGroup.contractIndex(-5);
-                break;
-            case D:
-                handGroup.contractMiddle(5);
-                break;
-            case E:
-                handGroup.contractMiddle(-5);
-                break;
-            case F:
-                handGroup.contractRing(5);
-                break;
-            case R:
-                handGroup.contractRing(-5);
-                break;
-            case G:
-                handGroup.contractPinky(5);
-                break;
-            case T:
-                handGroup.contractPinky(-5);
-                break;
-        }
     }
 }
