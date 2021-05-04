@@ -44,6 +44,11 @@ public class GloveConfigurationHandler implements DBHandler {
         collection.replaceOne(Filters.eq("_id", key), new Document("value", value));
     }
 
+    public void updateAll(GloveConfiguration gloveConfiguration) {
+        for (Map.Entry<String, Double> entry : gloveConfiguration.toHashMap().entrySet())
+            this.updateValue(entry.getKey(), entry.getValue());
+    }
+
     @Override
     public void addEntry(Document doc) {
         if (this.containsEntry(doc))
