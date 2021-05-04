@@ -3,9 +3,6 @@ package gui;
 import Database.ApplicationHandler;
 import Database.GloveConfigurationHandler;
 import com.mongodb.MongoException;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,17 +18,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 import org.bson.Document;
 import viewer.Hand;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.rmi.AccessException;
-import java.sql.Time;
 import java.util.List;
 import java.util.ResourceBundle;
 
