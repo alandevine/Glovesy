@@ -4,7 +4,7 @@ import com.fazecast.jSerialComm.SerialPort;
 
 import java.io.FileNotFoundException;
 
-public class SerialComms {
+public class SerialComms implements Runnable {
 
     private static final int POLLING_RATE = 10;  // ms
     private final GloveState gloveState;
@@ -31,6 +31,10 @@ public class SerialComms {
         arduinoPort.addDataListener(serialPortListener);
     }
 
+    public GloveState getGloveState() {
+        return this.gloveState;
+    }
+
     public void startCapture() {
         this.gloveState.startCapture();
     }
@@ -45,5 +49,12 @@ public class SerialComms {
 
     public static int getPollingRate() {
         return POLLING_RATE;
+    }
+
+    @Override
+    public void run() {
+        while (true) {
+
+        }
     }
 }
