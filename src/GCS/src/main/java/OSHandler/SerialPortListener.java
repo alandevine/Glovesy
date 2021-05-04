@@ -1,17 +1,17 @@
 package OSHandler;
 
+
 import com.fazecast.jSerialComm.SerialPort;
 import com.fazecast.jSerialComm.SerialPortEvent;
-import com.fazecast.jSerialComm.SerialPortPacketListener;
+import com.fazecast.jSerialComm.SerialPortMessageListener;
 
-import java.nio.charset.StandardCharsets;
+public final class SerialPortListener implements SerialPortMessageListener {
 
-public class SerialPortListener implements SerialPortPacketListener {
+    private final GloveState gloveState;
+    private boolean captureEvents = false;
 
-    private final GloveState gs;
-
-    public SerialPortListener(GloveState gs) {
-        this.gs = gs;
+    public SerialPortListener(GloveState gloveState) {
+        this.gloveState = gloveState;
     }
 
     @Override
@@ -19,37 +19,20 @@ public class SerialPortListener implements SerialPortPacketListener {
         return SerialPort.LISTENING_EVENT_DATA_RECEIVED;
     }
 
-    /**
-     * Get packet size from SerialComms.
-     * @return Byte length of message.
-     */
     @Override
-    public int getPacketSize() {
-        return SerialComms.getPacketByteLength();
+    public byte[] getMessageDelimiter() {
+        return new byte[] { (byte) 0x0A };
     }
 
-    /**
-     * Method for capturing serial events, and updating the Glove State object with the data received from the arduino.
-     * @param event A serial port event
-     */
+    @Override
+    public boolean delimiterIndicatesEndOfMessage() {
+        return true;
+    }
+
     @Override
     public void serialEvent(SerialPortEvent event) {
-        byte[] newData = event.getReceivedData();
-        String str = new String(newData).split("\n", 2)[0].replaceAll("\\s+", "");
-        int byteSize = str.getBytes(StandardCharsets.UTF_8).length;
-
-        if (byteSize != this.getPacketSize()) {
-            return;
-        }
-
-        System.out.println(str);
-
-        String[] entry = str.split(",");
-        double[] state = new double[entry.length];
-
-        for (int i = 0; i < entry.length; i++)
-            state[i] = Double.parseDouble(entry[i]);
-
-        gs.updateState(state);
+        byte[] receivedData = event.getReceivedData();
+        String input = new String(receivedData).replace("\n", "");
+        this.gloveState.updateState(input.split(","));
     }
 }
