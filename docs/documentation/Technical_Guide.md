@@ -12,6 +12,31 @@ Gestures are defined by the user and mapped to some action on their PC. Actions 
 
 ## 3. Research
 
-### 3.1 Research example
+Overall a significant amount of research was carried out before begining the development of Glovesy in order to see if our idea would be possible to implement given our current technical expertise and within a reasonable budget.
+
+### 3.1 Finger Tracking
+
+One of the main components that we carried out research on was how the fingers would be tracked.
+
+While we found a number of low-budget ways to track the user's fingers, such as using potentiometers attached to the fingers using fishing line or string, however using this method means that the glove will be much larger and bulkier than using flex sensors. This method also has the downside of the increased chance of snagging due to the fishing line attached to the fingers.
+
+In the end, we decided to use flex sensors, as while there are expensive versions of them, it is possible to buy the materials and construct them for much cheaper. Flex sensors are also very low profile and sit flush along the glove, making it feel more natural and reduces the chances of snagging.
+
+### 3.2 Hand Tracking
+### 3.3 Board
+### 3.4 Software
+### 3.5 Game Engines
+### 3.6 Competitors
+
 
 ## 4. Design
+
+## 5. Implementation
+
+### 5.1 Flex Sensor
+### 5.2 IMU
+### 5.3 On-Board Program
+### 5.4 Demo Hub
+### 5.5 Glovesy Configuration Suite
+
+## 6. Problems and Solutions
