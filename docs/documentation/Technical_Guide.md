@@ -23,7 +23,11 @@ While we found a number of low-budget ways to track the user's fingers, such as 
 In the end, we decided to use flex sensors, as while there are expensive versions of them, it is possible to buy the materials and construct them for much cheaper. Flex sensors are also very low profile and sit flush along the glove, making it feel more natural and reduces the chances of snagging.
 
 ### 3.2 Hand Tracking
+
+When researching methods for tracking the user's hand, while there were a few other options, such as using a HTC Vive Tracker, however this is not only an expensive option, but it also requires at least one HTC Vive Lighthouse for tracker. On top of this, when attached, the tracker is bulky and can easily snag or catch on something due to it's design, especially when using a VR headset, since the user cannot see their surroundings.  Instead, the best option we could find was using an 9DoF IMU, specifically the Adafruit LSM6DS33 LIS3MDL, as it was both cheap and small, while also offering accurate accelerometer and gyroscope data.
+
 ### 3.3 Board
+
 ### 3.4 Software
 ### 3.5 Game Engines
 ### 3.6 Competitors
