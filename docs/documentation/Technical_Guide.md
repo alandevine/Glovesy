@@ -10,6 +10,10 @@ Gestures are defined by the user and mapped to some action on their PC. Actions 
 
 ## 2. Motivation
 
+The idea for glovesy came from our analysis of the input devices used in VR/ AR applications. Typically in the case of VR applications, standard input devices mostly come in the form of controllers held in each hand with an array of buttons and some mechanism to provide tracking on the top. AR headsets, generally rely on voice-activated services such, or, the use of a smartphone to interact with the device. In both applications, we agreed that using a glove based input device would provide a more immersive VR gaming experience, and more a more intuitive way of interacting with AR content.
+
+Furthermore, we saw a great learning opportunity with this project. We would be exposed to programming microcontrollers, GUI development and game development to name a few. We also would have the opportunity to make use of some of the skills we developed while undergoing this degree, namely applying linear algebra to a real project.
+
 ## 3. Research
 
 Overall a significant amount of research was carried out before begining the development of Glovesy in order to see if our idea would be possible to implement given our current technical expertise and within a reasonable budget.
@@ -41,7 +45,19 @@ While researching said boards, there were a few boards that fit the requirements
 
 During research into which game engine to use as the basis for the demonstrations, there were a number of valid options. One of said options being the [Godot engine](https://godotengine.org/) as it is a relatively easy engine to develop for, however, due to the limitations of the engine, it was decided that another engine would be better suited, especially due to difficulty when getting input from non-standard controllers. Another favourable option to use was [Unreal Engine](https://www.unrealengine.com/) as it uses C++ which is a language we both have experience in. However, this option was ruled out due to compatibility issues when developing on linux systems. As such we decided to use [Unity](https://unity.com/) as it is a cross-platform game engine, as well as allowing non-standard input devices to be used with relative ease. This, though, was not an ideal scenario as we have little experience using Unity as well as little experience programming in C#.
 
-### 3.6 Competitors 
+### 3.6 Language for implementing AR Suite
+
+Choosing a language for this aspect of the project was rather straightforward. It had to meet certain requirements. The first requirement was for the language to be statically typed, this is mostly down to personal preference as I have found dynamically typed languages to be cumbersome when working with larger codebases. The next requirement was for the language to be platform agnostic. With all that considered, we settled on Java.
+
+### 3.7 Build Tool
+
+The choice in build tools came down to two candidates, Maven and Gradle. Having used both in the past, I settled on Gradle as it is typically quick to set up and modify as well as having great support in my Java ide of choice. It also provides some excellent features such as automatically generating a test result site on each build of the project.
+
+### 3.8 GUI Library
+
+Having settled on Java as the programming language to be used for the AR aspect of this project, we needed to choose a library for GUI development. Requirements for a GUI library mainly came down to the availability of documentation and the ability to create 3D models. While researching libraries, we discovered that Javafx satisfies both requirements.
+
+### 3.9 Competitors 
 
 Upon researching to see if the idea had already been done by a company, or if the idea was even feasable to begin with, we discovered a number of different implementations of the same idea. A very high fidelity solution to our idea can be found in the [Manus VR Primus II](https://www.manus-vr.com/mocap-gloves), however this very high fidelity solution is very costly at a price of €2,499.  Another solution which takes a different approach to the problem is the [Senseglove](https://www.senseglove.com/), which is not only very bulky, being much larger than the user's hand, but is also very expensive, at €2,999. A final example is the [HAPTX gloves](https://haptx.com/) which are once again very bulky, including a backback which must be worn during use.
 
