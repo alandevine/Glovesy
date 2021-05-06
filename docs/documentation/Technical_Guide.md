@@ -39,25 +39,23 @@ When looking for a board to use, there were a number of requirements which had t
 
 While researching said boards, there were a few boards that fit the requirements, such as the [TinyCircuits TinyLilly Mini](https://tinycircuits.com/products/tinylily-mini-processor?_pos=10&_sid=cbfd15ac9&_ss=r), but we decided to use the [Adafruit Feather M0 Bluefruit LE](https://www.adafruit.com/product/2995), since it not only meets all the requirements, but is also bluetooth enable, which would allow us to create a wireless version of the device without needing to purchase new components.
 
-### 3.4 Software
-
-### 3.5 Game Engines
+### 3.4 Game Engines
 
 During research into which game engine to use as the basis for the demonstrations, there were a number of valid options. One of said options being the [Godot engine](https://godotengine.org/) as it is a relatively easy engine to develop for, however, due to the limitations of the engine, it was decided that another engine would be better suited, especially due to difficulty when getting input from non-standard controllers. Another favourable option to use was [Unreal Engine](https://www.unrealengine.com/) as it uses C++ which is a language we both have experience in. However, this option was ruled out due to compatibility issues when developing on linux systems. As such we decided to use [Unity](https://unity.com/) as it is a cross-platform game engine, as well as allowing non-standard input devices to be used with relative ease. This, though, was not an ideal scenario as we have little experience using Unity as well as little experience programming in C#.
 
-### 3.6 Language for implementing AR Suite
+### 3.5 Language for implementing AR Suite
 
 Choosing a language for this aspect of the project was rather straightforward. It had to meet certain requirements. The first requirement was for the language to be statically typed, this is mostly down to personal preference as I have found dynamically typed languages to be cumbersome when working with larger codebases. The next requirement was for the language to be platform agnostic. With all that considered, we settled on Java.
 
-### 3.7 Build Tool
+### 3.6 Build Tool
 
 The choice in build tools came down to two candidates, Maven and Gradle. Having used both in the past, I settled on Gradle as it is typically quick to set up and modify as well as having great support in my Java ide of choice. It also provides some excellent features such as automatically generating a test result site on each build of the project.
 
-### 3.8 GUI Library
+### 3.7 GUI Library
 
 Having settled on Java as the programming language to be used for the AR aspect of this project, we needed to choose a library for GUI development. Requirements for a GUI library mainly came down to the availability of documentation and the ability to create 3D models. While researching libraries, we discovered that Javafx satisfies both requirements.
 
-### 3.9 Competitors 
+### 3.8 Competitors 
 
 Upon researching to see if the idea had already been done by a company, or if the idea was even feasable to begin with, we discovered a number of different implementations of the same idea. A very high fidelity solution to our idea can be found in the [Manus VR Primus II](https://www.manus-vr.com/mocap-gloves), however this very high fidelity solution is very costly at a price of €2,499.  Another solution which takes a different approach to the problem is the [Senseglove](https://www.senseglove.com/), which is not only very bulky, being much larger than the user's hand, but is also very expensive, at €2,999. A final example is the [HAPTX gloves](https://haptx.com/) which are once again very bulky, including a backback which must be worn during use.
 
