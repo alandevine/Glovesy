@@ -69,6 +69,296 @@ Another downside to all of the aforementioned competitors is their reliance on e
 ### 5.2 IMU
 ### 5.3 On-Board Program
 ### 5.4 Demo Hub
-### 5.5 Glovesy Configuration Suite
+### Serial Monitoring
+
+Serial monitoring was achieved using the `JSerialComm` library. This required two classes.
+
+#### SerialPortListener
+
+This object implements the `SerialPortMessageListener` which is an interface which allows for the capture of  byte-delimited input streams. Below we define the delimiter as `0x0A` which corresponds to the newline character. When a new line character is detected, the `serialEvent()` method is called, which splits the incoming data and updates the `GloveState` singleton
+
+```Java
+package OSHandler;
+
+import com.fazecast.jSerialComm.SerialPort;
+import com.fazecast.jSerialComm.SerialPortEvent;
+import com.fazecast.jSerialComm.SerialPortMessageListener;
+
+public final class SerialPortListener implements SerialPortMessageListener {
+
+    private final GloveState gloveState;
+    private boolean captureEvents = false;
+
+    public SerialPortListener(GloveState gloveState) { this.gloveState = gloveState; }
+
+    @Override
+    public int getListeningEvents() { return SerialPort.LISTENING_EVENT_DATA_RECEIVED; }
+
+    @Override
+    public byte[] getMessageDelimiter() { return new byte[] { (byte) 0x0A }; }
+
+    @Override
+    public boolean delimiterIndicatesEndOfMessage() { return true; }
+
+    @Override
+    public void serialEvent(SerialPortEvent event) {
+        byte[] receivedData = event.getReceivedData();
+        String input = new String(receivedData).replace("\n", "");
+        this.gloveState.updateState(input.split(","));
+    }
+}
+
+```
+
+
+
+#### SerialComms
+
+SerialComms is a runnable object which manages the connection to Arduino. If found, the a `SerialPortListener` object will be added to the `arduinoPort` , otherwise an exception will be raised.
+
+```Java
+String deviceName = "Feather M0";
+
+SerialPort arduinoPort = null;
+for (SerialPort commPort : SerialPort.getCommPorts()) {
+    if (commPort.getDescriptivePortName().contains(deviceName)) {
+        arduinoPort = commPort;
+        commPort.openPort();
+        break;
+    }
+}
+
+if (arduinoPort == null)
+    throw new FileNotFoundException(String.format("Could not find device \"%s\".", deviceName));
+
+arduinoPort.addDataListener(serialPortListener);
+
+```
+
+### Main GUI
+
+Since we are making use of JavaFX, each window is broken down into two components, a controller and a corresponding FXML file. Similarly to HTML, the FXML file outlines the layout of the window with all functionality being defined in the controller. For example, below is the definition of a button used to launch the configuration window. We can several fields such as the position of the button which is denoted by the `layoutX` and `layoutY` parameters. Additionally we can see `fx:id` and `onAction` parameters.
+
+```xml
+<Button fx:id="configurationButton"
+        layoutX="622.0"
+        layoutY="575.0"
+        mnemonicParsing="false"
+        onAction="#reconfigureGlove"
+        text="Configure Glove" />
+```
+
+Below is the corresponding code in the Controller class. As you can see both of the below snippets are referenced in the above FXML, hence they are attributed with the `@FXML` decorator. 
+
+```java
+@FXML public Button configurationButton;
+```
+
+```java
+@FXML
+public void reconfigureGlove() throws IOException {
+    this.serialComms.startCapture();
+
+    URL url =  new File("src/main/resources/configurationWindow.fxml").toURI().toURL();
+    Parent root = FXMLLoader.load(url);
+    Stage stage = new Stage();
+    stage.setScene(new Scene(root, 500, 500));
+    stage.setAlwaysOnTop(true);
+    stage.showAndWait();
+
+    this.serialComms.stopCapture();
+
+    Document maxValues = stateHandler.findMax();
+    Document minValues = stateHandler.findMin();
+
+    GloveConfiguration gloveConfiguration = new GloveConfiguration();
+    gloveConfiguration.setMinValues(minValues);
+    gloveConfiguration.setMaxValues(maxValues);
+
+    gloveConfigurationHandler.updateAll(gloveConfiguration);
+    populateGloveConfig();
+}
+```
+
+### Database
+
+While MongoDB is a flexible database, we wanted it to enforce some standard when adding data to it. This was achieved by breaking up each type of data into two separate classes, a data object and its associated handler. Each handler is an implementation of the `DBHandler` interface. 
+
+```Java
+interface DBHandler {
+
+    MongoCollection<Document> collection = null;
+
+    void addEntry(Document doc);
+
+    List<Document> findAllEntries();
+    Document findEntry(String query) throws NoSuchElementException, AccessException;
+    Boolean containsEntry(Document query);
+    void deleteEntry(String query);
+}
+```
+
+Take the following example of the Application data object and the Application Handler. Below we have the implementation of the `Application` class. It is a simple class which mearly acts to store data and provide some assurances regarding if the supplied paths are valid.
+
+```java
+
+public class Application {
+
+    private String name;
+    private String path;
+
+    public Application(Document doc) throws FileNotFoundException, AccessException {
+        this.name = (String) doc.get("name");
+        setPath((String) doc.get("path"));
+    }
+
+    public Application(String name, String path) throws FileNotFoundException, AccessException {
+        this.name = name;
+        setPath(path);
+    }
+
+    public Application(String name) { this.name = name; }
+
+    public String getName() { return this.name; }
+
+    public String getPath() { return this.path; }
+
+    public void setName(String name) { this.name = name; }
+
+    public void setPath(String path) throws FileNotFoundException, AccessException
+    {
+        if (!verifyPath(path))
+            throw new FileNotFoundException(String.format("The file \"%s\" does not exist", path));
+        if (!verifyExecutable(path))
+            throw new AccessException(String.format("The file \"%s\" is not an executable.", path));
+        this.path = path;
+    }
+
+    public static boolean verifyPath(String path) {
+        File file = new File(path);
+        return file.exists();
+    }
+
+    public static boolean verifyExecutable(String path) {
+        File file = new File(path);
+        return file.canExecute();
+    }
+}
+
+
+```
+
+Here we have the corrisponding interface with the MongoDB database. The benifits of this implementation is that we can be enforce rules on what data is entered into the database, as well as provide methods for commonly used operations.
+
+```java
+public class ApplicationHandler implements DBHandler {
+    private final MongoCollection<Document> collection;
+
+    public ApplicationHandler(String url, String collectionName) {
+        MongoClient mongoClient = new MongoClient(new MongoClientURI(url));
+        MongoDatabase database = mongoClient.getDatabase(collectionName);
+        collection = database.getCollection("applications");
+    }
+
+    @Override
+    public void addEntry(Document query) {
+        if (!isValidFile(query))
+            throw new IllegalArgumentException("");
+
+        collection.insertOne(query);
+    }
+
+    @Override
+    public List<Document> findAllEntries() {
+        List<Document> apps = new ArrayList<>();
+        FindIterable<Document> iterable = collection.find();
+        for (Document document : iterable) apps.add(document);
+        return apps;
+    }
+
+    @Override
+    public Document findEntry(String query) throws NoSuchElementException, AccessException {
+        FindIterable<Document> docs = collection.find(Filters.eq("name", query));
+        Iterator<Document> doc = docs.iterator();
+        return doc.next();
+    }
+
+    @Override
+    public Boolean containsEntry(Document query) {
+        try {
+            this.findEntry(query.getString("name"));
+            return true;
+        } catch (NoSuchElementException | AccessException ex) {
+            return false;
+        }
+    }
+
+    @Override
+    public void deleteEntry(String name) {
+        collection.deleteOne(Filters.eq("name", name));
+    }
+    ...
+}
+
+```
+
+### Macro Execution
+
+Macro Execution was achieved using the `Robot` object in the AWT package which came as part of the standard library. Keyboard Macros defined by the user are stored with as a squence of the state of the key, i.e. presses or released, followed by the keycode defined by Java AWT. Below is a macro which when executed, changes window using alt + tab.
+
+```
+press,18
+press,9
+release,9
+release,18
+```
+
+This is achieved by the following code. We start off by parsing the key sequence. If the key sequence is valid, each step is executed using the aforementioned `Robot` object. A key sequence is considered invalid if an action is not equal to "press" or "release", or if a pressed key is not released.
+
+```java
+public void executeKeySequence(String[] keySequence) {
+    String key;
+    String action;
+
+    if (!parseKeySequence(keySequence))
+        throw new InvalidParameterException("The provided key sequence failed to parse successfully");
+
+    for (String line : keySequence) {
+        action = line.split(",")[0];
+        key = line.split(",")[1];
+
+        if (action.equals("press"))
+            robot.keyPress(Integer.parseInt(key));
+        else
+            robot.keyRelease(Integer.parseInt(key));
+    }
+}
+
+public boolean parseKeySequence(String[] keySequence) {
+    ArrayList<String> keys = new ArrayList<>();
+    String key;
+    String action;
+
+    for (String line : keySequence) {
+        action = line.split(",")[0];
+        key = line.split(",")[1];
+
+        if (!action.equals("press") && !action.equals("release"))
+            return false;
+
+        if (action.equals("press")) {
+            keys.add(key);
+            continue;
+        }
+
+        if (keys.contains(key)) {
+            keys.remove(key);
+        }
+    }
+
+    return keys.size() == 0;
+}
+```
+
 
 ## 6. Problems and Solutions
