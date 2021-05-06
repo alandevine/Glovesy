@@ -39,7 +39,7 @@ While researching said boards, there were a few boards that fit the requirements
 
 ### 3.5 Game Engines
 
-While researching which game engines to create the demo environment in, a number of them were suitable, such as Unreal Engine or Godot, however using unity ended up being the best option, since it is compatible with linux and also allows for easy use of custom devices to interface with the engine.
+During research into which game engine to use as the basis for the demonstrations, there were a number of valid options. One of said options being the [Godot engine](https://godotengine.org/) as it is a relatively easy engine to develop for, however, due to the limitations of the engine, it was decided that another engine would be better suited, especially due to difficulty when getting input from non-standard controllers. Another favourable option to use was [Unreal Engine](https://www.unrealengine.com/) as it uses C++ which is a language we both have experience in. However, this option was ruled out due to compatibility issues when developing on linux systems. As such we decided to use [Unity](https://unity.com/) as it is a cross-platform game engine, as well as allowing non-standard input devices to be used with relative ease. This, though, was not an ideal scenario as we have little experience using Unity as well as little experience programming in C#.
 
 ### 3.6 Competitors 
 
