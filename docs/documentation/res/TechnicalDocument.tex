@@ -1,0 +1,677 @@
+\documentclass[12pt,a4paper,oneside]{book}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{latexsym}
+%\usepackage{pslatex}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{cite}
+\usepackage{indentfirst}
+\usepackage{tocloft}
+\usepackage{multirow}
+\usepackage{fontspec}
+\usepackage{hyperref}
+\usepackage{pdfpages}
+%\setmainfont{Times New Roman}
+\usepackage{mathptmx}
+\usepackage{gensymb}
+\usepackage{longtable,array}
+
+% Centering Chapter
+\usepackage{sectsty}
+\chapterfont{\centering}
+
+\pagestyle{myheadings}
+\setlength{\parindent}{0.8in}
+
+\usepackage[top=1.5in,bottom=1in,left=1in,right=1in]{geometry}
+
+% Theorem style-------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem{ex}[thm]{Example}
+\newtheorem{de}[thm]{Definition}
+
+\numberwithin{equation}{chapter}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\Ima}{Im}
+
+\usepackage{float}
+%\usepackage[skip=2pt,font=footnotesize]{caption}
+
+% Graph-------------------------------------------------------------------
+\usepackage{graphics,graphicx}
+\usepackage{calc}
+\usepackage{tikz}
+\usetikzlibrary{decorations.markings, fit, positioning, arrows.meta, backgrounds, automata}
+\tikzstyle{vertex}=[circle, draw, inner sep=2pt, minimum size=4pt]
+\usepackage{circuitikz}
+\newcommand{\vertex}{\node[vertex]}
+\newcounter{Angle}
+\usepackage{pgfgantt}
+
+% Line space-------------------------------------------------------------------
+\renewcommand{\baselinestretch}{1.5}
+
+
+%Centering table of contents and list of table
+\usepackage{tocloft}
+\renewcommand{\contentsname}{\hfill\bfseries\Large TABLE OF CONTENTS \hfill}
+\renewcommand{\cftaftertoctitle}{\hfill}
+
+\renewcommand{\listtablename}{\hfill\bfseries\Large LIST OF TABLES}
+\renewcommand{\cftafterlottitle}{\hfill}
+
+\renewcommand{\listfigurename}{\hfill\bfseries\Large LIST OF FIGURES}
+\renewcommand{\cftafterloftitle}{\hfill}
+
+\newcounter{Glossary}
+\newcounter{Chapnum}
+\newcounter{Secnum}
+
+\counterwithin*{Secnum}{Chapnum}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{figure}[h!]
+\vskip1in
+\begin{center}
+\includegraphics[width = 3.5 cm]{DCU_logo_square.png}
+\end{center}
+\end{figure}
+
+\begin{center}
+\large\textbf{Glovesy}
+\end{center}
+
+\vskip2.5cm
+
+\begin{center}
+\textbf{BY}
+\end{center}
+
+\vskip0.6cm
+
+\begin{center}
+\textbf{Alan Devine - 17412402}\\
+\textbf{Sean Moloney - 17477122}
+\end{center}
+
+\vskip3cm
+
+\begin{center}
+\textbf{A Technical Document}
+\end{center}
+
+\begin{center}
+\textbf{As a requirement for CA400}
+\end{center}
+\vskip2cm
+
+\begin{center}
+\textbf{Last Revision: 06/05/2021}
+\end{center}
+
+\begin{center}
+\textbf{Dublin City University (DCU)}
+\end{center}
+
+\newpage
+\pagenumbering{roman}
+\begin{center}
+    \large\textbf{PLAGIARISM DECLARATION}
+\end{center}
+\addcontentsline{toc}{chapter}{PLAGIARISM DECLARATION}
+\noindent I/We declare that this material, which I/We now submit for assessment, is entirely my/our own work and has not been taken from the work of others, save and to the extent that such work has been cited and acknowledged within the text of my/our work. I/We understand that plagiarism, collusion, and copying are grave and serious offences in the university and accept the penalties that would be imposed should I/We engage in plagiarism, collusion, or copying. I/We have read and understood the Assignment Regulations. I/We have identified and included the source of all facts, ideas, opinions, and viewpoints of others in the assignment references. Direct quotations from books, journal articles, internet sources, module text, or any other source whatsoever are acknowledged and the source cited are identified in the assignment references. This assignment, or any part of it, has not been previously submitted by me/us or any other person for assessment on this or any other course of study. \\
+\\
+I/We have read and understood the referencing guidelines found at \\
+\url{https://www.dcu.ie/info/regulations/plagiarism.shtml}, \\
+\url{https://www4.dcu.ie/students/az/plagiarism}, \\
+and/or recommended in the assignment guidelines.
+
+\pagenumbering{roman}
+\begin{table}[h]
+	\begin{tabular}{ll}
+        Project Title       & Glovesy  \\
+        By                  & Alan Devine\hspace{5mm}- 17412402\\
+                            & Sean Moloney\hspace{2mm}- 17477122\\
+        Field of Study      & Computer Science \\
+        Project Advisor	    & David Sinclair \\
+        Academic Years      & 2020/2021 \\
+	\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{center}
+  \large\textbf{ABSTRACT}\\
+\end{center}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\noindent Glovesy is a wearable computer interfacing device in the form of a glove which will allow the user to interface with their computer by using custom macros or use the device for hand-tracking in VR or AR applications. \\
+\noindent \textbf{Keywords:} : Wearables, human-computer interfacing, VR, AR, Arduino
+
+\begin {center}
+    \large\textbf{GLOSSARY}
+\end{center}
+\addcontentsline{toc}{chapter}{GLOSSARY}
+\begin{enumerate}
+    \item \textbf{VR Headset} A head-mounted device for use in consuming Virtual Reality Content.
+    \item \textbf{AR Headset} Similarly to a VR Headset, an AR Headset is a head-mounted device which aims to provide a User with content that is built around their surroundings rather than replace them in the case of a VR Headset.
+    \item \textbf{Arduino} An Open-Source electronic prototyping platform.
+    \item \textbf{ISR} Interrupt Service Routine is a software process invoked by an interrupt request from a hardware device.
+\end{enumerate}
+
+\newpage
+
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
+
+\newpage
+\tableofcontents
+
+%\newpage
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\renewcommand{\listfigurename}{LIST OF FIGURES}
+\listoffigures
+
+\newpage
+\renewcommand*\thesection{\arabic{Chapnum}.\arabic{Secnum}}
+\pagenumbering{arabic}
+\stepcounter{Chapnum}
+\chapter*{\textbf{Introduction}}
+\addcontentsline{toc}{chapter}{Introduction}
+
+\stepcounter{Secnum}
+\section{\textbf{Overview}}
+
+\noindent Glovesy is an Arduino based wearable device which will allow the user to interface with their computer, either by using user-defined macros, which will be set up using our program, the Glovesy Configuration Suite, which will allow several gestures do be defined to certain actions within the PC or by allowing the user accurate hand and finger tracking for use in Virtual and Augmented Reality.
+
+\vspace{1cm}
+
+\noindent Gestures will be defined by a user and mapped to some action on their PC. Actions could include entering a combination of keystrokes, opening an application, raising/ lowering system volume, etc. They will be executed upon the user repeating their chosen gesture.
+
+\vspace{1cm}
+
+
+\stepcounter{Chapnum}
+\chapter*{\textbf{Motivation}}
+\addcontentsline{toc}{chapter}{Motivation}
+
+\noindent The idea for glovesy came from our analysis of the input devices used in VR/ AR applications. Typically in the case of VR applications, standard input devices mostly come in the form of controllers held in each hand with an array of buttons and some mechanism to provide tracking on the top. AR headsets, generally rely on voice-activated services such, or, the use of a smartphone to interact with the device. In both applications, we agreed that using a glove based input device would provide a more immersive VR gaming experience, and more a more intuitive way of interacting with AR content.\\\\ Furthermore, we saw a great learning opportunity with this project. We would be exposed to programming microcontrollers, GUI development and game development to name a few. We also would have the opportunity to make use of some of the skills we developed while undergoing this degree, namely applying linear algebra to a real project.
+
+\stepcounter{Chapnum}
+\chapter*{\textbf{Research}}
+\addcontentsline{toc}{chapter}{Research}
+
+\noindent Overall a significant amount of research was carried out before beginning the development of Glovesy in order to see if our idea would be possible to implement given our current technical expertise 
+and within a reasonable budget.
+
+\stepcounter{Secnum}
+\section{\textbf{Finger Tracking}}
+
+\noindent One of the main components that we carried out research on was how the fingers would be tracked.
+While we found a number of low-budget ways to track the user's fingers, such as using potentiometers attached to the fingers using fishing line or string, however using this method means that the glove will be much larger and bulkier than using flex sensors. This method also has the downside of the increased chance of snagging due to the fishing line attached to the fingers.
+In the end, we decided to use flex sensors, as while there are expensive versions of them such as the ones found on Adafruit, it is possible to buy the materials and construct them for much cheaper. Flex sensors are also very low profile and sit flush along the glove, making it feel more natural and reduces the chances of snagging.
+
+\stepcounter{Secnum}
+\section{\textbf{Hand Tracking}}
+
+\noindent When researching methods for tracking the user's hand, while there were a few other options, such as using a HTC Vive Tracker, however this is not only an expensive option, but it also requires at least one HTC Vive Lighthouse for tracker. On top of this, when attached, the tracker is bulky and can easily snag or catch on something due to it's design, especially when using a VR headset, since the user cannot see their surroundings.  Instead, the best option we could find was using an 9DoF IMU, specifically the Adafruit LSM6DS33 LIS3MDL, as it was both cheap and small, while also offering accurate accelerometer and gyroscope data.
+
+\stepcounter{Secnum}
+\section{\textbf{Board}}
+
+\noindent When looking for a board to use, there were a number of requirements which had to be satisfied for it to function adequately. Those requirements were: 
+\begin{itemize}
+    \item{the board must have enough analog pins to read data from each of the flex sensors}
+    \item{the board must have i2c compatibility in order to receive data from the IMU}
+    \item{the board must be compact in terms of its form factor in order to reduce the bulk of the glove and make it more comfortable to wear}
+\end{itemize}
+
+\noindent While researching said boards, there were a few boards that fit the requirements, such as the TinyCircuits TinyLily Mini, but we decided to use the Adafruit Feather M0 Bluefruit LE, since it not only meets all the requirements, but is also Bluetooth enable, which would allow us to create a wireless version of the device without needing to purchase new components.
+
+\stepcounter{Secnum}
+\section{\textbf{Game Engines}}
+
+\noindent During research into which game engine to use as the basis for the demonstrations, there were a number of valid options. One of said options being the Godot engine as it is a relatively easy engine to develop for, however, due to the limitations of the engine, it was decided that another engine would be better suited, especially due to difficulty when getting input from non-standard controllers. Another favourable option to use was Unreal Engine as it uses C++ which is a language we both have experience in. However, this option was ruled out due to compatibility issues when developing on linux systems. As such we decided to use Unity as it is a cross-platform game engine, as well as allowing non-standard input devices to be used with relative ease. This, though, was not an ideal scenario as we have little experience using Unity as well as little experience programming in C\#.
+
+\stepcounter{Secnum}
+\section{Language for implementing AR Suite}
+
+\noindent Choosing a language for this aspect of the project was rather straightforward. It had to meet certain requirements. The first requirement was for the language to be statically typed, this is mostly down to personal preference as I have found dynamically typed languages to be cumbersome when working with larger codebases. The next requirement was for the language to be platform agnostic. With all that considered, we settled on Java.
+
+\stepcounter{Secnum}
+\section{Build Tool}
+
+\noindent The choice in build tools came down to two candidates, Maven and Gradle. Having used both in the past, I settled on Gradle as it is typically quick to set up and modify as well as having great support in my Java ide of choice. It also provides some excellent features such as automatically generating a test result site on each build of the project.
+
+\stepcounter{Secnum}
+\section{GUI Library}
+
+\noindent Having settled on Java as the programming language to be used for the AR aspect of this project, we needed to choose a library for GUI development. Requirements for a GUI library mainly came down to the availability of documentation and the ability to create 3D models. While researching libraries, we discovered that Javafx satisfies both requirements.
+
+\stepcounter{Secnum}
+\section{\textbf{Competitors}}
+
+\noindent Upon researching to see if the idea had already been done by a company, or if the idea was even feasible to begin with, we discovered a number of different implementations of the same idea. A very high fidelity solution to our idea can be found in the Manus VR Primus II, however this very high fidelity solution is very costly at a price of €2,499.  Another solution which takes a different approach to the problem is the Senseglove, which is not only very bulky, being much larger than the user's hand, but is also very expensive, at €2,999. A final example is the HAPTX gloves which are once again very bulky, including a backback which must be worn during use.Another downside to all of the aforementioned competitors is their reliance on existing vr systems such as the HTC Vive Trackers, or the Occulus Controllers which not only require the user to have a vr environment set up, but also add bulk to the glove, particularly the Occulus Controllers, alongside being somewhat expensive.
+
+\stepcounter{Chapnum}
+\chapter*{\textbf{Design}}
+\addcontentsline{toc}{chapter}{Design}
+
+\stepcounter{Secnum}
+\section{\textbf{System Architecture}}
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}
+        \node[] (ard) {Arduino};
+        \node[above=of ard] (imu) {IMU};
+        \node[below=of ard] (fn) {...};
+        \node[left=of fn] (f1) {Flex 1};
+        \node[right=of fn] (f8) {Flex 8};
+
+        \node[fit=(f1) (fn) (f8), draw, inner sep=5mm] (fit3) {};
+
+        \draw [->] (fit3)--(ard);
+        \draw [->] (imu)--(ard);
+
+        \node[fit=(ard) (imu) (fit3), draw, inner sep=5mm] (glove) {};
+
+        \node[below=of glove] (btr) {Bluetooth Reciever};
+        \draw [->] (glove)--(btr);
+
+        \node[below=of btr] (driver) {Device Driver};
+        \draw [->] (btr)--(driver);
+
+        \node[below=of driver] (daemon) {Daemon};
+        \draw [->] (driver)--(daemon);
+
+
+        \node[right=of daemon] (gui) {GCS};
+        \draw [->] (daemon)--(gui);
+
+        \node[below=of daemon] (macro) {MacroDB};
+        \draw [->] (gui)|-(macro);
+        \draw [->] (macro)--(daemon);
+
+        \node[left=of daemon] (host) {General Input};
+        \draw [->] (daemon)--(host);
+
+        \node[fit=(btr) (driver) (daemon) (host) (gui) (macro), draw, inner sep=5mm] (host) {};
+
+        \node[left=of host] (hostLable) {Host Computer};
+        \node[left=of glove] (hostLable) {Glovesy};
+    \end{tikzpicture}
+    \caption{High-Level System Architecture Diagram}
+    \label{fig:sys arch diagram}
+\end{figure}
+
+\newpage
+
+\stepcounter{Secnum}
+\section{\textbf{Flex Sensors}}
+
+\noindent The flex sensors are constructing by using 3 layers of velostat, with conductive thread running up along both top and the underside, and is held together using electrical tape. They function by changing resistance according to how much the sensor is bent. Using this resistance, once the sensor is calibrated, the value can be normalized to be between 1.0 and 0.0 depending on how bent the finger is.
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+            every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
+            source/.style={draw, thick, rounded corners, fill=yellow!20,inner sep=.3cm},
+            to/.style={->,>=stealth',shorten >=1pt,semithick,font=\rmfamily\scriptsize},
+            every node/.style={align=center}]
+        \matrix{%
+            \node[source, label=left:Flex Sensor] (A) {A}; \& \& \node[source, label=right:Configuration Suite] (B) {B}; \\
+            \\\\\\
+            \node[source, label=south:Feather Board] (C) {C}; \& \& \node[source, label=right:Serial Port] (D) {D}; \\
+            \\\\\\
+            \& \& \node[source, label=right:Demo Hub] (E) {E}; \\
+        };
+
+        \draw[->] (A) -- node[anchor=west] {Resistance} (C);
+        \draw[->] (C) -- node[anchor=south] {Flex Data} (D);
+        \draw[->] (D) -- node[anchor=east] {Serial Data} (B);
+        \draw[->] (D) -- node[anchor=east] {Serial Data} (E);
+
+        \node[draw,dotted,fit=(A) (C),inner sep=4ex,] (ACF) {};
+        \node[above of =ACF] (ACFt) [above=-5ex of ACF] {Glove};
+        \node[draw, dotted,fit=(D) (B) (E), inner sep=5ex] (DBE) {};
+        \node[above of = DBE] (DBEt) [above=-5ex of DBE] {PC};
+    \end{tikzpicture}
+    \caption{Flex Sensor Data Flow Diagram}
+    \label{fig:DFD}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{circuitikz}
+        \tikzset={>=latex};
+        \draw (2, 0) node[resistivesensshape](r){};
+        \draw[->,>=stealth] (r.label) -- + (.49, .9);
+
+        \draw (r.east) -- + (1.5,0) node[ocirc](vin){};
+        \node [above of=vin] [above=-5ex of vin]{V\footnotesize in};
+
+        \draw (0,-1.5) node[resistorshape, rotate=90](pullup){};
+
+        \draw (pullup.east) -- + (0,.93) node[circ](a){};
+        \draw (a) -- (r.west);
+        \draw (a) -- + (-1,0) node[ocirc](vout){};
+        \draw (pullup.west) -- + (0,-.5) node[ground]{};
+
+        \node[above of=vout] [above=-5ex of vout] {V\footnotesize out};
+
+        \node[above of=r] {\footnotesize Flex Sensor};
+        \node[left of=pullup] {\footnotesize 4.7 \tiny k $\Omega$};
+    \end{circuitikz}
+    \caption{Flex Sensor Circuit}
+    \label{fig:flex}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{circuitikz}
+        \ctikzset{multipoles/dipchip/width=2};
+        \ctikzset{multipoles/dipchip/pin spacing=.2};
+        \draw (8,2) node[dipchip, num pins=32,hide numbers, external pins width=0] (Main) {\footnotesize Feather M0};
+        \draw (0,0) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex1) {};
+        \draw (0,1) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex2) {};
+        \draw (0,2) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex3) {};
+        \draw (0,3) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex4) {};
+        \draw (0,4) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex5) {};
+        \draw (0,5) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex6) {};
+        \draw (0,6) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex7) {};
+
+        \node[right, font=\tiny] at (Main.bpin 2) {3V};
+        \node[right, font=\tiny] at (Main.bpin 4) {GND};
+        \node[right, font=\tiny] at (Main.bpin 5) {A0};
+        \node[right, font=\tiny] at (Main.bpin 6) {A1};
+        \node[right, font=\tiny] at (Main.bpin 7) {A2};
+        \node[right, font=\tiny] at (Main.bpin 8) {A3};
+        \node[right, font=\tiny] at (Main.bpin 9) {A4};
+        \node[right, font=\tiny] at (Main.bpin 10) {A5};
+        \node[left, font=\tiny] at (Main.bpin 25) {9};
+
+        \node[left, font=\tiny] at (Flex1.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex1.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex2.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex2.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex3.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex3.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex4.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex4.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex5.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex5.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex6.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex6.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex7.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex7.bpin 3) {-};
+
+
+        \node[draw,dotted,fit=(Flex1) (Flex2) (Flex3) (Flex4) (Flex5) (Flex6) (Flex7),inner sep=3ex] (FlexBox) {};
+        \node[above of=Flex7] (FlexBoxText) [above=-2ex of Flex7] {Flex Sensors};
+
+
+        \draw (Main.pin 4) -- + (-2,0) node[circ](gnd){}; 
+
+
+        \draw (Flex1.pin 3) -- + (1,0) node[circ](gflex){} -- + (3.2,0) node[circ](groundflex){};
+        \draw (Flex2.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex3.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex4.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex5.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex6.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex7.pin 3) -- + (1,0) node[circ]{} -- (gflex);
+
+
+        \draw (gnd) -- (groundflex);
+
+        \draw (Flex1.pin 4) -- + (1.5,0) node[circ](vflex){};
+        \draw (Flex2.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex3.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex4.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex5.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex6.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex7.pin 4) -- + (1.5,0) node[circ]{} -- (vflex);
+
+        \draw (Main.pin 5) -- + (-1,0) node[circ](a0){};
+        \draw (Main.pin 6) -- + (-1,0) node[circ](a1){};
+        \draw (Main.pin 7) -- + (-1,0) node[circ](a2){};
+        \draw (Main.pin 8) -- + (-1,0) node[circ](a3){};
+        \draw (Main.pin 9) -- + (-1,0) node[circ](a4){};
+        \draw (Main.pin 10) -- + (-1,0) node[circ](a5){};
+        
+
+        \draw (groundflex) -| (a0);
+        \draw (Main.pin 25) -- + (1,0) -- + (1,-3) -| (groundflex);
+        
+        \draw (Main.pin 2) -- + (-3,0) |- (vflex);
+
+    \end{circuitikz}
+    \caption{Flex Sensor Circuit Diagram}
+    \label{fig:Circuit}
+\end{figure}
+
+\newpage
+
+\stepcounter{Secnum}
+\section{IMU}
+
+\noindent The IMU functions by sending Accelerometer, Gyroscope, and Magnetometer data to the board over I2C, thereby allowing the system to track hand movement and orientation.
+
+\begin{figure}[!h]
+    \centering
+    \begin{tikzpicture}[
+            every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
+            source/.style={draw, thick, rounded corners, fill=yellow!20,inner sep=.3cm},
+            to/.style={->,>=stealth',shorten >=1pt,semithick,font=\rmfamily\scriptsize},
+            every node/.style={align=center}]
+        \matrix{%
+            \& \& \node[source, label=right:Configuration Suite] (B) {B}; \\
+            \\\\\\
+            \node[source, label=west:Feather Board] (C) {C}; \& \& \node[source, label=right:Serial Port] (D) {D}; \\
+            \\\\\\
+            \node[source, label=left:IMU] (A) {A}; \& \& \node[source, label=right:Demo Hub] (E) {E}; \\
+        };
+
+        \draw[->] (A) -- node[anchor=west] {IMU Data} (C);
+        \draw[->] (C) -- node[anchor=south] {IMU Data} (D);
+        \draw[->] (D) -- node[anchor=east] {Serial Data} (B);
+        \draw[->] (D) -- node[anchor=east] {Serial Data} (E);
+
+        \node[draw,dotted,fit=(A) (C),inner sep=4ex,] (ACF) {};
+        \node[above of =ACF] (ACFt) [above=-5ex of ACF] {Glove};
+        \node[draw, dotted,fit=(D) (B) (E), inner sep=5ex] (DBE) {};
+        \node[above of = DBE] (DBEt) [above=-5ex of DBE] {PC};
+    \end{tikzpicture}
+    \caption{IMU Data Flow Diagram}
+    \label{fig:DFD}
+\end{figure}
+
+\begin{figure}[h!]
+    \centering
+    \begin{circuitikz}
+        \ctikzset{multipoles/dipchip/width=2};
+        \ctikzset{multipoles/dipchip/pin spacing=.2};
+        \draw (8,6) node[dipchip, num pins=10,hide numbers, external pins width=0] (IMU) {\footnotesize IMU};
+        \draw (8,2) node[dipchip, num pins=32,hide numbers, external pins width=0] (Main) {\footnotesize Feather M0};
+
+        \node[right, font=\tiny] at (Main.bpin 2) {3V};
+        \node[right, font=\tiny] at (Main.bpin 4) {GND};
+        \node[left, font=\tiny] at (Main.bpin 22) {SCL};
+        \node[left, font=\tiny] at (Main.bpin 21) {SDA};
+        
+        \node[right, font=\tiny] at (IMU.bpin 1) {VIN};
+        \node[right, font=\tiny] at (IMU.bpin 3) {GND};
+        \node[right, font=\tiny] at (IMU.bpin 4) {SCL};
+        \node[right, font=\tiny] at (IMU.bpin 5) {SDA};
+
+        \draw (Main.pin 2) -- + (-1.5,0) |- (IMU.pin 1);
+        \draw (Main.pin 4) -- + (-2,0) |- (IMU.pin 3); 
+        \draw (Main.pin 22) -- + (.5,0) -- + (.5,3.2) -- + (-3.6,3.2) |- (IMU.pin 4);
+        \draw (Main.pin 21) -- + (.8,0) -- + (.8, 3.8) -- + (-3.3, 3.8) |- (IMU.pin 5);
+
+    \end{circuitikz}
+    \caption{IMU Circuit Diagram}
+    \label{fig:Circuit}
+\end{figure}
+
+\newpage 
+
+\stepcounter{Secnum}
+\section{Board}
+
+\noindent The board used is the Adafruit Feather M0 Bluefruit LE, which transfers data from the flex sensors and IMU to the PC as comma seperated values over serial communications.\\\\ We were able to develop and upload code to be run onboard the device using the Arduino IDE, since the board was compatible, as well as being able to read serial using the IDE which made testing during the development of the code very easy and intuitive.
+
+\begin{figure}[h!]
+    \centering
+    \begin{tikzpicture}[
+            every matrix/.style={ampersand replacement=\&,column sep=2cm,row sep=.6cm},
+            source/.style={draw, thick, rounded corners, fill=yellow!20,inner sep=.3cm},
+            to/.style={->,>=stealth',shorten >=1pt,semithick,font=\rmfamily\scriptsize},
+            every node/.style={align=center}]
+        \matrix{%
+            \node[source, label=left:Flex Sensors] (A) {A}; \& \& \& \node[source, label=right:Configuration Suite] (B) {B}; \\
+            \\\\\\
+            \node[source, label=left:Feather Board] (C) {C}; \& \& \node[source, label=below:Serial Port] (D) {D}; \\
+            \\\\\\
+            \node[source, label=left:IMU] (F) {F}; \& \& \& \node[source, label=right:Demo Hub] (E) {E}; \\
+        };
+
+        \draw[->] (A) -- node[anchor=west] {Resistance} (C);
+        \draw[->] (F) -- node[anchor=west] {IMU Position} (C);
+        \draw[->] (C) -- node[anchor=south] {IMU and Flex Data} (D);
+        \draw[->] (D) -| node[anchor=west] {Serial Data} (B);
+        \draw[->] (D) -| (E);
+
+        \node[draw,dotted,fit=(A) (C) (F),inner sep=4ex,] (ACF) {};
+        \node[above of =ACF] (ACFt) [above=-5ex of ACF] {Glove};
+        \node[draw, dotted,fit=(D) (B) (E), inner sep=5ex] (DBE) {};
+        \node[above of = DBE] (DBEt) [above=-5ex of DBE] {PC};
+        \node[draw, dotted, fit=(B) (E), inner sep=1ex] (BE) {};
+        \node[above of = BE] (BEt) [above=-5ex of BE] {UI};
+    \end{tikzpicture}
+    \caption{Data Flow Diagram}
+    \label{fig:DFD}
+\end{figure}
+
+\begin{figure}[!h]
+    \centering
+    \begin{circuitikz}
+        \ctikzset{multipoles/dipchip/width=2};
+        \ctikzset{multipoles/dipchip/pin spacing=.2};
+        \draw (8,6) node[dipchip, num pins=10,hide numbers, external pins width=0] (IMU) {\footnotesize IMU};
+        \draw (8,2) node[dipchip, num pins=32,hide numbers, external pins width=0] (Main) {\footnotesize Feather M0};
+        \draw (0,0) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex1) {};
+        \draw (0,1) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex2) {};
+        \draw (0,2) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex3) {};
+        \draw (0,3) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex4) {};
+        \draw (0,4) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex5) {};
+        \draw (0,5) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex6) {};
+        \draw (0,6) node[dipchip, num pins=4, hide numbers, external pins width=0] (Flex7) {};
+
+        \node[right, font=\tiny] at (Main.bpin 2) {3V};
+        \node[right, font=\tiny] at (Main.bpin 4) {GND};
+        \node[right, font=\tiny] at (Main.bpin 5) {A0};
+        \node[right, font=\tiny] at (Main.bpin 6) {A1};
+        \node[right, font=\tiny] at (Main.bpin 7) {A2};
+        \node[right, font=\tiny] at (Main.bpin 8) {A3};
+        \node[right, font=\tiny] at (Main.bpin 9) {A4};
+        \node[right, font=\tiny] at (Main.bpin 10) {A5};
+        \node[left, font=\tiny] at (Main.bpin 25) {9};
+        \node[left, font=\tiny] at (Main.bpin 22) {SCL};
+        \node[left, font=\tiny] at (Main.bpin 21) {SDA};
+        
+        \node[right, font=\tiny] at (IMU.bpin 1) {VIN};
+        \node[right, font=\tiny] at (IMU.bpin 3) {GND};
+        \node[right, font=\tiny] at (IMU.bpin 4) {SCL};
+        \node[right, font=\tiny] at (IMU.bpin 5) {SDA};
+
+        \node[left, font=\tiny] at (Flex1.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex1.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex2.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex2.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex3.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex3.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex4.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex4.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex5.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex5.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex6.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex6.bpin 3) {-};
+
+        \node[left, font=\tiny] at (Flex7.bpin 4) {+};
+        \node[left, font=\tiny] at (Flex7.bpin 3) {-};
+
+
+        \node[draw,dotted,fit=(Flex1) (Flex2) (Flex3) (Flex4) (Flex5) (Flex6) (Flex7),inner sep=3ex] (FlexBox) {};
+        \node[above of=Flex7] (FlexBoxText) [above=-2ex of Flex7] {Flex Sensors};
+
+
+        \draw (Main.pin 4) -- + (-2,0) node[circ](gnd){}; 
+
+
+        \draw (Flex1.pin 3) -- + (1,0) node[circ](gflex){} -- + (3.2,0) node[circ](groundflex){};
+        \draw (Flex2.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex3.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex4.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex5.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex6.pin 3) -- + (1,0) node[circ]{};
+        \draw (Flex7.pin 3) -- + (1,0) node[circ]{} -- (gflex);
+
+
+        \draw (gnd) -- (groundflex);
+
+        \draw (Flex1.pin 4) -- + (1.5,0) node[circ](vflex){};
+        \draw (Flex2.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex3.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex4.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex5.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex6.pin 4) -- + (1.5,0) node[circ]{};
+        \draw (Flex7.pin 4) -- + (1.5,0) node[circ]{} -- (vflex);
+
+        \draw (Main.pin 5) -- + (-1,0) node[circ](a0){};
+        \draw (Main.pin 6) -- + (-1,0) node[circ](a1){};
+        \draw (Main.pin 7) -- + (-1,0) node[circ](a2){};
+        \draw (Main.pin 8) -- + (-1,0) node[circ](a3){};
+        \draw (Main.pin 9) -- + (-1,0) node[circ](a4){};
+        \draw (Main.pin 10) -- + (-1,0) node[circ](a5){};
+        
+
+        \draw (groundflex) -| (a0);
+        \draw (Main.pin 25) -- + (1,0) -- + (1,-3) -| (groundflex);
+        
+        \draw (Main.pin 2) -- + (-3,0) node[circ] (3v) {} |- (vflex);
+        \draw (IMU.pin 1) -| (3v);
+        \draw (Main.pin 4) -- + (-2,0) |- (IMU.pin 3); 
+        \draw (Main.pin 22) -- + (.5,0) -- + (.5,3.2) -- + (-3.6,3.2) |- (IMU.pin 4);
+        \draw (Main.pin 21) -- + (.8,0) -- + (.8, 3.8) -- + (-3.3, 3.8) |- (IMU.pin 5);
+        
+    \end{circuitikz}
+    \caption{Board Circuit Diagram}
+    \label{fig:Circuit}
+\end{figure}
+
+
+
+\end{document}
