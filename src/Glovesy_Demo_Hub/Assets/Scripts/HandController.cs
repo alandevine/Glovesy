@@ -15,11 +15,11 @@ public class HandController : MonoBehaviour {
     float[] NormalizedValues = {0.0f,0.0f,0.0f,0.0f,0.0f,0.0f,0.0f};
     int CALIBRATED = 0;
     float timer;
-    public GameObject IndexPivot;
+    public GameObject IndexPivot, IndexMidPivot, IndexTipPivot;
     public GameObject Hand, Thumb, Thumb_Mid, Thumb_Tip, Index, Index_Mid, Index_Tip, Middle, Middle_Mid, Middle_Tip, Ring, Ring_Mid, Ring_Tip, Little, Little_Mid, Little_Tip; 
   
-    public GameObject IndexTarget;
-    public Vector3 IndexTargetPos;
+    public GameObject IndexTarget, IndexMidTarget, IndexTipTarget;
+    public Vector3 IndexTargetPos, IndexMidTargetPos, IndexTipTargetPos;
     // Start is called before the first frame update
     void Start() {
         init_serial(path);
@@ -46,15 +46,34 @@ public class HandController : MonoBehaviour {
 
         // Add pivot points to simulate the knuckles
         IndexPivot = GameObject.Find("Index Pivot");
+        IndexMidPivot = GameObject.Find("Index Mid Pivot");
+        IndexTipPivot = GameObject.Find("Index Tip Pivot");
 
         // Create a Target object for each finger segment to point towards
         IndexTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         IndexTarget.transform.position = Index.transform.position + new Vector3(1f, 0f, 0f);
         IndexTarget.transform.localScale = new Vector3(.1f,.1f,.1f);
-        IndexTarget.GetComponent<Renderer>().material.color = Color.green;
+        IndexTarget.GetComponent<Renderer>().enabled = false;
         IndexTarget.name = "IndexTarget";
 
+        IndexMidTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        IndexMidTarget.transform.position = Index_Mid.transform.position + new Vector3(1f,0f,0f);
+        IndexMidTarget.transform.localScale = new Vector3(.1f,.1f,.1f);
+        //IndexMidTarget.GetComponent<Renderer>().enabled = false;
+        IndexMidTarget.name = "IndexMidTarget";
+        IndexMidTarget.transform.parent = IndexTarget.transform;
+
+        IndexTipTarget = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+        IndexTipTarget.transform.position = Index_Tip.transform.position + new Vector3(1f,0f,0f);
+        IndexTipTarget.transform.localScale = new Vector3(.1f,.1f,.1f);
+        IndexTipTarget.GetComponent<Renderer>().enabled = false;
+        IndexTipTarget.name = "IndexTipTarget";
+        IndexTipTarget.transform.parent = IndexMidTarget.transform;
+
+        // Record starting position of each target
         IndexTargetPos = IndexTarget.transform.position;
+        IndexMidTargetPos = IndexMidTarget.transform.position;
+        IndexTipTargetPos = IndexTipTarget.transform.position;
         
     }
 
@@ -136,16 +155,20 @@ public class HandController : MonoBehaviour {
         } else {
             Normalize();
 
-            Debug.Log(90f*(1f-NormalizedValues[2]));
-            if (NormalizedValues[2] < 0.5f) {
-                IndexTarget.transform.position = IndexTargetPos + new Vector3(0f,-NormalizedValues[2]*2,0f);
-            } else {
-                IndexTarget.transform.position = IndexTargetPos + new Vector3(-NormalizedValues[2], -1f, 0f);
-            }
+            // Set Target Positions based on data returned from flex sensors
+            IndexTarget.transform.position = IndexTargetPos + new Vector3(-1f+NormalizedValues[2],-1f+NormalizedValues[2],0f);
+
+            IndexMidTargetPos = IndexTarget.transform.localPosition + new Vector3(1f,0f,0f);
+            IndexTipTargetPos = IndexMidTarget.transform.localPosition + new Vector3(1f,0f,0f);
+
+            IndexMidTarget.transform.localPosition = IndexMidTargetPos + new Vector3(-1f+NormalizedValues[1],-1f+NormalizedValues[1],0f);
+            IndexTipTarget.transform.localPosition = IndexTipTargetPos + new Vector3(-1f+NormalizedValues[1],-1f+NormalizedValues[1],0f);
+            //IndexMidTarget.transform.position = IndexTarget.transform.position + new Vector3(-1f+NormalizedValues[1],-1f+NormalizedValues[1],0f);
+            //IndexTipTarget.transform.position = Index_Mid.transform.position + new Vector3(-1f+NormalizedValues[1],-1f+NormalizedValues[1],0f);
+
             IndexPivot.transform.LookAt(IndexTarget.transform.position, new Vector3(0f,1.0f,0f));
-            //Index_Mid.transform.Rotate(90f*(1f-NormalizedValues[1]),0f,0f,Space.Self);
-            //Index_Tip.transform.Rotate(90f*(1f-NormalizedValues[1]),0f,0f,Space.Self);
-            //Thumb.transform.Rotate(90f*NormalizedValues[0], 90f*NormalizedValues[0]/2, 0f, Space.Self);
+            IndexMidPivot.transform.LookAt(IndexMidTarget.transform.position, new Vector3(0f,1.0f,0f));
+
         }
     }
 }
