@@ -32,6 +32,7 @@ public class ApplicationHandler implements DBHandler {
         collection = database.getCollection("applications");
     }
 
+    @Override
     public void addEntry(Document query) {
         if (!isValidFile(query))
             throw new IllegalArgumentException("");
@@ -43,6 +44,7 @@ public class ApplicationHandler implements DBHandler {
         return !this.containsEntry(query) && Application.verifyExecutable(query.getString("path"));
     }
 
+    @Override
     public List<Document> findAllEntries() {
         List<Document> apps = new ArrayList<>();
         FindIterable<Document> iterable = collection.find();
@@ -50,12 +52,14 @@ public class ApplicationHandler implements DBHandler {
         return apps;
     }
 
+    @Override
     public Document findEntry(String query) throws NoSuchElementException, AccessException {
         FindIterable<Document> docs = collection.find(Filters.eq("name", query));
         Iterator<Document> doc = docs.iterator();
         return doc.next();
     }
 
+    @Override
     public Boolean containsEntry(Document query) {
         try {
             this.findEntry(query.getString("name"));
@@ -69,6 +73,7 @@ public class ApplicationHandler implements DBHandler {
      * Method for deleting a single entry.
      * @param name Name of program entry to be deleted
      */
+    @Override
     public void deleteEntry(String name) {
         collection.deleteOne(Filters.eq("name", name));
     }
@@ -76,7 +81,7 @@ public class ApplicationHandler implements DBHandler {
     /**
      * Method for deleting all entries. Should only be used in testing scenarios.
      */
-    private void deleteAll() {
+    public void deleteAll() {
         List<Document> apps = this.findAllEntries();
         for (Document app : apps) {
             this.deleteEntry(app.getString("name"));
