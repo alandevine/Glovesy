@@ -362,3 +362,10 @@ public boolean parseKeySequence(String[] keySequence) {
 
 
 ## 6. Problems and Solutions
+### Reading Serial Data worked in a main function, but not when integrated.
+
+When implementing the serial data, I worked in a main function within `SerialComms.java`. Once it was working standalone, I tried to integrate it with the rest of the system only to find that it would read once, then stop altogether. After a bit of research it came to my attention while the library we used for reading serial data, `JSerialComm`, did create and start a thread, the thread would join after one serial event. The solution to this was to make `SerialComms.java` an implementation of the Runnable interface.
+
+### Z-Axis Joint Contraction
+
+When Implementing joint contraction, initially, there was an issue were fingers would not rotate on the Z-Axis. This is obviously a huge issue as for the most part fingers only Z-Axis, or, the axis normal to palm of the hand. The issue stemmed from JavaFX3D having two ways of moving objects on screen, setLayout and setTranslate. Layout is derived from the strictly GUI side of the package. This was fixed by changing Layout to Translate.
