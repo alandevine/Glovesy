@@ -5,6 +5,7 @@ import java.awt.MouseInfo;
 import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class InputManager {
                 keys.remove(key);
             }
         }
-        
+
         return keys.size() == 0;
     }
 
@@ -88,10 +89,5 @@ public class InputManager {
         robot.delay(200);
         robot.mouseRelease(InputEvent.BUTTON3_DOWN_MASK);
         robot.delay(200);
-    }
-
-    public static void main(String[] args) throws AWTException {
-        InputManager inputManager = new InputManager();
-        inputManager.moveMouse(100, 0);
     }
 }
