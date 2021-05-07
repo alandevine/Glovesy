@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'application'
+    id "org.openjfx.javafxplugin" version "0.0.9"
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+}
+
+group 'com.glovesy'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.mongodb', name: 'mongo-java-driver', version: '3.6.3'
+    implementation group: 'org.openjfx', name: 'javafx', version: '11', ext: 'pom'
+    implementation 'com.fazecast:jSerialComm:[2.0.0,3.0.0)'
+    testImplementation('org.junit.jupiter:junit-jupiter-api:5.3.1')
+    testImplementation('org.junit.jupiter:junit-jupiter-engine:5.3.1')
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.graphics' ]
+    version = '11.0.2'
+    application {
+        mainClassName = 'gui.Main'
+        applicationName = 'foo-app'
+    }
+}
+
+test {
+    useJUnitPlatform()
+    testLogging.showStandardStreams = true
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
