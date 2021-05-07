@@ -5,11 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour {
     public void StartDemo() {
-        SceneManager.LoadScene("SampleScene");
-    }
-
-    public void Calibrate() {
-        SceneManager.LoadScene("Calibrate");
+        Debug.Log("Click");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Quit() {
