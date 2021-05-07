@@ -114,10 +114,10 @@ public class Finger extends Group {
         for (int i = idx; i < joints.getChildren().size() - 1; i++) {
             Point3D pivot = util.sphereToPoint((Sphere) this.joints.getChildren().get(i));
             Point3D point = util.sphereToPoint((Sphere) this.joints.getChildren().get(i + 1));
-            Point3D newPos = VectorMath.rotateAboutPoint(angle, pivot, point);
+            Point3D newPos = VectorMath.rotateAboutPoint(-angle, pivot, point);
 
             double deltaY = -Math.abs(newPos.getY() - point.getY());
-            double deltaZ = Math.abs(newPos.getZ() - point.getZ());
+            double deltaZ = -Math.abs(newPos.getZ() - point.getZ());
 
             this.joints.getChildren().get(i + 1).setTranslateX(newPos.getX());
             this.joints.getChildren().get(i + 1).setTranslateY(newPos.getY());
